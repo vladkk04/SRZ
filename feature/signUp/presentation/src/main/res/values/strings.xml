@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="signUp_sign_up">Sign up</string>
+    <string name="signUp_email">Email</string>
+    <string name="signUp_password">Password</string>
+    <string name="signUp_repeat_password">Repeat Password</string>
+    <string name="signUp_terms_and_conditions">I accept the term and privacy policy</string>
+    <string name="signUp_already_have_an_account">Already have an account?</string>
+    <string name="signUp_signIn">Sign in</string>
+</resources>

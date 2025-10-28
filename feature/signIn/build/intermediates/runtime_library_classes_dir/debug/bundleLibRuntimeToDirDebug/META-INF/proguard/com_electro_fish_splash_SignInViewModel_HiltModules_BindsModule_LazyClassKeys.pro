@@ -1,0 +1,1 @@
+-keep,allowobfuscation,allowshrinking class com.electro.fish.splash.SignInViewModel

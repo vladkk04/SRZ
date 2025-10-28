@@ -1,0 +1,51 @@
+pluginManagement {
+    includeBuild("build-logic")
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "SRZApplication"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+include(":app")
+include(":data")
+include(":domain")
+
+include(":core")
+include(":core:ui")
+include(":core:data")
+include(":core:model")
+include(":core:essentials")
+include(":core:commonAndroid")
+
+include(":navigation")
+
+include(":feature:welcome")
+include(":feature:welcome:domain")
+include(":feature:welcome:presentation")
+
+include(":feature:signIn")
+include(":feature:signIn:domain")
+include(":feature:signIn:presentation")
+
+include(":feature:signUp")
+include(":feature:signUp:domain")
+include(":feature:signUp:presentation")
+

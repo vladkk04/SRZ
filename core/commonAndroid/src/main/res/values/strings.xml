@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="network_error_message">Network Error</string>
+    <string name="unknown_error_message">Unknown Error</string>
+
+    <string name="server_error_message">%1$d, Server Error: %2$s</string>
+
+</resources>
