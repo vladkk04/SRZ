@@ -7,4 +7,5 @@
     <string name="signUp_terms_and_conditions">I accept the term and privacy policy</string>
     <string name="signUp_already_have_an_account">Already have an account?</string>
     <string name="signUp_signIn">Sign in</string>
+    <string name="signUp_continue">Continue</string>
 </resources>

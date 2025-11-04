@@ -49,18 +49,21 @@ import com.electro.fish.ui.component.CheckBoxCircle
 import com.electro.fish.ui.component.FocusManagerAction
 import com.electro.fish.ui.component.LogoCircle
 import com.electro.fish.ui.theme.Dimens
+import com.electro.presentation.completeAccountSetup.CompleteAccountSetupScreen
 
 @Composable
 fun SignUpScreen() {
     val viewModel = hiltViewModel<SignUpViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    SignUpContent(
+    CompleteAccountSetupScreen()
+
+    /*SignUpContent(
         state = state,
         onSignUp = viewModel::signUp,
         onSignInClick = viewModel::launchSignInScreen,
         onClearInputsErrorMessage = viewModel::onClearInputErrorMessage
-    )
+    )*/
 }
 
 @Composable
