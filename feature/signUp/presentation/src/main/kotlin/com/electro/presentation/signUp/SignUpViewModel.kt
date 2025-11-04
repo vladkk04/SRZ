@@ -5,8 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.electro.domain.model.NewAccount
 import com.electro.domain.resources.SignUpStringProvider
-import com.electro.domain.usecase.SignUpUseCase
-import com.electro.essential.handler.ExceptionHandler
+import com.electro.fish.domain.usecase.SignUpUseCase
+import com.electro.essential.manager.ToastManager
+import com.electro.presentation.signUp.navigation.SignUpNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,11 +19,16 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase,
-    private val exceptionHandler: ExceptionHandler,
-    private val signUpStringProvider: SignUpStringProvider
+    private val toastManager: ToastManager,
+    private val signUpStringProvider: SignUpStringProvider,
+    private val signUpNavigator: SignUpNavigator
 ) : ViewModel() {
     private val _state = MutableStateFlow(SignUpInState())
     val state get() = _state.asStateFlow()
+
+    fun launchSignInScreen() {
+        signUpNavigator.launchSignInScreen()
+    }
 
     fun signUp(newAccount: NewAccount) = viewModelScope.launch {
        try {
@@ -32,7 +38,7 @@ class SignUpViewModel @Inject constructor(
        } catch (e: Exception) {
            e.printStackTrace()
            ensureActive()
-           exceptionHandler.handleException(e)
+           toastManager.handleException(e)
            hideProgressIndicator()
            Log.d("debug", e.toString())
        }

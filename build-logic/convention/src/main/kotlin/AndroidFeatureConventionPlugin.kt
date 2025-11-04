@@ -13,7 +13,6 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             }
 
             dependencies {
-                add("implementation", project(":domain"))
                 add("implementation", project(":core:ui"))
 
                 add("implementation", libs.findLibrary("androidx.lifecycle.viewmodel.compose").get())

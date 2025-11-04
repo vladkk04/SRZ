@@ -7,7 +7,6 @@ plugins {
 
 dependencies {
     implementation(projects.core.ui)
-    implementation(projects.core.model)
     implementation(projects.core.commonAndroid)
     implementation(projects.core.essentials)
     implementation(projects.core.data)
@@ -15,7 +14,6 @@ dependencies {
     implementation(projects.navigation)
 
 
-    implementation(projects.domain)
     implementation(projects.data)
 
     implementation(libs.androidx.activity.compose)

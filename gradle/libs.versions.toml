@@ -7,18 +7,18 @@ material3 = "1.5.0-alpha07"
 activityCompose = "1.11.0"
 composeBom = "2025.10.01"
 splashScreen = "1.0.1"
-coilCompose = "3.3.0"
 coroutines = "1.10.2"
 ksp = "2.2.20-2.0.3"
 navigation = "2.9.5"
 jwtdecode = "2.0.2"
 datastore = "1.1.7"
 coreKtx = "1.17.0"
-kotlin = "2.2.20"
+kotlin = "2.2.21"
+coil = "3.3.0"
 room = "2.8.3"
 hilt = "2.57.2"
 ktor = "3.3.1"
-agp = "8.12.3"
+agp = "8.13.0"
 
 [libraries]
 ksp-gradle-plugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp"}
@@ -53,12 +53,13 @@ hilt-core = { module = "com.google.dagger:hilt-core", version.ref = "hilt" }
 kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 
-coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 
 javax-inject = { module = "javax.inject:javax.inject", version = "1" }
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 jwt-decode = { module = "com.auth0.android:jwtdecode", version.ref = "jwtdecode"}
+
 
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }

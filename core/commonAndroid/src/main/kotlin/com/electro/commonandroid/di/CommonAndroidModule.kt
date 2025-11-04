@@ -1,12 +1,14 @@
 package com.electro.commonandroid.di
 
-import com.electro.commonandroid.AndroidExceptionHandler
-import com.electro.commonandroid.CoreStringProviderImpl
+import com.electro.commonandroid.toast.AndroidToastManager
+import com.electro.commonandroid.resource.CoreStringProviderImpl
+import com.electro.commonandroid.resource.ValidationStringProviderImpl
 import com.electro.essential.exception.mapper.DefaultExceptionToMessageMapper
 import com.electro.essential.exception.mapper.ExceptionToMessageMapper
-import com.electro.essential.handler.ExceptionHandler
+import com.electro.essential.manager.ToastManager
 import com.electro.essential.resources.CoreStringProvider
 import com.electro.essential.resources.StringProvider
+import com.electro.essential.resources.ValidationStringProvider
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -19,14 +21,9 @@ import dagger.multibindings.IntoMap
 interface CommonAndroidModule {
 
     @Binds
-    @IntoMap
-    @ClassKey(CoreStringProvider::class)
-    fun bindCoreStringProvider(impl: CoreStringProviderImpl): StringProvider
-
-    @Binds
     fun bindExceptionToMessageMapper(impl: DefaultExceptionToMessageMapper): ExceptionToMessageMapper
 
     @Binds
-    fun bindExceptionHandler(impl: AndroidExceptionHandler): ExceptionHandler
+    fun bindToastManager(impl: AndroidToastManager): ToastManager
 
 }

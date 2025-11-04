@@ -13,6 +13,12 @@ data object SignInScreen : Screen
 @Serializable
 data object SignUpScreen : Screen
 
+@Serializable
+data object CompleteAccountSetupScreen: Screen
+
+@Serializable
+data object AdminScreen: Screen
+
 
 
 

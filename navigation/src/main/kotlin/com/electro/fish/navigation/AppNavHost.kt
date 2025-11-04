@@ -11,7 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.createGraph
 import com.electro.fish.navigation.base.NavComponentAppNavigator
-import com.electro.presentation.WelcomeScreen
+import com.electro.fish.presentation.WelcomeScreen
 import kotlinx.coroutines.awaitCancellation
 
 @Composable

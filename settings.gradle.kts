@@ -26,12 +26,10 @@ rootProject.name = "SRZApplication"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":data")
-include(":domain")
 
 include(":core")
 include(":core:ui")
 include(":core:data")
-include(":core:model")
 include(":core:essentials")
 include(":core:commonAndroid")
 
@@ -49,3 +47,14 @@ include(":feature:signUp")
 include(":feature:signUp:domain")
 include(":feature:signUp:presentation")
 
+include(":feature:admin")
+include(":feature:admin:domain")
+include(":feature:admin:presentation")
+
+include(":feature:supervisor")
+include(":feature:supervisor:domain")
+include(":feature:supervisor:presentation")
+
+include(":feature:inspector")
+include(":feature:inspector:domain")
+include(":feature:inspector:presentation")

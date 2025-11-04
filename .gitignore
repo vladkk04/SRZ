@@ -1,4 +1,7 @@
 *.iml
+*.apk
+*.aab
+*.dex
 .idea
 .kotlin
 .gradle
@@ -16,7 +19,3 @@
 .cxx
 local.properties
 
-*.iml
-*.apk
-*.aab
-*.dex

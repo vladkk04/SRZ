@@ -1,5 +1,14 @@
 package com.electro.presentation.signUp
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
+import androidx.compose.animation.with
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -9,9 +18,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.FloatingToolbarDefaults.animationSpec
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,6 +38,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.electro.domain.model.NewAccount
 import com.electro.fish.data.account.signUp.remote.dto.Role
 import com.electro.fish.feature.signUp.presentation.R
@@ -46,7 +58,8 @@ fun SignUpScreen() {
     SignUpContent(
         state = state,
         onSignUp = viewModel::signUp,
-        onClearInputsErrorMessage = viewModel::onClearInputErrorMessage,
+        onSignInClick = viewModel::launchSignInScreen,
+        onClearInputsErrorMessage = viewModel::onClearInputErrorMessage
     )
 }
 
@@ -54,42 +67,52 @@ fun SignUpScreen() {
 private fun SignUpContent(
     state: SignUpInState,
     onSignUp: (NewAccount) -> Unit,
+    onSignInClick: () -> Unit,
     onClearInputsErrorMessage: () -> Unit,
 ) {
+    var isFormVisible by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) { isFormVisible = true }
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(Dimens.MediumPadding),
+        verticalArrangement = Arrangement.spacedBy(Dimens.SmallPadding),
         modifier = Modifier
             .fillMaxSize()
-            .padding(Dimens.XLargePadding)
+            .padding(Dimens.ExtraLargePadding)
     ) {
-        TopContent()
+        LogoCircle(modifier = Modifier.size(64.dp))
 
-        Spacer(Modifier.weight(0.1f))
+        AnimatedVisibility(
+            visible = isFormVisible,
+            enter = fadeIn(animationSpec = tween(500)),
+            exit = fadeOut(animationSpec = tween(500))
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(Dimens.MediumPadding),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Spacer(Modifier.weight(0.2f))
 
-        CenterContent(
-            state = state,
-            onSignUp = onSignUp,
-            onClearInputsErrorMessage = onClearInputsErrorMessage,
-        )
+                Text(
+                    text = stringResource(R.string.signUp_sign_up),
+                    modifier = Modifier.align(Alignment.Start),
+                    style = MaterialTheme.typography.headlineMedium
+                )
 
-        Spacer(Modifier.weight(0.8f))
+                CenterContent(
+                    state = state,
+                    onSignUp = onSignUp,
+                    onClearInputsErrorMessage = onClearInputsErrorMessage,
+                )
 
-        BottomSignUpContent()
+                Spacer(Modifier.weight(0.8f))
+
+                BottomSignUpContent(onSignInClick = onSignInClick)
+            }
+        }
     }
-}
-
-@Composable
-private fun ColumnScope.TopContent() {
-    LogoCircle(modifier = Modifier.size(64.dp))
-
-    Spacer(Modifier.weight(0.1f))
-
-    Text(
-        text = stringResource(R.string.signUp_sign_up),
-        modifier = Modifier.align(Alignment.Start),
-        style = MaterialTheme.typography.headlineMedium
-    )
 }
 
 @Composable
@@ -106,16 +129,13 @@ private fun CenterContent(
     val focusRequester = remember { FocusRequester() }
 
     AppOutlinedTextField(
-        onValueChange = {
-            emailText = it
-        },
+        onValueChange = { emailText = it },
         label = stringResource(R.string.signUp_email),
         errorMessage = state.emailInputErrorMessage,
         isError = state.emailInputErrorMessage != null,
         focusRequester = focusRequester,
         focusManagerAction = FocusManagerAction.Next,
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
     )
 
     AppOutlinedPasswordTextField(
@@ -133,9 +153,7 @@ private fun CenterContent(
     )
 
     AppOutlinedPasswordTextField(
-        onValueChange = {
-            emailText = it
-        },
+        onValueChange = { emailText = it },
         label = stringResource(R.string.signUp_repeat_password),
         errorMessage = state.emailInputErrorMessage,
         isError = state.emailInputErrorMessage != null,
@@ -158,7 +176,7 @@ private fun CenterContent(
     )
 
     Row(
-        horizontalArrangement = Arrangement.spacedBy(Dimens.SmallPadding),
+        horizontalArrangement = Arrangement.spacedBy(Dimens.ExtraSmallPadding),
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -171,13 +189,15 @@ private fun CenterContent(
         Text(
             text = stringResource(R.string.signUp_terms_and_conditions),
             fontWeight = FontWeight.Bold,
+            modifier = Modifier.clickable(
+                onClick = { isCheckedTermAndCondition = !isCheckedTermAndCondition },
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() })
         )
     }
 
     AppElevatedLoadingButton(
-        text = stringResource(R.string.signUp_sign_up),
-        isLoading = state.isLoading,
-        onClick = {
+        text = stringResource(R.string.signUp_sign_up), isLoading = state.isLoading, onClick = {
             onSignUp(
                 NewAccount(
                     firstName = "Test name",
@@ -191,30 +211,33 @@ private fun CenterContent(
                     fishingLicenseNumber = "Test fishing license number"
                 )
             )
-        },
-        modifier = Modifier
+        }, modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = Dimens.MediumPadding)
     )
 }
 
 @Composable
-private fun BottomSignUpContent() {
+private fun BottomSignUpContent(
+    onSignInClick: () -> Unit,
+) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(
-            Dimens.MediumPadding,
+            Dimens.ExtraSmallPadding,
             Alignment.CenterHorizontally
         ),
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
     ) {
-        Text(
-            text = stringResource(R.string.signUp_already_have_an_account)
-        )
+        Text(text = stringResource(R.string.signUp_already_have_an_account))
         Text(
             text = stringResource(R.string.signUp_signIn),
             fontStyle = FontStyle.Normal,
-            textDecoration = TextDecoration.Underline
+            textDecoration = TextDecoration.Underline,
+            modifier = Modifier.clickable(
+                onClick = onSignInClick,
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() })
         )
     }
 }

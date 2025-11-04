@@ -10,5 +10,4 @@ dependencies {
     api(libs.bundles.ktor)
 
     api(libs.kotlin.serialization.json)
-    api(projects.core.model)
 }

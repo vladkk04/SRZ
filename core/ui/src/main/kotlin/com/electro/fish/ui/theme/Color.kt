@@ -30,3 +30,7 @@ val LightOnSurfaceVariant = Color.Red
 val LightTextColor = Color(0xFF000000)
 val DarkTextColor = Color(0xFFFFFFFF)
 
+
+val WelcomeSignUpAsGuestButtonContainerColor = Color(0xFF6D6D6D)
+
+

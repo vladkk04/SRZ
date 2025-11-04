@@ -3,6 +3,10 @@ plugins {
     alias(libs.plugins.custom.hilt)
 }
 
+android {
+    resourcePrefix = "commonAndroid_"
+}
+
 dependencies {
     implementation(projects.core.essentials)
     implementation(libs.coroutines.core)
