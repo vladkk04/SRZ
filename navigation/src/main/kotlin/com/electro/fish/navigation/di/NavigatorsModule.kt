@@ -6,7 +6,7 @@ import com.electro.fish.navigation.navigators.CompleteAccountSetupNavigatorImpl
 import com.electro.fish.navigation.navigators.SignInNavigatorImpl
 import com.electro.fish.navigation.navigators.SignUpNavigatorImpl
 import com.electro.fish.navigation.navigators.WelcomeNavigatorImpl
-import com.electro.presentation.completeAccountSetup.navigation.CompleteAccountSetupNavigator
+import com.electro.presentation.profileSetup.navigation.CompleteAccountSetupNavigator
 import com.electro.fish.presentation.navigation.SignInNavigator
 import com.electro.presentation.signUp.navigation.SignUpNavigator
 import com.electro.fish.presentation.navigation.WelcomeNavigator

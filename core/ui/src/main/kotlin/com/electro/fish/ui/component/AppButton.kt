@@ -47,10 +47,12 @@ fun AppButtonText(
 @Composable
 fun AppIconButton(
     imageVector: ImageVector,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    isEnabled: Boolean = true
 ) {
     IconButton(
-        onClick = onClick
+        onClick = onClick,
+        enabled = isEnabled
     ) {
         Icon(
             imageVector = imageVector,

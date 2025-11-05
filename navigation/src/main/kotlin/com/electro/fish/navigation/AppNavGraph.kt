@@ -9,7 +9,7 @@ import com.electro.fish.presentation.AdminScreen
 import com.electro.fish.presentation.SignInScreen
 import com.electro.presentation.signUp.SignUpScreen
 import com.electro.fish.presentation.WelcomeScreen
-import com.electro.presentation.completeAccountSetup.CompleteAccountSetupScreen
+import com.electro.presentation.profileSetup.ProfileSetupScreen
 
 fun NavGraphBuilder.buildAppNavGraph() {
     composable<WelcomeScreen>(
@@ -27,7 +27,7 @@ fun NavGraphBuilder.buildAppNavGraph() {
         exitTransition = { fadeOut(animationSpec = tween(0)) },
     ) { SignUpScreen() }
 
-    composable<CompleteAccountSetupScreen> { CompleteAccountSetupScreen() }
+    composable<CompleteAccountSetupScreen> { ProfileSetupScreen() }
 
     composable<AdminScreen> { AdminScreen() }
 }

@@ -1,4 +1,4 @@
-package com.electro.presentation.completeAccountSetup
+package com.electro.presentation.profileSetup
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

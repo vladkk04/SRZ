@@ -1,24 +1,19 @@
 package com.electro.presentation.signUp
 
-import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.togetherWith
-import androidx.compose.animation.with
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.FloatingToolbarDefaults.animationSpec
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,7 +33,6 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.electro.domain.model.NewAccount
 import com.electro.fish.data.account.signUp.remote.dto.Role
 import com.electro.fish.feature.signUp.presentation.R
@@ -49,14 +43,14 @@ import com.electro.fish.ui.component.CheckBoxCircle
 import com.electro.fish.ui.component.FocusManagerAction
 import com.electro.fish.ui.component.LogoCircle
 import com.electro.fish.ui.theme.Dimens
-import com.electro.presentation.completeAccountSetup.CompleteAccountSetupScreen
+import com.electro.presentation.profileSetup.ProfileSetupScreen
 
 @Composable
 fun SignUpScreen() {
     val viewModel = hiltViewModel<SignUpViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    CompleteAccountSetupScreen()
+    ProfileSetupScreen()
 
     /*SignUpContent(
         state = state,

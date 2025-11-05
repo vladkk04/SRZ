@@ -1,46 +1,38 @@
-package com.electro.presentation.completeAccountSetup
+package com.electro.presentation.profileSetup
 
-import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.electro.fish.feature.signUp.presentation.R
 import com.electro.fish.ui.component.AppAnimatedLinearProgressIndicator
 import com.electro.fish.ui.component.AppElevatedButton
 import com.electro.fish.ui.component.AppIconButton
 import com.electro.fish.ui.theme.Dimens
-import com.electro.presentation.completeAccountSetup.component.CompleteAccountContent
+import com.electro.presentation.profileSetup.component.ProfileSetupContentContainer
 
 @Composable
-fun CompleteAccountSetupScreen() {
+fun ProfileSetupScreen() {
     val viewModel = hiltViewModel<CompleteAccountSetupViewModel>()
 
 
-    CompleteAccountSetupContent()
+    ProfileSetupContent()
 }
 
 @Composable
-private fun CompleteAccountSetupContent() {
+private fun ProfileSetupContent() {
     val pagerState = rememberPagerState { 3 }
 
     Column(
@@ -48,39 +40,26 @@ private fun CompleteAccountSetupContent() {
             .fillMaxSize()
             .padding(Dimens.MediumPadding)
     ) {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(Dimens.SmallPadding),
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .weight(0.05f)
-        ) {
-            if (pagerState.currentPage > 0) {
-                AppIconButton(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    onClick = { pagerState.requestScrollToPage(0) }
-                )
-            }
-            AppAnimatedLinearProgressIndicator(
-                progress = 0.5f,
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
+        PagerProgressBar(
+            pagerState = pagerState,
+            modifier = Modifier.weight(0.05f)
+        )
 
         HorizontalPager(
             state = pagerState,
             userScrollEnabled = false,
-            modifier = Modifier
-                .weight(0.95f)
+            beyondViewportPageCount = 1,
+            modifier = Modifier.weight(0.95f)
         ) { index ->
-            when(index) {
+            when (index) {
                 0 -> {
-                    CompleteAccountContent(
+                    ProfileSetupContentContainer(
                         "About your self"
                     ) { ProfileSetupFirstScreen() }
                 }
 
                 1 -> {
-                    CompleteAccountContent(
+                    ProfileSetupContentContainer(
                         "Your birthday"
                     ) { ProfileSetupSecondScreen() }
                 }
@@ -94,4 +73,31 @@ private fun CompleteAccountSetupContent() {
         )
     }
 
+}
+
+
+@Composable
+private fun PagerProgressBar(
+    pagerState: PagerState,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(Dimens.SmallPadding),
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+    ) {
+        AppIconButton(
+            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+            onClick = {
+                pagerState.requestScrollToPage(
+                    page = (pagerState.currentPage - 1).coerceAtLeast(0)
+                )
+            },
+            isEnabled = pagerState.currentPage != 0
+        )
+        AppAnimatedLinearProgressIndicator(
+            progress = (pagerState.currentPage.toFloat() / pagerState.pageCount.toFloat()),
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 }

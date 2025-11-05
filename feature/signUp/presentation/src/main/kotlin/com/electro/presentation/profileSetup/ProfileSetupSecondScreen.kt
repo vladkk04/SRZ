@@ -1,4 +1,4 @@
-package com.electro.presentation.completeAccountSetup
+package com.electro.presentation.profileSetup
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.BoxWithConstraints
