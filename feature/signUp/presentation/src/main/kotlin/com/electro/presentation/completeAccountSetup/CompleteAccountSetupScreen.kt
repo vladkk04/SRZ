@@ -66,19 +66,25 @@ private fun CompleteAccountSetupContent() {
             )
         }
 
-
         HorizontalPager(
             state = pagerState,
             userScrollEnabled = false,
             modifier = Modifier
                 .weight(0.95f)
         ) { index ->
-            CompleteAccountContent(
-                title = "Hellot",
-                content = {
-                    Text("Hello world")
+            when(index) {
+                0 -> {
+                    CompleteAccountContent(
+                        "About your self"
+                    ) { ProfileSetupFirstScreen() }
                 }
-            )
+
+                1 -> {
+                    CompleteAccountContent(
+                        "Your birthday"
+                    ) { ProfileSetupSecondScreen() }
+                }
+            }
         }
 
         AppElevatedButton(

@@ -36,7 +36,7 @@ import com.electro.fish.core.ui.R
 sealed class FocusManagerAction {
     data object Next : FocusManagerAction()
     data object None : FocusManagerAction()
-    data class Done(val action: () -> Unit) : FocusManagerAction()
+    data class Done(val action: (() -> Unit)? = null) : FocusManagerAction()
 }
 
 @Composable
@@ -118,7 +118,7 @@ fun AppOutlinedTextField(
             onDone = {
                 if (focusManagerAction is FocusManagerAction.Done) {
                     focusManager.clearFocus()
-                    focusManagerAction.action()
+                    focusManagerAction.action?.let { it() }
                 } else {
                     focusManager.clearFocus()
                 }
