@@ -1,11 +1,11 @@
 package com.electro.fish.data.di
 
-import com.electro.fish.data.LocalTokenRepository
-import com.electro.fish.data.TokenManager
-import com.electro.fish.data.TokenProvider
-import com.electro.fish.data.local.LocalTokenRepositoryImpl
-import com.electro.fish.data.manager.TokenManagerImpl
-import com.electro.fish.data.network.interceptor.AuthTokenProvider
+import com.electro.fish.data.AuthTokenProvider
+import com.electro.fish.data.AuthTokenSaver
+import com.electro.fish.data.LocalAuthTokenRepository
+import com.electro.fish.data.local.LocalAuthTokenRepositoryImpl
+import com.electro.fish.data.manager.AuthTokenManagerImpl
+import com.electro.fish.data.network.interceptor.AuthInterceptionTokenProvider
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,15 +16,15 @@ import dagger.hilt.components.SingletonComponent
 internal interface DataModule {
 
     @Binds
-    fun bindTokenManager(impl: TokenManagerImpl): TokenProvider
+    fun bindAuthTokenSaver(impl: AuthTokenManagerImpl): AuthTokenSaver
 
     @Binds
-    fun bindTokenProvider(impl: TokenManagerImpl): AuthTokenProvider
+    fun bindAuthTokenProvider(impl: AuthTokenManagerImpl): AuthTokenProvider
 
     @Binds
-    fun bindAccountRepository(impl: TokenManagerImpl): TokenManager
+    fun binAuthInterceptorTokenProvider(impl: AuthTokenManagerImpl): AuthInterceptionTokenProvider
 
     @Binds
-    fun bindLocalTokenRepository(impl: LocalTokenRepositoryImpl): LocalTokenRepository
+    fun bindLocalTokenRepository(impl: LocalAuthTokenRepositoryImpl): LocalAuthTokenRepository
 
 }

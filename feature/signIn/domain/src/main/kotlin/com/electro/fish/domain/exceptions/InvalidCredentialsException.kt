@@ -5,6 +5,6 @@ import com.electro.fish.domain.resources.SignInStringProvider
 
 class InvalidCredentialsException: BaseSignInException("Invalid credentials") {
     override fun getLocalizedErrorMessage(stringProvider: SignInStringProvider): String {
-        return stringProvider.invalidCredentialsError
+        return "stringProvider.invalidCredentialsError"
     }
 }

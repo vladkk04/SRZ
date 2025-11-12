@@ -1,7 +1,9 @@
 package com.electro.commonandroid.resource.di
 
 import com.electro.commonandroid.resource.CoreStringProviderImpl
-import com.electro.commonandroid.resource.ValidationStringProviderImpl
+import com.electro.commonandroid.resource.validation.AuthValidationStringProviderImpl
+import com.electro.commonandroid.resource.validation.ValidationStringProviderImpl
+import com.electro.essential.resources.AuthValidationStringProvider
 import com.electro.essential.resources.CoreStringProvider
 import com.electro.essential.resources.StringProvider
 import com.electro.essential.resources.ValidationStringProvider
@@ -24,6 +26,7 @@ interface ResourceModule {
     @Binds
     fun bindCoreStringProvider(impl: CoreStringProviderImpl): CoreStringProvider
 
+
     @Binds
     @IntoMap
     @ClassKey(ValidationStringProvider::class)
@@ -31,4 +34,7 @@ interface ResourceModule {
 
     @Binds
     fun bindValidationStringProvider(impl: ValidationStringProviderImpl): ValidationStringProvider
+
+    @Binds
+    fun bindAuthValidationStringProvider(impl: AuthValidationStringProviderImpl): AuthValidationStringProvider
 }

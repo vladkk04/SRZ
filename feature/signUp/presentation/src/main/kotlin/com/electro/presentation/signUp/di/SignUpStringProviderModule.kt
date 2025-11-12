@@ -1,6 +1,6 @@
 package com.electro.presentation.signUp.di
 
-import com.electro.domain.resources.SignUpStringProvider
+import com.electro.fish.domain.resources.SignUpStringProvider
 import com.electro.essential.resources.StringProvider
 import com.electro.presentation.signUp.resources.SignUpStringProviderImpl
 import dagger.Binds

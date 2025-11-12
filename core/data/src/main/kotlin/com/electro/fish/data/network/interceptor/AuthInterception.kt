@@ -6,18 +6,12 @@ import io.ktor.client.plugins.plugin
 import io.ktor.client.request.bearerAuth
 
 class AuthInterceptor (
-    private val authTokenProvider: AuthTokenProvider
+    private val authInterceptionTokenProvider: AuthInterceptionTokenProvider
 ) {
     fun interceptor(client : HttpClient) {
         client.plugin(HttpSend).intercept { request ->
-            authTokenProvider.provideAuthToken()?.let { token ->
-                request.bearerAuth(token)
-            }
+            authInterceptionTokenProvider.provideToken()?.let(request::bearerAuth)
             execute(request)
         }
     }
-}
-
-interface AuthTokenProvider {
-    fun provideAuthToken(): String?
 }

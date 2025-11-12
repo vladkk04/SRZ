@@ -1,4 +1,4 @@
-package com.electro.presentation.profileSetup
+package com.electro.presentation.profileSetup.viewpagerScreen
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -12,7 +12,7 @@ import com.commandiron.wheel_picker_compose.WheelDatePicker
 import com.commandiron.wheel_picker_compose.core.WheelPickerDefaults.selectorProperties
 
 @Composable
-fun ProfileSetupSecondScreen(
+fun ProfileSetupBirthdayScreen(
     modifier: Modifier = Modifier
 ) {
     BoxWithConstraints(
@@ -22,7 +22,7 @@ fun ProfileSetupSecondScreen(
         WheelDatePicker(
             textColor = Color(0xFFffc300),
             rowCount = 7,
-            size = DpSize(maxWidth, maxHeight),
+            size = DpSize(maxWidth, maxHeight / 1.2f),
             selectorProperties = selectorProperties(
                 enabled = true,
                 color = Color(0xFFf1faee).copy(alpha = 0.2f),

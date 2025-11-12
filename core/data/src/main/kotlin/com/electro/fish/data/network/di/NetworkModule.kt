@@ -2,7 +2,7 @@ package com.electro.fish.data.network.di
 
 import com.electro.fish.data.network.NetworkConfig
 import com.electro.fish.data.network.client.createKtorClient
-import com.electro.fish.data.network.interceptor.AuthTokenProvider
+import com.electro.fish.data.network.interceptor.AuthInterceptionTokenProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,8 +16,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideKtorClient(authTokenProvider: AuthTokenProvider): HttpClient = createKtorClient(
+    fun provideKtorClient(authInterceptionTokenProvider: AuthInterceptionTokenProvider): HttpClient = createKtorClient(
         NetworkConfig.timeout,
-        authTokenProvider
+        authInterceptionTokenProvider
     )
 }

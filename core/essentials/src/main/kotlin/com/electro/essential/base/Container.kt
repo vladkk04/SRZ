@@ -1,4 +1,4 @@
-package com.electro.essential
+package com.electro.essential.base
 
 import com.electro.essential.exception.base.BaseAppException
 import kotlinx.coroutines.flow.Flow
@@ -19,20 +19,20 @@ sealed class Container<out T> {
         ): R = onLoading()
     }
 
-    data class Success<T>(val data: T) : Container<T>() {
-        override fun <R> fold(
-            onSuccess: (T) -> R,
-            onError: (BaseAppException) -> R,
-            onLoading: () -> R
-        ): R = onSuccess(data)
-    }
-
     data class Error(val exception: BaseAppException) : Container<Nothing>() {
         override fun <R> fold(
             onSuccess: (Nothing) -> R,
             onError: (BaseAppException) -> R,
             onLoading: () -> R
         ): R = onError(exception)
+    }
+
+    data class Success<T>(val data: T) : Container<T>() {
+        override fun <R> fold(
+            onSuccess: (T) -> R,
+            onError: (BaseAppException) -> R,
+            onLoading: () -> R
+        ): R = onSuccess(data)
     }
 }
 
@@ -53,4 +53,4 @@ fun <T, R : Any> Container<T>.foldNullable(
 
 fun <T> Container<T>.getExceptionOrNull(): BaseAppException? = foldNullable(onError = { it })
 
-fun <T> Container<T>.getValueOrNull(): T? = foldNullable(onSuccess = { it })
+fun <T> Container<T>.getValueOrNull(): T? = foldNullable(onSuccess = { it } )

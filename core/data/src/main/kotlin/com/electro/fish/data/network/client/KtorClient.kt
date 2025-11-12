@@ -2,8 +2,8 @@ package com.electro.fish.data.network.client
 
 import com.electro.fish.data.network.NetworkConfig
 import com.electro.fish.data.network.client.converter.createDefaultJson
+import com.electro.fish.data.network.interceptor.AuthInterceptionTokenProvider
 import com.electro.fish.data.network.interceptor.AuthInterceptor
-import com.electro.fish.data.network.interceptor.AuthTokenProvider
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.HttpTimeout
@@ -11,7 +11,6 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
-import io.ktor.client.request.accept
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
@@ -19,7 +18,7 @@ import kotlin.time.Duration
 
 internal fun createKtorClient(
     timeout: Duration,
-    authTokenProvider: AuthTokenProvider
+    authInterceptionTokenProvider: AuthInterceptionTokenProvider
 ) = HttpClient(Android) {
     defaultRequest {
         url(NetworkConfig.BASE_URL)
@@ -32,5 +31,5 @@ internal fun createKtorClient(
     install(ContentNegotiation) { json(createDefaultJson()) }
     install(Logging) { level = LogLevel.ALL }
 }.apply {
-    //AuthInterceptor(authTokenProvider).interceptor(this)
+    AuthInterceptor(authInterceptionTokenProvider).interceptor(this)
 }

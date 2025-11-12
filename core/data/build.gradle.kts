@@ -8,6 +8,5 @@ dependencies {
     implementation(libs.jwt.decode)
 
     api(libs.bundles.ktor)
-
     api(libs.kotlin.serialization.json)
 }

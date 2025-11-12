@@ -2,14 +2,12 @@ package com.electro.fish.navigation.di
 
 import com.electro.fish.navigation.AdminNavigator
 import com.electro.fish.navigation.navigators.AdminNavigatorImpl
-import com.electro.fish.navigation.navigators.CompleteAccountSetupNavigatorImpl
 import com.electro.fish.navigation.navigators.SignInNavigatorImpl
 import com.electro.fish.navigation.navigators.SignUpNavigatorImpl
 import com.electro.fish.navigation.navigators.WelcomeNavigatorImpl
-import com.electro.presentation.profileSetup.navigation.CompleteAccountSetupNavigator
 import com.electro.fish.presentation.navigation.SignInNavigator
-import com.electro.presentation.signUp.navigation.SignUpNavigator
 import com.electro.fish.presentation.navigation.WelcomeNavigator
+import com.electro.presentation.signUp.navigation.SignUpNavigator
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -27,9 +25,6 @@ interface NavigatorsModule {
 
     @Binds
     fun bindSignUpNavigator(impl: SignUpNavigatorImpl): SignUpNavigator
-
-    @Binds
-    fun bindCompleteAccountSetupNavigator(impl: CompleteAccountSetupNavigatorImpl): CompleteAccountSetupNavigator
 
     @Binds
     fun bindAdminNavigator(impl: AdminNavigatorImpl): AdminNavigator

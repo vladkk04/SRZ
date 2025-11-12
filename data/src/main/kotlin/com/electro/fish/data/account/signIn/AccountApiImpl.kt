@@ -19,7 +19,7 @@ class AccountApiImpl @Inject constructor(
             basicAuth(request.email, request.password)
         }.bodyAsText()
 
-        Log.d("debug", "Token sign in: $token")
+        Log.d("debug", "AuthToken sign in: $token")
 
         return SignInResponseDto(token)
     }

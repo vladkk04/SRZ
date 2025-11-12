@@ -25,7 +25,7 @@ fun ProfileSetupContentContainer(
         Text(
             text = title,
             fontWeight = FontWeight.Bold,
-            style = MaterialTheme.typography.headlineLarge,
+            style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.align(Alignment.Start)
         )
 

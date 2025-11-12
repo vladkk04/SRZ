@@ -11,7 +11,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-private val Context.appDataStore by preferencesDataStore(name = "app-data-store")
+private val Context.appDataStore by preferencesDataStore(name = "app_data")
 
 @Module
 @InstallIn(SingletonComponent::class)

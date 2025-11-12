@@ -1,20 +1,15 @@
 package com.electro.commonandroid.di
 
-import com.electro.commonandroid.toast.AndroidToastManager
-import com.electro.commonandroid.resource.CoreStringProviderImpl
-import com.electro.commonandroid.resource.ValidationStringProviderImpl
+import com.electro.commonandroid.customTabs.AndroidCustomTab
+import com.electro.commonandroid.toast.ToastExceptionHandlerImpl
+import com.electro.essential.BrowserCustomTab
 import com.electro.essential.exception.mapper.DefaultExceptionToMessageMapper
 import com.electro.essential.exception.mapper.ExceptionToMessageMapper
-import com.electro.essential.manager.ToastManager
-import com.electro.essential.resources.CoreStringProvider
-import com.electro.essential.resources.StringProvider
-import com.electro.essential.resources.ValidationStringProvider
+import com.electro.essential.ToastExceptionHandler
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dagger.multibindings.ClassKey
-import dagger.multibindings.IntoMap
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -24,6 +19,9 @@ interface CommonAndroidModule {
     fun bindExceptionToMessageMapper(impl: DefaultExceptionToMessageMapper): ExceptionToMessageMapper
 
     @Binds
-    fun bindToastManager(impl: AndroidToastManager): ToastManager
+    fun bindAndroidToastExceptionManager(impl: ToastExceptionHandlerImpl): ToastExceptionHandler
+
+    @Binds
+    fun bindAndroidCustomTab(impl: AndroidCustomTab): BrowserCustomTab
 
 }

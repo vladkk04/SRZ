@@ -33,7 +33,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.electro.domain.model.NewAccount
+import com.electro.fish.domain.model.NewAccount
 import com.electro.fish.data.account.signUp.remote.dto.Role
 import com.electro.fish.feature.signUp.presentation.R
 import com.electro.fish.ui.component.AppElevatedLoadingButton
@@ -43,29 +43,30 @@ import com.electro.fish.ui.component.CheckBoxCircle
 import com.electro.fish.ui.component.FocusManagerAction
 import com.electro.fish.ui.component.LogoCircle
 import com.electro.fish.ui.theme.Dimens
-import com.electro.presentation.profileSetup.ProfileSetupScreen
 
 @Composable
 fun SignUpScreen() {
     val viewModel = hiltViewModel<SignUpViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    ProfileSetupScreen()
+    //ProfileSetupScreen()
 
-    /*SignUpContent(
+    SignUpContent(
         state = state,
         onSignUp = viewModel::signUp,
         onSignInClick = viewModel::launchSignInScreen,
-        onClearInputsErrorMessage = viewModel::onClearInputErrorMessage
-    )*/
+        onClearInputsErrorMessage = viewModel::onClearInputErrorMessage,
+        openTermsAndPrivacyPolicy = viewModel::open
+    )
 }
 
 @Composable
 private fun SignUpContent(
-    state: SignUpInState,
+    state: SignUpState,
     onSignUp: (NewAccount) -> Unit,
     onSignInClick: () -> Unit,
     onClearInputsErrorMessage: () -> Unit,
+    openTermsAndPrivacyPolicy: () -> Unit,
 ) {
     var isFormVisible by remember { mutableStateOf(false) }
 
@@ -102,6 +103,7 @@ private fun SignUpContent(
                     state = state,
                     onSignUp = onSignUp,
                     onClearInputsErrorMessage = onClearInputsErrorMessage,
+                    openTermsAndPrivacyPolicy = openTermsAndPrivacyPolicy
                 )
 
                 Spacer(Modifier.weight(0.8f))
@@ -114,9 +116,10 @@ private fun SignUpContent(
 
 @Composable
 private fun CenterContent(
-    state: SignUpInState,
+    state: SignUpState,
     onSignUp: (NewAccount) -> Unit,
     onClearInputsErrorMessage: () -> Unit,
+    openTermsAndPrivacyPolicy: () -> Unit,
 ) {
     var emailText by rememberSaveable { mutableStateOf("") }
     var passwordText by rememberSaveable { mutableStateOf("") }
@@ -157,15 +160,10 @@ private fun CenterContent(
         focusManagerAction = FocusManagerAction.Done {
             onSignUp(
                 NewAccount(
-                    firstName = "Test name",
-                    lastName = "Test last name",
                     email = emailText,
                     password = passwordText,
                     repeatPassword = repeatPasswordText,
                     role = Role.FISHERMAN,
-                    address = "Test address",
-                    birthDate = "Test birth date",
-                    fishingLicenseNumber = "Test fishing license number"
                 )
             )
         },
@@ -183,13 +181,14 @@ private fun CenterContent(
             modifier = Modifier.size(24.dp)
         )
 
+        Text(text = stringResource(R.string.signUp_i_accept_the))
+
         Text(
-            text = stringResource(R.string.signUp_terms_and_conditions),
+            text = stringResource(R.string.signUp_term_and_privacy_policy),
             fontWeight = FontWeight.Bold,
             modifier = Modifier.clickable(
-                onClick = { isCheckedTermAndCondition = !isCheckedTermAndCondition },
-                indication = null,
-                interactionSource = remember { MutableInteractionSource() })
+                onClick = openTermsAndPrivacyPolicy
+            )
         )
     }
 
@@ -197,15 +196,10 @@ private fun CenterContent(
         text = stringResource(R.string.signUp_sign_up), isLoading = state.isLoading, onClick = {
             onSignUp(
                 NewAccount(
-                    firstName = "Test name",
-                    lastName = "Test last name",
                     email = emailText,
                     password = passwordText,
                     repeatPassword = repeatPasswordText,
                     role = Role.FISHERMAN,
-                    address = "Test address",
-                    birthDate = "Test birth date",
-                    fishingLicenseNumber = "Test fishing license number"
                 )
             )
         }, modifier = Modifier

@@ -5,6 +5,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import androidx.navigation.navigation
 import com.electro.fish.presentation.AdminScreen
 import com.electro.fish.presentation.SignInScreen
 import com.electro.presentation.signUp.SignUpScreen
@@ -22,12 +23,16 @@ fun NavGraphBuilder.buildAppNavGraph() {
         exitTransition = { fadeOut(animationSpec = tween(0)) },
     ) { SignInScreen() }
 
-    composable<SignUpScreen>(
-        enterTransition = { fadeIn(animationSpec = tween(0)) },
-        exitTransition = { fadeOut(animationSpec = tween(0)) },
-    ) { SignUpScreen() }
+    navigation<SignUp>(
+        startDestination = SignUpScreen,
+    ) {
+        composable<SignUpScreen>(
+            enterTransition = { fadeIn(animationSpec = tween(0)) },
+            exitTransition = { fadeOut(animationSpec = tween(0)) },
+        ) { SignUpScreen() }
 
-    composable<CompleteAccountSetupScreen> { ProfileSetupScreen() }
+        composable<ProfileSetupScreen> { ProfileSetupScreen() }
+    }
 
     composable<AdminScreen> { AdminScreen() }
 }

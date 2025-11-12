@@ -1,7 +1,7 @@
 package com.electro.presentation.signUp.resources
 
 import android.content.Context
-import com.electro.domain.resources.SignUpStringProvider
+import com.electro.fish.domain.resources.SignUpStringProvider
 import com.electro.fish.feature.signUp.presentation.R
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject

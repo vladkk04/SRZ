@@ -1,8 +1,5 @@
 package com.electro.fish.domain.resources
 
-import com.electro.essential.resources.StringProvider
+import com.electro.essential.resources.AuthValidationStringProvider
 
-interface SignInStringProvider: StringProvider {
-    val invalidCredentialsError: String
-    val emailNotRegisteredError: String
-}
+interface SignInStringProvider: AuthValidationStringProvider

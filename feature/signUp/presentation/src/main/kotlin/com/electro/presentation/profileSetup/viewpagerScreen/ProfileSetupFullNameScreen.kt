@@ -1,4 +1,4 @@
-package com.electro.presentation.profileSetup
+package com.electro.presentation.profileSetup.viewpagerScreen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,13 +12,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.res.stringResource
-import com.electro.fish.ui.component.AppOutlinedPasswordTextField
 import com.electro.fish.ui.component.AppOutlinedTextField
 import com.electro.fish.ui.component.FocusManagerAction
 
 @Composable
-fun ProfileSetupFirstScreen(
+fun ProfileSetupFullNameScreen(
     modifier: Modifier = Modifier
 ) {
     val focusRequester = remember { FocusRequester() }

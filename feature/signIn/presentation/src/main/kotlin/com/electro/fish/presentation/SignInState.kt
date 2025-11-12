@@ -1,7 +1,6 @@
 package com.electro.fish.presentation
 
-data class SignInState(
-    val emailInputFieldErrorMessage: String? = null,
-    val passwordInputFieldErrorMessage: String? = null,
-    val isLoading: Boolean = false,
-)
+import com.electro.essential.validator.BaseInputField
+import kotlinx.collections.immutable.ImmutableMap
+import kotlinx.collections.immutable.toImmutableMap
+

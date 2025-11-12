@@ -3,10 +3,11 @@ package com.electro.presentation.signUp
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.electro.domain.model.NewAccount
-import com.electro.domain.resources.SignUpStringProvider
+import com.electro.essential.BrowserCustomTab
+import com.electro.fish.domain.model.NewAccount
+import com.electro.fish.domain.resources.SignUpStringProvider
+import com.electro.essential.ToastExceptionHandler
 import com.electro.fish.domain.usecase.SignUpUseCase
-import com.electro.essential.manager.ToastManager
 import com.electro.presentation.signUp.navigation.SignUpNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ensureActive
@@ -19,11 +20,12 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase,
-    private val toastManager: ToastManager,
+    private val toastExceptionHandler: ToastExceptionHandler,
     private val signUpStringProvider: SignUpStringProvider,
-    private val signUpNavigator: SignUpNavigator
+    private val signUpNavigator: SignUpNavigator,
+    private val browserCustomTab: BrowserCustomTab
 ) : ViewModel() {
-    private val _state = MutableStateFlow(SignUpInState())
+    private val _state = MutableStateFlow(SignUpState())
     val state get() = _state.asStateFlow()
 
     fun launchSignInScreen() {
@@ -38,7 +40,6 @@ class SignUpViewModel @Inject constructor(
        } catch (e: Exception) {
            e.printStackTrace()
            ensureActive()
-           toastManager.handleException(e)
            hideProgressIndicator()
            Log.d("debug", e.toString())
        }
@@ -88,6 +89,10 @@ class SignUpViewModel @Inject constructor(
                 passwordInputErrorMessage = null
             )
         }
+    }
+
+    fun open() {
+        browserCustomTab.openCustomTab("https://developer.chrome.com/docs/android/custom-tabs/guide-get-started")
     }
 }
 

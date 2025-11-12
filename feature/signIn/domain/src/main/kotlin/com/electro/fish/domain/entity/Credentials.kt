@@ -1,6 +1,6 @@
 package com.electro.fish.domain.entity
 
-import com.electro.essential.validator.BaseInputField
+import com.electro.essential.validator.DefaultAuthFormInputFieldValidation
 import com.electro.essential.validator.InputFieldValue
 import com.electro.fish.data.account.signIn.model.AuthCredential
 
@@ -15,6 +15,6 @@ fun Credentials.mapToAuthCredential() = AuthCredential(
 )
 
 fun Credentials.toFieldValues(): List<InputFieldValue<*>> = listOf(
-    InputFieldValue(BaseInputField.Email, value = email),
-    InputFieldValue(BaseInputField.Password, value = password)
+    InputFieldValue(DefaultAuthFormInputFieldValidation.Email, value = email),
+    InputFieldValue(DefaultAuthFormInputFieldValidation.Password, value = password)
 )

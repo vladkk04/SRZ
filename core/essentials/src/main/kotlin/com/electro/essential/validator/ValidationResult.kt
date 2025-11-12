@@ -8,26 +8,26 @@ sealed interface ValidationResult {
 
     data object Success : ValidationResult {
         override fun plus(exception: BaseValidationException): ValidationResult {
-            return Failure(exception)
+            return Error(exception)
         }
     }
 
-    data class Failure(
+    data class Error(
         val exceptions: List<BaseValidationException>
     ) : ValidationResult {
         constructor(exception: BaseValidationException) : this(listOf(exception))
 
         override fun plus(exception: BaseValidationException): ValidationResult {
-            return Failure(exceptions + exception)
+            return Error(exceptions + exception)
         }
     }
 
     companion object {
         fun List<ValidationResult>.combined() : ValidationResult {
-            val exceptions = this.filterIsInstance<Failure>()
+            val exceptions = this.filterIsInstance<Error>()
                 .flatMap { it.exceptions }
 
-            return if (exceptions.isEmpty()) { Success } else { Failure(exceptions) }
+            return if (exceptions.isEmpty()) { Success } else { Error(exceptions) }
         }
     }
 }
