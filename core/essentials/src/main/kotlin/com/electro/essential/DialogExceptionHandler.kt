@@ -1,5 +1,5 @@
 package com.electro.essential
 
 interface DialogExceptionHandler {
-    fun handleException(exception: Exception)
+    fun showExceptionDialog(exception: Exception)
 }

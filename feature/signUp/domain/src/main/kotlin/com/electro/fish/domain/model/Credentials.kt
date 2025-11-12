@@ -5,12 +5,10 @@ import com.electro.fish.data.account.signUp.remote.dto.Role
 
 data class Credentials(
     val email: String,
-    val password: String,
-    val role: Role,
+    val password: String
 )
 
-fun Credentials.mapToCreateAccountCredentials() = CreateAccountCredentials(
+fun Credentials.mapToNewAccount() = NewAccount(
     email = email,
-    password = password,
-    role = role,
+    password = password
 )

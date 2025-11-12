@@ -32,6 +32,20 @@ class SignUpViewModel @Inject constructor(
         signUpNavigator.launchSignInScreen()
     }
 
+    fun onEvent(event: SignUpEvent) {
+        when (event) {
+            SignUpEvent.OnNavigateToSignInScreen -> {
+
+            }
+            SignUpEvent.OpenTermsAndPrivacyPolicy -> {
+
+            }
+            is SignUpEvent.SignUp -> {
+
+            }
+        }
+    }
+
     fun signUp(newAccount: NewAccount) = viewModelScope.launch {
        try {
            showProgressIndicator()

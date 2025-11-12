@@ -1,6 +1,6 @@
 package com.electro.essential.validator
 
-object InputFieldRegex {
+object InputFieldPatternRegex {
     val emailRegex = Regex(
         "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                 "\\@" +

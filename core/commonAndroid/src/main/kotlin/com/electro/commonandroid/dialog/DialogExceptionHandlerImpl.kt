@@ -15,7 +15,7 @@ class DialogExceptionHandlerImpl @Inject constructor(
 ): DialogExceptionHandler {
     private var errorMessageState = mutableStateOf<String?>(null)
 
-    override fun handleException(exception: Exception) {
+    override fun showExceptionDialog(exception: Exception) {
         errorMessageState.value = exceptionToMessageMapper.getLocalizedMessage(exception)
     }
 

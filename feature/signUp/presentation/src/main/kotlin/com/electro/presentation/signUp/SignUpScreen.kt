@@ -123,7 +123,6 @@ private fun CenterContent(
 ) {
     var emailText by rememberSaveable { mutableStateOf("") }
     var passwordText by rememberSaveable { mutableStateOf("") }
-    var repeatPasswordText by rememberSaveable { mutableStateOf("") }
     var isCheckedTermAndCondition by rememberSaveable { mutableStateOf(false) }
 
     val focusRequester = remember { FocusRequester() }
@@ -148,24 +147,8 @@ private fun CenterContent(
         label = stringResource(R.string.signUp_password),
         errorMessage = state.passwordInputErrorMessage,
         isError = state.passwordInputErrorMessage != null,
-        focusManagerAction = FocusManagerAction.Next,
-        modifier = Modifier.fillMaxWidth()
-    )
-
-    AppOutlinedPasswordTextField(
-        onValueChange = { emailText = it },
-        label = stringResource(R.string.signUp_repeat_password),
-        errorMessage = state.emailInputErrorMessage,
-        isError = state.emailInputErrorMessage != null,
         focusManagerAction = FocusManagerAction.Done {
-            onSignUp(
-                NewAccount(
-                    email = emailText,
-                    password = passwordText,
-                    repeatPassword = repeatPasswordText,
-                    role = Role.FISHERMAN,
-                )
-            )
+
         },
         modifier = Modifier.fillMaxWidth()
     )
@@ -198,8 +181,6 @@ private fun CenterContent(
                 NewAccount(
                     email = emailText,
                     password = passwordText,
-                    repeatPassword = repeatPasswordText,
-                    role = Role.FISHERMAN,
                 )
             )
         }, modifier = Modifier
