@@ -3,4 +3,11 @@
     <style name="Theme.AppTheme" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@color/windowBackgroundColor</item>
     </style>
+
+    <style name="Theme.AppTheme.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/windowSplashScreenBackgroundColor</item>
+        <item name="postSplashScreenTheme">@style/Theme.AppTheme</item>
+    </style>
+
+
 </resources>

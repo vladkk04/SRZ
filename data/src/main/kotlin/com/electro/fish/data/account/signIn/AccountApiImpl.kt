@@ -15,7 +15,7 @@ class AccountApiImpl @Inject constructor(
     private val client: HttpClient
 ): AccountApi {
     override suspend fun signIn(request: SignInRequestDto): SignInResponseDto {
-        val token = client.post("${NetworkConfig.AUTH_PATH_URL}/login") {
+        val token = client.post(NetworkConfig.SIGN_IN_PATH_URL) {
             basicAuth(request.email, request.password)
         }.bodyAsText()
 

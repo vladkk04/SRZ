@@ -15,7 +15,7 @@ class CreateAccountApiImpl @Inject constructor(
     private val client: HttpClient,
 ): CreateAccountApi {
     override suspend fun signUp(request: SignUpRequestDto) {
-        client.post("${NetworkConfig.AUTH_PATH_URL}/register") {
+        client.post(NetworkConfig.SIGN_UP_PATH_URL) {
 
         }
     }

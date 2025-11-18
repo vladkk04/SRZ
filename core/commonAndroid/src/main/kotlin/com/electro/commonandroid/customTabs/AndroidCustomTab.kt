@@ -14,8 +14,7 @@ class AndroidCustomTab @Inject constructor(
     @param: ApplicationContext private val context: Context
 ): BrowserCustomTab {
     override fun openCustomTab(url: String) {
-        val intent = CustomTabsIntent.Builder()
-            .build()
+        val intent = CustomTabsIntent.Builder().build()
         intent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         intent.launchUrl(context, url.toUri())
     }

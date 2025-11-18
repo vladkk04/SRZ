@@ -31,12 +31,11 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.electro.essential.validator.DefaultAuthFormInputFieldValidation
-import com.electro.fish.domain.entity.Credentials
+import com.electro.fish.domain.model.SignInCredentials
 import com.electro.fish.feature.signIn.presentation.R
 import com.electro.fish.ui.component.AppElevatedLoadingButton
 import com.electro.fish.ui.component.AppOutlinedPasswordTextField
 import com.electro.fish.ui.component.AppOutlinedTextField
-import com.electro.fish.ui.component.ContainerView
 import com.electro.fish.ui.component.FocusManagerAction
 import com.electro.fish.ui.component.LogoCircle
 import com.electro.fish.ui.theme.Dimens
@@ -45,24 +44,20 @@ import com.electro.fish.ui.util.extension.clickableWithoutIndication
 @Composable
 fun SignInScreen() {
     val viewModel = hiltViewModel<SignInViewModel>()
-    val containerState by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsState()
 
-    ContainerView(
-        container = containerState
-    ) { state ->
-        SignInContent(
-            state = state,
-            onSignIn = { viewModel.onEvent(SignInEvent.SignIn(it)) },
-            onNavigateToSignUpScreen = { viewModel.onEvent(SignInEvent.OnNavigateToSignUp) },
-            onNavigateToForgotPasswordScreen = { viewModel.onEvent(SignInEvent.OnNavigateToForgotPassword) },
-        )
-    }
+    SignInContent(
+        state = state,
+        onSignIn = { viewModel.onEvent(SignInEvent.SignIn(it)) },
+        onNavigateToSignUpScreen = { viewModel.onEvent(SignInEvent.OnNavigateToSignUp) },
+        onNavigateToForgotPasswordScreen = { viewModel.onEvent(SignInEvent.OnNavigateToForgotPassword) },
+    )
 }
 
 @Composable
 private fun SignInContent(
-    state: SignInViewModel.SignInState,
-    onSignIn: (Credentials) -> Unit,
+    state: SignInState,
+    onSignIn: (SignInCredentials) -> Unit,
     onNavigateToSignUpScreen: () -> Unit,
     onNavigateToForgotPasswordScreen: () -> Unit,
 ) {
@@ -102,7 +97,7 @@ private fun SignInContent(
 
                 CenterContent(
                     state = state,
-                    onSignIn = { onSignIn(Credentials(emailValue.value, passwordValue.value)) },
+                    onSignIn = { onSignIn(SignInCredentials(emailValue.value, passwordValue.value)) },
                     emailValue = emailValue,
                     passwordValue = passwordValue,
                     onNavigateToForgotPasswordScreen = onNavigateToForgotPasswordScreen,
@@ -121,10 +116,10 @@ private fun SignInContent(
 
 @Composable
 private fun CenterContent(
-    state: SignInViewModel.SignInState,
+    state: SignInState,
     emailValue: MutableState<String>,
     passwordValue: MutableState<String>,
-    onSignIn: (Credentials) -> Unit,
+    onSignIn: (SignInCredentials) -> Unit,
     onNavigateToForgotPasswordScreen: () -> Unit,
 ) {
     val focusRequester = remember { FocusRequester() }
@@ -152,7 +147,7 @@ private fun CenterContent(
         isError = state.errorMessages.containsKey(DefaultAuthFormInputFieldValidation.Password),
         focusManagerAction = FocusManagerAction.Done {
             focusRequester.freeFocus()
-            onSignIn(Credentials(emailValue.value, passwordValue.value))
+            onSignIn(SignInCredentials(emailValue.value, passwordValue.value))
         },
         modifier = Modifier.fillMaxWidth()
     )
@@ -172,7 +167,7 @@ private fun CenterContent(
         isLoading = state.isSignInInProgress,
         onClick = {
             focusRequester.requestFocus()
-            onSignIn(Credentials(emailValue.value, passwordValue.value))
+            onSignIn(SignInCredentials(emailValue.value, passwordValue.value))
         },
         modifier = Modifier
             .fillMaxWidth()

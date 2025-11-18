@@ -1,8 +1,10 @@
 package com.electro.commonandroid.di
 
 import com.electro.commonandroid.customTabs.AndroidCustomTab
-import com.electro.commonandroid.toast.ToastExceptionHandlerImpl
+import com.electro.commonandroid.dialog.DialogHandler
+import com.electro.commonandroid.toast.ToastHandler
 import com.electro.essential.BrowserCustomTab
+import com.electro.essential.DialogExceptionHandler
 import com.electro.essential.exception.mapper.DefaultExceptionToMessageMapper
 import com.electro.essential.exception.mapper.ExceptionToMessageMapper
 import com.electro.essential.ToastExceptionHandler
@@ -19,7 +21,10 @@ interface CommonAndroidModule {
     fun bindExceptionToMessageMapper(impl: DefaultExceptionToMessageMapper): ExceptionToMessageMapper
 
     @Binds
-    fun bindAndroidToastExceptionManager(impl: ToastExceptionHandlerImpl): ToastExceptionHandler
+    fun bindAndroidDialogExceptionManager(impl: DialogHandler): DialogExceptionHandler
+
+    @Binds
+    fun bindAndroidToastExceptionManager(impl: ToastHandler): ToastExceptionHandler
 
     @Binds
     fun bindAndroidCustomTab(impl: AndroidCustomTab): BrowserCustomTab

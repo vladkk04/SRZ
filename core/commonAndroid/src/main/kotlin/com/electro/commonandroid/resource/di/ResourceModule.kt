@@ -30,10 +30,15 @@ interface ResourceModule {
     @Binds
     @IntoMap
     @ClassKey(ValidationStringProvider::class)
-    fun bindValidationStringProviderIntoMap(impl: ValidationStringProviderImpl): StringProvider
+    fun bindValidationStringProviderIntoMap(impl: AuthValidationStringProviderImpl): StringProvider
 
     @Binds
-    fun bindValidationStringProvider(impl: ValidationStringProviderImpl): ValidationStringProvider
+    @IntoMap
+    @ClassKey(AuthValidationStringProvider::class)
+    fun bindAuthValidationStringProviderIntoMap(impl: AuthValidationStringProviderImpl): StringProvider
+
+    @Binds
+    fun bindValidationStringProvider(impl: AuthValidationStringProviderImpl): ValidationStringProvider
 
     @Binds
     fun bindAuthValidationStringProvider(impl: AuthValidationStringProviderImpl): AuthValidationStringProvider

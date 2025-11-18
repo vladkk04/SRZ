@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.custom.android.application.compose)
     alias(libs.plugins.custom.android.application)
@@ -12,7 +13,7 @@ dependencies {
     implementation(projects.core.data)
 
     implementation(projects.navigation)
-
+    implementation(libs.androidx.splashscreen)
 
     implementation(projects.data)
 
