@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="forgotPassword_forgot_password">Forgot Password</string>
+    <string name="forgotPassword_email_description">Please enter your email address. we will send you a 4 digit code to reset your password.</string>
+    <string name="forgotPassword_otp_description">Please enter the 4 digit code sent to your email.</string>
+    <string name="forgotPassword_reset_password_description">Please set new password for your account.</string>
+</resources>

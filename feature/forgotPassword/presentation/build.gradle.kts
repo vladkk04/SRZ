@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    resourcePrefix = "supervisor_"
+    resourcePrefix = "forgotPassword_"
 }
 
 dependencies {

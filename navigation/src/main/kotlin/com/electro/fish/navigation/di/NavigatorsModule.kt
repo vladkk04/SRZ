@@ -1,7 +1,5 @@
 package com.electro.fish.navigation.di
 
-import com.electro.fish.navigation.AdminNavigator
-import com.electro.fish.navigation.navigators.AdminNavigatorImpl
 import com.electro.fish.navigation.navigators.SignInNavigatorImpl
 import com.electro.fish.navigation.navigators.SignUpNavigatorImpl
 import com.electro.fish.navigation.navigators.WelcomeNavigatorImpl
@@ -25,8 +23,5 @@ interface NavigatorsModule {
 
     @Binds
     fun bindSignUpNavigator(impl: SignUpNavigatorImpl): SignUpNavigator
-
-    @Binds
-    fun bindAdminNavigator(impl: AdminNavigatorImpl): AdminNavigator
 
 }

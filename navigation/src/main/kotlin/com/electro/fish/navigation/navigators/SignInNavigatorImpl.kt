@@ -28,6 +28,12 @@ class SignInNavigatorImpl @Inject constructor(
     }
 
     override fun launchForgotPasswordScreen() {
-        appNavigator.launchScreen(ForgotPasswordScreen) {}
+        appNavigator.launchScreen(ForgotPasswordScreen) {
+            launchSingleTop = true
+
+            popUpTo(SignInScreen) {
+
+            }
+        }
     }
 }

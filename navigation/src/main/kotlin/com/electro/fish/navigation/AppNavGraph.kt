@@ -5,12 +5,13 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.dialog
 import androidx.navigation.navigation
-import com.electro.fish.presentation.AdminScreen
+import com.electro.fish.presentation.ForgotPasswordScreen
 import com.electro.fish.presentation.SignInScreen
-import com.electro.presentation.signUp.SignUpScreen
 import com.electro.fish.presentation.WelcomeScreen
 import com.electro.presentation.profileSetup.ProfileSetupScreen
+import com.electro.presentation.signUp.SignUpScreen
 
 fun NavGraphBuilder.buildAppNavGraph() {
     composable<WelcomeScreen>(
@@ -34,5 +35,5 @@ fun NavGraphBuilder.buildAppNavGraph() {
         composable<ProfileSetupScreen> { ProfileSetupScreen() }
     }
 
-    composable<AdminScreen> { AdminScreen() }
+    dialog<ForgotPasswordScreen> { ForgotPasswordScreen() }
 }

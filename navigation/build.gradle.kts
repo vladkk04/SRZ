@@ -9,8 +9,8 @@ dependencies {
     implementation(projects.feature.welcome.presentation)
     implementation(projects.feature.signIn.presentation)
     implementation(projects.feature.signUp.presentation)
-    implementation(projects.feature.admin.presentation)
-    implementation(projects.feature.supervisor.presentation)
+    implementation(projects.feature.forgotPassword.presentation)
+   // implementation(projects.feature.supervisor.presentation)
 
     implementation(libs.androidx.navigation.compose)
     api(libs.hilt.navigation.compose)

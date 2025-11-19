@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.electro.essential.validator.DefaultAuthFormInputFieldValidation
@@ -131,6 +133,7 @@ private fun CenterContent(
             DefaultAuthFormInputFieldValidation.Email,
             null
         ),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         isError = state.errorMessages.containsKey(DefaultAuthFormInputFieldValidation.Email),
         focusRequester = focusRequester,
         focusManagerAction = FocusManagerAction.Next,

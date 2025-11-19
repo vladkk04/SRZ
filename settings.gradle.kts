@@ -52,9 +52,9 @@ include(":feature:admin")
 include(":feature:admin:domain")
 include(":feature:admin:presentation")
 
-include(":feature:supervisor")
-include(":feature:supervisor:domain")
-include(":feature:supervisor:presentation")
+include(":feature:forgotPassword")
+include(":feature:forgotPassword:domain")
+include(":feature:forgotPassword:presentation")
 
 include(":feature:inspector")
 include(":feature:inspector:domain")

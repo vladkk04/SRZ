@@ -15,11 +15,9 @@ data object SignInScreen : Screen
 @Serializable
 data object SignUp: Screen
 
-/*This below to SignUp Nested Graph*/
 @Serializable
 data object SignUpScreen : Screen
 
-/*This below to SignUp Nested Graph*/
 @Serializable
 data object ProfileSetupScreen : Screen
 
