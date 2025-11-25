@@ -16,6 +16,8 @@ dependencies {
     implementation(libs.androidx.splashscreen)
 
     implementation(projects.data)
+    implementation(libs.jwt.decode)
+
 
     implementation(libs.androidx.activity.compose)
 }

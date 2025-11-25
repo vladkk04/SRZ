@@ -6,14 +6,14 @@ import kotlinx.serialization.Serializable
 @Stable
 interface Screen
 
+@Stable
+interface Graph: Screen
+
 @Serializable
 data object WelcomeScreen : Screen
 
 @Serializable
 data object SignInScreen : Screen
-
-@Serializable
-data object SignUp: Screen
 
 @Serializable
 data object SignUpScreen : Screen
@@ -25,10 +25,17 @@ data object ProfileSetupScreen : Screen
 data object ForgotPasswordScreen : Screen
 
 @Serializable
-data object AdminScreen: Screen
+sealed interface Guest: Screen {
 
-@Serializable
-data object HomeScreen : Screen
+    @Serializable
+    data object GuestGraph: Graph
+
+    @Serializable
+    data object GuestScreen: Guest
+
+    @Serializable
+    data object AddCatchFishScreen : Guest
+}
 
 
 

@@ -16,3 +16,23 @@ fun SmallVerticalSpacer() {
 fun SmallHorizontalSpacer() {
     Spacer(Modifier.width(Dimens.SmallPadding))
 }
+
+@Composable
+fun MediumVerticalSpacer() {
+    Spacer(Modifier.height(Dimens.MediumPadding))
+}
+
+@Composable
+fun MediumHorizontalSpacer() {
+    Spacer(Modifier.width(Dimens.MediumPadding))
+}
+
+@Composable
+fun LargeVerticalSpacer() {
+    Spacer(Modifier.height(Dimens.LargePadding))
+}
+
+@Composable
+fun LargeHorizontalSpacer() {
+    Spacer(Modifier.width(Dimens.LargePadding))
+}

@@ -1,8 +1,7 @@
 package com.electro.fish.presentation
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -12,8 +11,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -24,7 +21,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -32,8 +28,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.electro.fish.feature.welcome.presentation.R
 import com.electro.fish.ui.component.AppElevatedButton
 import com.electro.fish.ui.component.LogoCircle
+import com.electro.fish.ui.component.LogoSize
 import com.electro.fish.ui.theme.Dimens
 import com.electro.fish.ui.theme.WelcomeSignUpAsGuestButtonContainerColor
+import com.electro.fish.ui.util.extension.repeatWithLifecycleResumed
 
 @Composable
 fun WelcomeScreen() {
@@ -51,23 +49,14 @@ private fun WelcomeContent(
     onSignUpClick: () -> Unit = {},
     durationAnimation: Int = 1000
 ) {
-    var isStartAnimation by rememberSaveable { mutableStateOf(false) }
-    var navigateTo by rememberSaveable { mutableStateOf<(() -> Unit)?>(null) }
-
-    val logoSize by animateDpAsState(
-        targetValue = if (isStartAnimation) 64.dp else 192.dp,
-        animationSpec = tween(durationMillis = durationAnimation, easing = FastOutSlowInEasing),
-        finishedListener = {
-            navigateTo?.invoke()
-            navigateTo = null
-        }
-    )
-
     val lifecycleOwner = LocalLifecycleOwner.current
+    
+    var logoSize by rememberSaveable { mutableStateOf(LogoSize.FULL) }
+    var isVisibleContent by rememberSaveable { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
-        lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-            if(isStartAnimation) { isStartAnimation = false }
+        lifecycleOwner.repeatWithLifecycleResumed {
+            if (logoSize == LogoSize.SMALL) { logoSize = LogoSize.FULL }
         }
     }
 
@@ -78,12 +67,15 @@ private fun WelcomeContent(
             .fillMaxSize()
             .padding(Dimens.ExtraLargePadding)
     ) {
-        LogoCircle(modifier = Modifier.size(logoSize))
+        LogoCircle(
+            logoSize,
+            onAnimationFinished = { isVisibleContent = true }
+        )
 
         Spacer(Modifier.weight(1f))
 
         AnimatedVisibility(
-            visible = !isStartAnimation,
+            visible = isVisibleContent,
             enter = fadeIn(animationSpec = tween(durationAnimation)),
             exit = fadeOut(animationSpec = tween(durationAnimation))
         ) {
@@ -96,8 +88,9 @@ private fun WelcomeContent(
                 AppElevatedButton(
                     text = stringResource(R.string.welcome_sign_in),
                     onClick = {
-                        navigateTo = onSignInClick
-                        isStartAnimation = true
+                        onSignInClick()
+                        isVisibleContent = false
+                        logoSize = LogoSize.SMALL
                     },
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -105,12 +98,10 @@ private fun WelcomeContent(
                 AppElevatedButton(
                     text = stringResource(R.string.welcome_sign_up_as_guest),
                     onClick = {
-                        navigateTo = onSignUpClick
-                        isStartAnimation = true
+                        onSignUpClick()
+                        isVisibleContent = false
+                        logoSize = LogoSize.SMALL
                     },
-                    buttonColors = ButtonDefaults.elevatedButtonColors().copy(
-                        containerColor = WelcomeSignUpAsGuestButtonContainerColor
-                    ),
                     modifier = Modifier.fillMaxWidth()
                 )
             }

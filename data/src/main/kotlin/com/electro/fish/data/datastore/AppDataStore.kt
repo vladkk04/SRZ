@@ -1,5 +1,6 @@
 package com.electro.fish.data.datastore
 
+import android.R.attr.value
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -30,10 +31,10 @@ class AppDataStore @Inject constructor(
         }
     }
 
+    @Suppress("UNCHECKED_CAST")
     suspend fun <T : Any> getOrNull(key: String, clazz: KClass<T>): T? {
         val prefs = dataStore.data.first()
 
-        @Suppress("UNCHECKED_CAST")
         return when (clazz) {
             Int::class -> prefs[intPreferencesKey(key)] as T?
             Long::class -> prefs[longPreferencesKey(key)] as T?
@@ -59,14 +60,29 @@ class AppDataStore @Inject constructor(
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun <T : Any> getByFlow(key: String, defaultValue: T?, clazz: KClass<T>): Flow<T> {
-        return dataStore.data.map {
+    fun <T : Any> getByFlow(key: String, defaultValue: T, clazz: KClass<T>): Flow<T> {
+        return dataStore.data.map { prefs ->
             when (clazz) {
-                Int::class -> (it[intPreferencesKey(key)] ?: defaultValue) as T
-                Long::class -> (it[longPreferencesKey(key)] ?: defaultValue) as T
-                Float::class -> (it[floatPreferencesKey(key)] ?: defaultValue) as T
-                String::class -> (it[stringPreferencesKey(key)] ?: defaultValue) as T
-                Boolean::class -> (it[booleanPreferencesKey(key)] ?: defaultValue) as T
+                Int::class -> (prefs[intPreferencesKey(key)] ?: defaultValue) as T
+                Long::class -> (prefs[longPreferencesKey(key)] ?: defaultValue) as T
+                Float::class -> (prefs[floatPreferencesKey(key)] ?: defaultValue) as T
+                String::class -> (prefs[stringPreferencesKey(key)] ?: defaultValue) as T
+                Boolean::class -> (prefs[booleanPreferencesKey(key)] ?: defaultValue) as T
+                else -> throw IllegalArgumentException("Unsupported type: $clazz")
+            }
+        }
+    }
+
+    fun <T : Any> getNullableByFlow(key: String, clazz: KClass<T>): Flow<T?> {
+
+        @Suppress("UNCHECKED_CAST")
+        return dataStore.data.map { prefs ->
+            when (clazz) {
+                String::class -> prefs[stringPreferencesKey(key)] as? T
+                Int::class -> prefs[intPreferencesKey(key)] as? T
+                Long::class -> prefs[longPreferencesKey(key)] as? T
+                Float::class -> prefs[floatPreferencesKey(key)] as? T
+                Boolean::class -> prefs[booleanPreferencesKey(key)] as? T
                 else -> throw IllegalArgumentException("Unsupported type: $clazz")
             }
         }

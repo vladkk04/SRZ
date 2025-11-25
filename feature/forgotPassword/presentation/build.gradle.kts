@@ -8,5 +8,5 @@ android {
 }
 
 dependencies {
-    implementation(projects.feature.admin.domain)
+    implementation(projects.feature.guest.domain)
 }

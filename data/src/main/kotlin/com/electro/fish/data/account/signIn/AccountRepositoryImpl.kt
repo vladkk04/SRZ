@@ -17,6 +17,6 @@ internal class AccountRepositoryImpl @Inject constructor(
             email = credential.email,
             password = credential.password
         )
-        return api.signIn(request).authToken
+        return api.signIn(request).token
     }
 }

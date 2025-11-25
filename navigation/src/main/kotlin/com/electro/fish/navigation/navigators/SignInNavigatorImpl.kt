@@ -1,9 +1,10 @@
 package com.electro.fish.navigation.navigators
 
 import com.electro.fish.navigation.ForgotPasswordScreen
-import com.electro.fish.navigation.HomeScreen
+import com.electro.fish.navigation.Guest
 import com.electro.fish.navigation.SignInScreen
 import com.electro.fish.navigation.SignUpScreen
+import com.electro.fish.navigation.WelcomeScreen
 import com.electro.fish.navigation.base.AppNavigator
 import com.electro.fish.presentation.navigation.SignInNavigator
 import jakarta.inject.Inject
@@ -20,8 +21,8 @@ class SignInNavigatorImpl @Inject constructor(
     }
 
     override fun launchHomeScreen() {
-        appNavigator.launchScreen(HomeScreen) {
-            popUpTo(SignInScreen) {
+        appNavigator.launchScreen(Guest.GuestScreen) {
+            popUpTo(WelcomeScreen) {
                 inclusive = true
             }
         }
@@ -29,11 +30,7 @@ class SignInNavigatorImpl @Inject constructor(
 
     override fun launchForgotPasswordScreen() {
         appNavigator.launchScreen(ForgotPasswordScreen) {
-            launchSingleTop = true
 
-            popUpTo(SignInScreen) {
-
-            }
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.electro.commonandroid.toast
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import com.electro.essential.ToastExceptionHandler
 import com.electro.essential.exception.mapper.ExceptionToMessageMapper
@@ -13,7 +12,12 @@ import javax.inject.Singleton
 class ToastHandler @Inject constructor(
     @param: ApplicationContext private val context: Context
 ): ToastExceptionHandler {
+
+    private var toast: Toast? = null
+
     override fun handleException(exception: Exception) {
-        Toast.makeText(context, ExceptionToMessageMapper.getLocalizedMessage(exception), Toast.LENGTH_SHORT).show()
+        if (toast != null) { toast?.cancel() }
+        toast = Toast.makeText(context, ExceptionToMessageMapper.getLocalizedMessage(exception), Toast.LENGTH_SHORT)
+        toast?.show()
     }
 }

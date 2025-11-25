@@ -9,7 +9,7 @@ internal class LocalAuthTokenRepositoryImpl @Inject constructor(
     private val authTokenSaver: AuthTokenSaver
 ): LocalAuthTokenRepository {
 
-    override suspend fun saveToken(authToken: AuthToken) {
+    override suspend fun saveToken(authToken: String) {
         authTokenSaver.saveToken(authToken)
     }
 }

@@ -1,5 +1,9 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.electro.fish.navigation
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -11,7 +15,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.createGraph
 import com.electro.fish.navigation.base.NavComponentAppNavigator
-import com.electro.fish.presentation.WelcomeScreen
+import com.stefanoq21.material3.navigation.ModalBottomSheetLayout
+import com.stefanoq21.material3.navigation.rememberBottomSheetNavigator
 import kotlinx.coroutines.awaitCancellation
 
 @Composable
@@ -19,8 +24,9 @@ fun AppNavHost(
     modifier: Modifier,
     startScreen: Screen = WelcomeScreen
 ) {
+    val bottomSheetNavigator = rememberBottomSheetNavigator()
+    val navController = rememberNavController(bottomSheetNavigator)
     val lifecycleOwner = LocalLifecycleOwner.current
-    val navController = rememberNavController()
     val appNavigator = NavComponentAppNavigator.get()
 
     val navGraph = remember {
@@ -40,9 +46,14 @@ fun AppNavHost(
         }
     }
 
-    NavHost(
-        modifier = modifier,
-        navController = navController,
-        graph = navGraph
-    )
+    ModalBottomSheetLayout(
+        bottomSheetNavigator = bottomSheetNavigator,
+        modifier = Modifier.fillMaxSize(),
+    ) {
+        NavHost(
+            modifier = modifier,
+            navController = navController,
+            graph = navGraph
+        )
+    }
 }

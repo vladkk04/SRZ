@@ -2,16 +2,11 @@
 
 package com.electro.fish.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.electro.essential.ToastExceptionHandler
-import com.electro.essential.exception.NetworkException
 import com.electro.essential.exception.base.BaseAppException
 import com.electro.essential.exception.base.BaseValidationException
-import com.electro.essential.exception.validator.EmptyInputFieldException
-import com.electro.essential.resources.AuthValidationStringProvider
-import com.electro.essential.resources.ValidationStringProvider
 import com.electro.essential.validator.BaseInputField
 import com.electro.essential.validator.ValidationResult
 import com.electro.fish.domain.model.SignInCredentials
@@ -24,7 +19,6 @@ import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -32,8 +26,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.lang.Exception
-import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -41,11 +33,11 @@ class SignInViewModel @Inject constructor(
     private val signUseCase: SignInUseCase,
     private val signInValidator: SignInValidator,
     private val signInNavigator: SignInNavigator,
-    private val stringProvider: ValidationStringProvider,
+    private val stringProvider: SignInStringProvider,
     private val toastExceptionHandler: ToastExceptionHandler
 ) : ViewModel() {
 
-    private val _state: MutableStateFlow<SignInStateImpl> = MutableStateFlow(SignInStateImpl())
+    private val _state: MutableStateFlow<SignInStateImpl> = MutableStateFlow(SignInStateImpl(stringProvider = stringProvider))
     val state: StateFlow<SignInState> get() = _state.asStateFlow()
 
     private val validateRequestFlow = MutableSharedFlow<SignInCredentials>(
@@ -59,14 +51,12 @@ class SignInViewModel @Inject constructor(
 
     private fun launchForgotPasswordScreen() = signInNavigator.launchForgotPasswordScreen()
 
-    init {
-        viewModelScope.launch { validateRequestFlow.debounce(1000).collect(::validate) }
-    }
+    init { viewModelScope.launch { validateRequestFlow.debounce(300).collect(::validate) } }
 
     fun onEvent(event: SignInEvent) {
         when (event) {
             is SignInEvent.SignIn -> signIn(event.credentials)
-            is SignInEvent.Validate -> validateRequestFlow.tryEmit(event.credentials)
+            is SignInEvent.Validate -> { validateRequestFlow.tryEmit(event.credentials) }
             is SignInEvent.ClearError -> clearError(event.inputField)
             is SignInEvent.EnableErrorMessages -> enableErrorMessages(event.inputField)
             SignInEvent.OnNavigateToForgotPassword -> launchForgotPasswordScreen()
@@ -76,12 +66,23 @@ class SignInViewModel @Inject constructor(
 
     private fun signIn(credentials: SignInCredentials) = viewModelScope.launch {
         try {
-            //showProgressIndicator()
+            showProgressBar()
             signUseCase.invoke(credentials)
+            hideProgressBar()
             launchHomeScreen()
-        } catch (e: Exception) {
+        } catch (e: BaseAppException) {
             toastExceptionHandler.handleException(e)
+        } finally {
+            hideProgressBar()
         }
+    }
+
+    private fun showProgressBar() {
+        _state.update { it.copy(isSignInInProgress = true) }
+    }
+
+    private fun hideProgressBar() {
+        _state.update { it.copy(isSignInInProgress = false) }
     }
 
     private fun validate(credentials: SignInCredentials) = viewModelScope.launch {
@@ -95,9 +96,9 @@ class SignInViewModel @Inject constructor(
     private fun enableErrorMessages(inputField: BaseInputField<*>) =
         _state.update { it.enableErrorMessages(inputField) }
 
-
     private data class SignInStateImpl(
         override val isSignInInProgress: Boolean = false,
+        override val stringProvider: SignInStringProvider,
         val allErrorMessages: Map<BaseInputField<*>, String> = emptyMap(),
         val fieldsWithEnabledErrors: Set<BaseInputField<*>> = emptySet()
     ) : SignInState {

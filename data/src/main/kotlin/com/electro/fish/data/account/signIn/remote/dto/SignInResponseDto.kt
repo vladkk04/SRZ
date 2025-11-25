@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SignInResponseDto(
-    val authToken: AuthToken
+    val token: AuthToken
 )

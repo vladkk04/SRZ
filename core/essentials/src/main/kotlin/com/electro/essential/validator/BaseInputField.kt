@@ -9,9 +9,9 @@ sealed interface BaseInputField<T : Any> {
 
     fun validate(value: T): ValidationResult
 
-    sealed class TextInputField(
+    abstract class TextInputField(
         override val fieldName: (ValidationStringProvider) -> String,
-        val regexMessage: ((ValidationStringProvider) -> String)? = null,
+        val regexMessage: ((ValidationStringProvider) -> String?) = { null },
         val regex: Regex? = null,
     ) : BaseInputField<String> {
         override fun validate(value: String): ValidationResult {
@@ -23,6 +23,5 @@ sealed interface BaseInputField<T : Any> {
             }
         }
     }
-
 }
 

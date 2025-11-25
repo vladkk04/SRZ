@@ -27,24 +27,29 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import com.electro.fish.domain.model.NewAccount
-import com.electro.fish.data.account.signUp.remote.dto.Role
 import com.electro.fish.feature.signUp.presentation.R
 import com.electro.fish.ui.component.AppElevatedLoadingButton
 import com.electro.fish.ui.component.AppOutlinedPasswordTextField
 import com.electro.fish.ui.component.AppOutlinedTextField
 import com.electro.fish.ui.component.CheckBoxCircle
-import com.electro.fish.ui.component.FocusManagerAction
 import com.electro.fish.ui.component.LogoCircle
+import com.electro.fish.ui.component.LogoSize
 import com.electro.fish.ui.theme.Dimens
+import com.electro.presentation.profileSetup.ProfileSetupScreen
 
 @Composable
 fun SignUpScreen() {
@@ -70,9 +75,16 @@ private fun SignUpContent(
     onClearInputsErrorMessage: () -> Unit,
     openTermsAndPrivacyPolicy: () -> Unit,
 ) {
-    var isFormVisible by remember { mutableStateOf(false) }
+    val lifecycleOwner = LocalLifecycleOwner.current
 
-    LaunchedEffect(Unit) { isFormVisible = true }
+    var logoSize by rememberSaveable { mutableStateOf(LogoSize.FULL) }
+    var isLogoFinishedAnimation by rememberSaveable { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            logoSize = LogoSize.SMALL
+        }
+    }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -81,10 +93,13 @@ private fun SignUpContent(
             .fillMaxSize()
             .padding(Dimens.ExtraLargePadding)
     ) {
-        LogoCircle(modifier = Modifier.size(64.dp))
+        LogoCircle(
+            logoSize = logoSize,
+            onAnimationFinished = { isLogoFinishedAnimation = true }
+        )
 
         AnimatedVisibility(
-            visible = isFormVisible,
+            visible = isLogoFinishedAnimation,
             enter = fadeIn(animationSpec = tween(500)),
             exit = fadeOut(animationSpec = tween(500))
         ) {
@@ -135,9 +150,10 @@ private fun CenterContent(
         errorMessage = state.emailInputErrorMessage,
         isError = state.emailInputErrorMessage != null,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-        focusRequester = focusRequester,
-        focusManagerAction = FocusManagerAction.Next,
-        modifier = Modifier.fillMaxWidth()
+        imeAction = ImeAction.Next,
+        modifier = Modifier
+            .fillMaxWidth()
+            .focusRequester(focusRequester)
     )
 
     AppOutlinedPasswordTextField(
@@ -150,9 +166,7 @@ private fun CenterContent(
         label = stringResource(R.string.signUp_password),
         errorMessage = state.passwordInputErrorMessage,
         isError = state.passwordInputErrorMessage != null,
-        focusManagerAction = FocusManagerAction.Done {
-
-        },
+        imeAction = ImeAction.Done,
         modifier = Modifier.fillMaxWidth()
     )
 

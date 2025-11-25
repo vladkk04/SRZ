@@ -6,7 +6,9 @@ import com.electro.fish.data.network.interceptor.AuthInterceptionTokenProvider
 import com.electro.fish.data.network.interceptor.AuthInterceptor
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
+import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.auth.Auth
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
@@ -30,6 +32,12 @@ internal fun createKtorClient(
     }
     install(ContentNegotiation) { json(createDefaultJson()) }
     install(Logging) { level = LogLevel.ALL }
+
+    HttpResponseValidator {
+        handleResponseExceptionWithRequest { exception, request ->
+
+        }
+    }
 }.apply {
     AuthInterceptor(authInterceptionTokenProvider).interceptor(this)
 }

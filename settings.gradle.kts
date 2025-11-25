@@ -48,13 +48,13 @@ include(":feature:signUp")
 include(":feature:signUp:domain")
 include(":feature:signUp:presentation")
 
-include(":feature:admin")
-include(":feature:admin:domain")
-include(":feature:admin:presentation")
-
 include(":feature:forgotPassword")
 include(":feature:forgotPassword:domain")
 include(":feature:forgotPassword:presentation")
+
+include(":feature:guest")
+include(":feature:guest:domain")
+include(":feature:guest:presentation")
 
 include(":feature:inspector")
 include(":feature:inspector:domain")

@@ -1,13 +1,10 @@
 package com.electro.fish.ui.component
 
-import android.R.attr.onClick
-import android.R.attr.text
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.CircularWavyProgressIndicator
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
@@ -17,6 +14,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.MediumFloatingActionButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -29,13 +27,13 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun AppButtonText(
+fun AppTextButton(
     text: String,
-    onClick: () -> Unit,
     modifier: Modifier = Modifier,
     isEnabled: Boolean = true,
+    onClick: () -> Unit,
 ) {
-    Button(
+    TextButton(
         onClick = onClick,
         enabled = isEnabled,
         modifier = modifier
@@ -94,7 +92,7 @@ fun AppElevatedButton(
     buttonColors: ButtonColors = ButtonDefaults.elevatedButtonColors(),
     isEnabled: Boolean = true,
 ) {
-    ElevatedButton(
+    ElevatedButton (
         onClick = onClick,
         enabled = isEnabled,
         colors = buttonColors,

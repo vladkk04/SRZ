@@ -5,6 +5,7 @@ import io.ktor.client.plugins.HttpSend
 import io.ktor.client.plugins.plugin
 import io.ktor.client.request.bearerAuth
 
+
 class AuthInterceptor (
     private val authInterceptionTokenProvider: AuthInterceptionTokenProvider
 ) {

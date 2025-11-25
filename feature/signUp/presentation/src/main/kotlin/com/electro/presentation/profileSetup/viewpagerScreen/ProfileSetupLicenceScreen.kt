@@ -26,7 +26,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.electro.fish.feature.signUp.presentation.R
 import com.electro.fish.ui.component.AppOutlinedTextField
-import com.electro.fish.ui.component.FocusManagerAction
 import com.electro.fish.ui.theme.Dimens
 import com.electro.fish.ui.util.extension.dashedBorder
 
@@ -82,7 +81,6 @@ fun ProfileSetupLicenceScreen(
         AppOutlinedTextField(
             onValueChange = { },
             label = stringResource(R.string.signUp_licence_number),
-            focusManagerAction = FocusManagerAction.Done(),
             modifier = Modifier.fillMaxWidth()
         )
     }

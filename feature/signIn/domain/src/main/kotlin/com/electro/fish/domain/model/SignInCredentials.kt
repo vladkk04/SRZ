@@ -16,5 +16,5 @@ fun SignInCredentials.mapToAuthCredential() = AuthCredential(
 
 fun SignInCredentials.toFieldValues(): List<InputFieldValue<*>> = listOf(
     InputFieldValue(DefaultAuthFormInputFieldValidation.Email, value = email),
-    InputFieldValue(DefaultAuthFormInputFieldValidation.Password, value = password)
+    InputFieldValue(DefaultAuthFormInputFieldValidation.PasswordWithoutRegex, value = password)
 )

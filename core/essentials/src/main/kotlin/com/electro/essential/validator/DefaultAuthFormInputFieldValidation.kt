@@ -15,4 +15,8 @@ sealed interface DefaultAuthFormInputFieldValidation {
         regexMessage = { (it as AuthValidationStringProvider).passwordRegexError },
         regex = InputFieldPatternRegex.passwordRegex
     )
+
+    data object PasswordWithoutRegex: TextInputField(
+        fieldName = { (it as AuthValidationStringProvider).password },
+    )
 }

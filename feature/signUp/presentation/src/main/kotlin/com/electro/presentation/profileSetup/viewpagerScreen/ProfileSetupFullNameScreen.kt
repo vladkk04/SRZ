@@ -13,7 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import com.electro.fish.ui.component.AppOutlinedTextField
-import com.electro.fish.ui.component.FocusManagerAction
+
 
 @Composable
 fun ProfileSetupFullNameScreen(
@@ -34,8 +34,6 @@ fun ProfileSetupFullNameScreen(
             label = "First",
            /* errorMessage = state.emailInputFieldErrorMessage,
             isError = state.emailInputFieldErrorMessage != null,*/
-            focusRequester = focusRequester,
-            focusManagerAction = FocusManagerAction.Next,
             modifier = Modifier
                 .fillMaxWidth()
         )
@@ -45,9 +43,6 @@ fun ProfileSetupFullNameScreen(
             label = "fds",
            /* errorMessage = state.passwordInputFieldErrorMessage,
             isError = state.passwordInputFieldErrorMessage != null,*/
-            focusManagerAction = FocusManagerAction.Done {
-
-            },
             modifier = Modifier.fillMaxWidth()
         )
     }

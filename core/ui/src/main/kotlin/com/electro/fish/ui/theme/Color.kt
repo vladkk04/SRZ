@@ -10,7 +10,7 @@ val DarkSecondaryContainerColor = Color.White
 
 val DarkSurfaceColor = Color.Black
 val DarkOnSurfaceColor = Color.White
-val DarkSurfaceContainerLowColor = Color.White
+val DarkSurfaceContainerLowColor = Color(0xFF2A2B2A)
 val DarkSurfaceContainerHighest = Color.Black
 val DarkOnSurfaceVariant = Color.White
 
@@ -29,7 +29,6 @@ val LightOnSurfaceVariant = Color.Red
 
 val LightTextColor = Color(0xFF000000)
 val DarkTextColor = Color(0xFFFFFFFF)
-
 
 val WelcomeSignUpAsGuestButtonContainerColor = Color(0xFF6D6D6D)
 

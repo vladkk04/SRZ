@@ -22,7 +22,7 @@ class AuthValidationStringProviderImpl @Inject constructor(
         )
 
     override fun invalidRegexInputFieldError(field: BaseInputField.TextInputField): String =
-        field.regexMessage?.let { it(this) } ?: context.getString(
+        field.regexMessage(this) ?: context.getString(
             R.string.commonAndroid_default_invalid_regex_input_field_error,
             field.fieldName(this)
         )

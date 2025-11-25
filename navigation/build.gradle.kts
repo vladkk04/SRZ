@@ -10,8 +10,10 @@ dependencies {
     implementation(projects.feature.signIn.presentation)
     implementation(projects.feature.signUp.presentation)
     implementation(projects.feature.forgotPassword.presentation)
+    implementation(projects.feature.guest.presentation)
    // implementation(projects.feature.supervisor.presentation)
 
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.material3.navigation)
     api(libs.hilt.navigation.compose)
 }

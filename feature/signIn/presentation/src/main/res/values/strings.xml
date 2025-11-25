@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="signIn_email">Email</string>
     <string name="signIn_sign_in">Sign in</string>
-    <string name="signIn_password">Password</string>
     <string name="signIn_sign_up">Sign up</string>
 
     <string name="signIn_forgot_password">Forgot Password?</string>

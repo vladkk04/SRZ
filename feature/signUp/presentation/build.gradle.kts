@@ -8,6 +8,5 @@ android {
 }
 
 dependencies {
-    implementation(libs.wheel.picker)
     implementation(projects.feature.signUp.domain)
 }

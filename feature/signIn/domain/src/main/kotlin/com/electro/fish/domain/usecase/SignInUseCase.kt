@@ -1,5 +1,6 @@
 package com.electro.fish.domain.usecase
 
+import android.util.Log
 import com.electro.essential.validator.ValidationResult
 import com.electro.fish.data.AccountRepository
 import com.electro.fish.data.LocalAuthTokenRepository
@@ -17,7 +18,8 @@ class SignInUseCase @Inject constructor(
             is ValidationResult.Error -> throw result.exceptions.first()
             ValidationResult.Success -> {
                 val token = accountRepository.signIn(credential.mapToAuthCredential())
-                localAuthTokenRepository.saveToken(token)
+                Log.d("debug", token.getRole().toString())
+                localAuthTokenRepository.saveToken(token.token)
             }
         }
     }
