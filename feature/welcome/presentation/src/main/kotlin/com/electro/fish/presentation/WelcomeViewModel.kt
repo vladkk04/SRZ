@@ -10,11 +10,10 @@ class WelcomeViewModel @Inject constructor(
     private val navigator: WelcomeNavigator
 ): ViewModel() {
 
-    fun launchSignInScreen() {
-        navigator.launchSignInScreen()
-    }
-
-    fun launchSignUpScreen() {
-        navigator.launchSignUpScreen()
+    fun onEvent(event: WelcomeEvent) {
+        when (event) {
+            WelcomeEvent.SignIn -> navigator.launchSignInScreen()
+            WelcomeEvent.SignUp -> navigator.launchSignUpScreen()
+        }
     }
 }

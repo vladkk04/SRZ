@@ -6,9 +6,8 @@ import com.electro.essential.validator.BaseInputField
 
 class InputRegexException(
     override val inputField: BaseInputField.TextInputField,
-): BaseValidationException(
-    message = "message",
-) {
+    val customErrorMessageResolver: ((ValidationStringProvider) -> String)?
+): BaseValidationException(" ") {
     override fun getLocalizedErrorMessage(stringProvider: ValidationStringProvider): String =
-        stringProvider.invalidRegexInputFieldError(inputField)
+        stringProvider.invalidRegexInputFieldError(inputField, customErrorMessageResolver)
 }

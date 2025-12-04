@@ -59,3 +59,11 @@ include(":feature:guest:presentation")
 include(":feature:inspector")
 include(":feature:inspector:domain")
 include(":feature:inspector:presentation")
+
+include(":feature:profile")
+include(":feature:profile:domain")
+include(":feature:profile:presentation")
+
+include(":feature:selectFishingSpot")
+include(":feature:selectFishingSpot:domain")
+include(":feature:selectFishingSpot:presentation")

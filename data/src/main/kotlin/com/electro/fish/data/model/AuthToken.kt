@@ -7,9 +7,9 @@ import kotlinx.serialization.Serializable
 data class AuthToken(
     val token: String
 ) {
-    fun getRole(): Role? {
+   /* fun getRole(): Role? {
         return JWT(token).getClaim("role").asObject(Role::class.java)
-    }
+    }*/
 }
 
 

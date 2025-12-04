@@ -16,7 +16,7 @@ interface SignUpStringProviderModule {
 
     @Binds
     @IntoMap
-    @ClassKey(SignUpStringProviderModule::class)
+    @ClassKey(SignUpStringProvider::class)
     fun bindSignUpStringProviderIntoMap(impl: SignUpStringProviderImpl): StringProvider
 
     @Binds

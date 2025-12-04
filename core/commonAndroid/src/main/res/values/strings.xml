@@ -4,6 +4,7 @@
     <string name="commonAndroid_password">Password</string>
 
     <string name="commonAndroid_password_regex_error">Invalid password format, must contains at least 1 symbol and 1 number</string>
+    <string name="commonAndroid_password_regex_length_error">Password must be at least 8 characters long</string>
 
     <string name="commonAndroid_default_empty_input_field_error">%1$s is empty</string>
     <string name="commonAndroid_default_invalid_regex_input_field_error">Invalid %1$s format</string>
@@ -11,5 +12,6 @@
     <string name="commonAndroid_network_error_message">Network Error</string>
     <string name="commonAndroid_unknown_error_message">Unknown Error</string>
     <string name="commonAndroid_server_error_message">%1$d, Server Error: %2$s</string>
+    <string name="commonAndroid_password_regex_length">Password must be at least 8 symbols</string>
 
 </resources>

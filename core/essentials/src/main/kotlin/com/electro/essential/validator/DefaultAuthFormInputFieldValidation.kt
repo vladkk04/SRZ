@@ -1,22 +1,23 @@
 package com.electro.essential.validator
 
-import com.electro.essential.resources.AuthValidationStringProvider
-import com.electro.essential.validator.BaseInputField.TextInputField
+import kotlinx.collections.immutable.persistentMapOf
 
 sealed interface DefaultAuthFormInputFieldValidation {
 
-    data object Email: TextInputField(
-        fieldName = { (it as AuthValidationStringProvider).email },
-        regex = InputFieldPatternRegex.emailRegex
+    data object Email : BaseInputField.AuthInputField(
+        fieldName = { it.email },
+        regexErrorResolverMap = persistentMapOf(InputFieldPatternRegex.emailRegex to null)
     )
 
-    data object Password: TextInputField(
-        fieldName = { (it as AuthValidationStringProvider).password },
-        regexMessage = { (it as AuthValidationStringProvider).passwordRegexError },
-        regex = InputFieldPatternRegex.passwordRegex
+    data object Password : BaseInputField.AuthInputField(
+        fieldName = { it.password },
+        regexErrorResolverMap = persistentMapOf(
+            InputFieldPatternRegex.passwordRegex to { it.passwordRegexError },
+            InputFieldPatternRegex.passwordLengthRegex to { it.passwordRegexLength }
+        )
     )
 
-    data object PasswordWithoutRegex: TextInputField(
-        fieldName = { (it as AuthValidationStringProvider).password },
+    data object PasswordWithoutRegex : BaseInputField.AuthInputField(
+        fieldName = { it.password },
     )
 }

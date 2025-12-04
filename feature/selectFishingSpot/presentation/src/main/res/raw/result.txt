@@ -1,0 +1,312 @@
+1-1010-1-1  Štrkovisko na Židovkách, MsO Záhorie
+1-0020-1-1  Chorvátsky kanál, MsO Bratislava 5
+1-0040-1-1  Čierna voda č. 3, MsO Senec
+1-0050-1-1  Čierna voda č. 4, MsO Senec
+1-0130-1-1  Dunaj č. 3, Rusovecko - Jarovecká sústava ramien,
+1-0140-1-1  Dunaj č. 4, Karloveské rameno, MsO Bratislava 4
+1-0141-1-1  Dunaj č. 4, Devínske rameno, MsO Bratislava 4
+1-0151-1-1  Gidra č. 1b, MsO Pezinok
+1-0160-1-1  Hlboké jazero v Senci, MsO Senec
+1-0300-1-1  Kanál Malina č. 1, MsO Záhorie
+1-0310-1-1  Kanál Malina č. 2, MsO Záhorie
+1-0340-1-1  Lakšár, MO Veľké a Malé Leváre
+1-0370-1-1  Malý Dunaj č. 6, MsO Bratislava 2
+1-0390-1-1  Morava č. 1, MsO Bratislava 4
+1-0400-1-1  Morava č. 2, MsO Záhorie
+1-0410-1-1  Morava č. 3 MO Gajary
+1-0420-1-1  Morava č. 4, MO Veľké a Malé Leváre
+1-0430-1-1  Odpadový kanál, MO Veľké a Malé Leváre
+1-0600-1-1  Rudava č. 1, MO Veľké a Malé Leváre
+1-0610-1-1  Rudava kanál, MO Rohožník
+1-0830-1-1  Stoličný potok, MsO Senec
+1-0900-1-1  Štrkovisko Dunajská Lužná Malá Voda,  
+1-0960-1-1  Štrkovisko Kalná, MsO Bratislava 3
+1-1120-1-1  Štrkovisko Vajnory 2, MsO Bratislava 3
+1-1180-1-1  Štrkovisko Zlaté piesky, MsO Bratislava 2
+1-1010-1-1  Štrkovisko na Židovkách, MsO Záhorie
+1-0980-1-1  Štrkovisko Kuchajda, MsO Bratislava 4
+1-1190-1-1  Štrkovisko Zrkadlový Háj, MsO Bratislava 5
+1-1220-1-1  Šúrsky potok, MsO Pezinok
+1-1340-1-1  VN Kučišdorf, MsO Pezinok
+1-1470-1-1  Záhorský kanál, MO Gajary
+1-1480-1-1  Zohorský kanál č. 1, MsO Záhorie
+1-1490-1-1  Zohorský kanál č. 2, MsO Záhorie
+2-0040-1-1  Aszódsky kanál č. 2, MO Veľký Meder
+2-0050-1-1  Aszódsky kanál č. 3, MO Topoľníky
+2-0090-1-1  Bebrava č. 1, MsO Partizánske
+2-0100-1-1  Bebrava č. 2, MsO Bánovce nad Bebravou
+2-0130-1-1  Blava č. 1, MsO Trnava
+2-0230-1-1  Cergát č. 1, MsO Nové Zámky
+2-0240-1-1  Cergát č. 2, MsO Nové Zámky
+2-0260-1-1  Chrenovka, MsO Nové Zámky
+2-0280-1-1  Chvojnica č. 1, MO Holíč
+2-0300-1-1  Čergovský kanál, MO Kolárovo
+2-0320-1-1  Čierna voda č. 1, MsO Galanta
+2-0330-1-1  Čierna voda č. 2, MO Sládkovičovo
+2-0350-1-1  Dolnobarský kanál, MO Topoľníky
+2-0400-1-1  Dubová, MsO Piešťany
+2-0410-1-1  Dudváh č. 1, MsO Galanta
+2-0420-1-1  Dudváh č. 2a, MsO Trnava
+2-0421-1-1  Dudváh č. 2b, MsO Hlohovec
+2-0430-1-1  Dudváh č. 3, MO Drahovce
+2-0440-1-1  Dudváh č. 4, MsO Piešťany
+2-0450-1-1  Dudváh č. 5a, MsO Nové Mesto nad Váhom
+2-0480-1-1  Dunaj č. 1, SRZ RADA Žilina
+2-0490-1-1  Dunaj č. 2, SRZ RADA Žilina
+2-0500-1-1  Dunaj č. 2 - OR spodná inundácia, SRZ RADA Žilina
+2-0510-1-1  Dunaj č. 3 , SRZ RADA Žilina
+2-0520-1-1  Dunaj č. 3 ľavostranný priesakový kanál VD, 
+2-0550-1-1  Dunaj č. 3 - odpadový kanál VD , 
+2-0560-1-1  Dunaj č. 3 - OR horná inundácia , 
+2-0570-1-1  Dunaj č. 3 - OR stredná inundácia, SRZ RADA Žilina
+2-0580-1-1  Dunaj č. 3 pravostranný priesakový kanál VD, 
+2-0590-1-3  Dunaj č. 3 Prívodný kanál VD, SRZ RADA Žilina
+2-0600-1-1  Dunaj č. 3 - pravostranný priesakový kanál VD 
+2-0610-1-1  Dunaj č. 3 zdrž VD Hrušov-Čunovo,  
+2-0620-1-1  Dunaj č. 4 , SRZ RADA Žilina
+2-0640-1-1  Farská voda, MO Holíč
+2-0660-1-1  Gidra č. 1a, MsO Trnava
+2-0680-1-1  Hlavný kanál Csóványos, MsO Šaľa
+2-0740-1-1  Hron č. 1, MsO Štúrovo
+2-0750-1-1  Hron č. 2, MO Želiezovce
+2-0760-1-1  Hron č. 3, MsO Levice
+2-0770-1-1  Ipeľ č. 1, MO Štúrovo
+2-0780-1-1  Ipeľ č. 2, MO Želiezovce
+2-0790-1-1  Ipeľ č. 3, MO Šahy
+2-0810-1-1  Jarčie č. 1, MO Šoporňa
+2-0820-1-1  Jarčie č. 2, MsO Sereď
+2-0961-1-1  Kamenický kanál, MO Štúrovo
+2-0981-1-1  Kanál Kátovské jazero, MO Holíč
+2-1000-1-1  Kanál Stará Gúta, MO Hurbanovo
+2-1010-1-1  Kanál Vrbová, MO Hurbanovo
+2-1039-1-1  Klátovské rameno č. 1, MO Topoľníky
+2-1040-1-1  Klátovské rameno č. 2, MsO Dunajská Streda
+2-1080-1-1  Kostolník, MO Stará Turá
+2-1090-1-1  Krupinica č. 1, MO Šahy
+2-1190-1-1  Malý Dunaj č. 1, MO Kolárovo
+2-1200-1-1  Malý Dunaj č. 2, MO Topoľníky
+2-1210-1-1  Malý Dunaj č. 3, MsO Dunajská Streda
+2-1220-1-1  Malý Dunaj č. 4, MsO Galanta
+2-1230-1-1  Malý Dunaj č. 5, MO Šamorín
+2-1300-1-1  Melioračný kanál Tvrdonice, MO Holíč
+2-1330-1-1  Morava č. 5, MO Sekule - Moravský Sv. Ján
+2-1340-1-1  Morava č. 6, MO Kúty
+2-1350-1-1  Morava č. 7b, MO Holíč
+2-1351-1-1  Morava č. 7a, MO Brodské
+2-1360-1-1  Morava č. 8, MO Skalica
+2-1370-1-1  Myjava č. 1, MO Šaštín-Stráže
+2-1380-1-1  Myjava č. 2a, MsO Senica
+2-1391-1-1  N - kanál, MO Drahovce
+2-1400-1-1  Nitra č. 1, MsO Nové Zámky
+2-1410-1-1  Nitra č. 2, MO Šurany
+2-1411-1-1  Stará Nitra č. 3, MO Šurany
+2-1420-1-1  Nitra č. 3, MsO Nitra
+2-1430-1-1  Nitra č. 4, MsO Topoľčany
+2-1440-1-4  Nitra č. 5a, CHAP , MsO Partizánske
+2-1450-1-4  Nitrica č. 1a, CHAP , MsO Partizánske
+2-1441-1-1  Nitra č. 5b, MsO SRZ Partizánske
+2-1551-1-1  Nitrica č. 1b, MsO SRZ Partizánske
+2-1553-1-1  Nitrica č. 1d, MsO SRZ Partizánske
+2-1471-1-1  Obidský kanál, MO Štúrovo
+2-1481-1-1  Odpadový kanál č. 2 „Čekr“, MO Sekule
+2-1520-1-1  OR Berek, MsO Nové Zámky
+2-1800-1-1  OR Melečka č. 2, MO Šoporňa
+2-1950-1-1  OR Trstice, MsO Dunajská Streda
+2-2040-1-1  Paríž, MO Štúrovo
+2-2050-1-1  Parná č. 1, MsO Trnava
+2-2080-1-1  Ižianský kanal č. 1, MO Marcelová
+2-2090-1-1  Ižianský kanál č. 2, MO Komárno
+2-2100-1-1  Perec č. 1, MO Štúrovo
+2-2110-1-1  Perec č. 2, MO Želiezovce
+2-2120-1-1  Perec č. 3, MsO Levice
+2-2150-1-1  Preseľanský potok, MO Šahy
+2-2180-1-1  Radošina č. 1, MsO Nitra
+2-2190-1-1  Radošina č. 2, MsO Topoľčany
+2-2650-1-1  Sikenica č. 1, MO Želiezovce
+2-2660-1-1  Sikenica č. 2, MsO Levice
+2-2670-1-1  Spojovací kanál Cergát-Váh, MsO Nové Zámky
+2-2680-1-1  Spojovací kanál Martovce, MO Hurbanovo
+2-2690-1-1  Stará Nitra č. 1, MsO Komárno
+2-2700-1-1  Stará Nitra č. 2, MO Hurbanovo
+2-2710-1-1  Stará Žitava, MO Šurany
+2-2720-1-1  Striebornica č.1, MsO Piešťany
+2-2740-1-1  Svinica č. 1, MsO Bánovce nad Bebravou
+2-2760-1-1  Štiavnica č. 1, MO Šahy
+2-2930-1-1  Štrkovisko Bendö, MsO Dunajská Streda
+2-3790-1-1  Štrkovisko Okoč, MO Veľký Meder
+2-4250-1-1  Štrkovisko Záhoň, MsO Nové Zámky
+2-4360-1-1  Váh č. 1, MO Kolárovo
+2-4370-1-1  Váh č. 2, MsO Šaľa
+2-4380-1-1  Váh č. 3, MsO Sereď
+2-4390-1-1  Váh č. 4, MsO Hlohovec
+2-4391-1-4  Váh č. 4a CHAP , MsO Hlohovec
+2-4400-1-1  Váh č. 5, MO Drahovce
+2-4410-1-1  Váh č. 6, MsO Piešťany
+2-4414-1-4  Váh č. 6a, CHAP , MsO Piešťany
+2-4420-1-1  Váh č. 7, MO Nové Mesto nad Váhom
+2-4430-2-1  Váh č. 8 , MsO Trenčín
+2-4431-1-4  Kočkovský kanál č. 8, CHAP , MsO Trenčín 
+2-4432-1-1  Biskupický kanál č. 8, MsO SRZ Trenčín
+2-4440-1-1  Vážsky Dunaj, MsO Komárno
+2-4980-1-1  VN Malé Bedzany, MO Topoľčany
+2-4570-1-1  VN Buková, MsO Trnava
+2-4730-1-1  VN Haláčovce, MsO Bánovce nad Bebravou
+2-4870-1-1  VN Kalná nad Hronom, MsO Levice
+2-4920-1-1  VN Veľké Kozmálovce, MsO Levice
+2-4930-1-1  VN Kráľová, SRZ RADA Žilina
+2-4960-1-1  VN Lovce, MsO Zlaté Moravce
+2-5020-1-1  VN Matejovec, MO Stará Turá
+2-5030-1-1  VN Melek, MsO Zlaté Moravce
+2-5110-1-1  VN Osuské, MO Senica
+2-5270-1-1  VN Sĺňava, SRZ RADA Žilina
+2-5341-1-1  VN Šárovce, MO Želiezovce
+2-5342-1-1  VN Tekov, MsO Levice
+2-5343-1-3  OR Pod Žrebčínom
+2-5420-1-1  VN Turá, MsO Levice
+2-5470-1-1  VN Veľké Uherce, MsO Partizánske
+2-5550-1-1  Vojnícky potok, MO Marcelová
+2-5600-1-1  Žitava č. 1, MO Hurbanovo
+2-5605-1-1  Štrkoviská Martovce, MO Hurbanovo
+2-5606-1-1  MR Martovce, MO Hurbanovo
+2-5610-1-1  Žitava č. 2, MsO Nové Zámky
+2-5620-1-1  Žitava č. 3, MO Šurany
+2-5630-1-1  Žitava č. 4, MsO Zlaté Moravce
+2-5650-1-1  Žitava kanál č. 1, MO Marcelová
+2-5660-1-1  Žitava kanál č. 2, MsO Komárno
+2-5670-1-1  Žitnoostrovské kanály č. 1, MsO Komárno
+2-5680-1-1  Žitnoostrovské kanály č. 2, MO Veľký Meder
+2-5690-1-1  Žitnoostrovské kanály č. 3, MsO Dunajská Streda
+3-0070-1-1  Biela Orava č. 1a, MO Námestovo
+3-0071-1-4  Biela Orava č. 1b, CHAP , MO Námestovo
+3-0200-1-1  Blh č. 1, MsO Rimavská Sobota
+3-0660-2-1  Derivačný kanál Váhu , MsO Martin
+3-0850-1-1  Handlovka č. 1, MsO Prievidza
+3-0950-1-1  VN Hodruša MO Žarnovica
+3-1030-1-1  Hričovský kanál č. 2b, MO Bytča
+3-1031-1-1  Hričovský kanál č. 2a, MO Bytča
+3-1040-1-1  Hričovský kanál č. 1, MsO Považská Bystrica
+3-1050-1-1  Hron č. 4, MO Nová Baňa
+3-1060-1-1  Hron č. 5, MO Žarnovica
+3-1070-2-1  Hron č. 6a , MO Žiar nad Hronom
+3-1080-2-1  Hron č. 7a , MsO Zvolen
+3-1090-2-1  Hron č. 8 , MsO Banská Bystrica
+3-1112-2-1  Hron č. 9c , MsO Banská Bystrica
+3-1250-1-1  Ipeľ č. 4, MO Veľký Krtíš
+3-1260-1-1  Ipeľ č. 5, MsO Lučenec 
+3-1270-1-1  Ipeľ č. 6, MsO Lučenec
+3-1390-1-1  Rychnavské vodné nádrže, MO Banská Štiavnica
+3-1770-1-1  Krupinica č. 2, MO Krupina
+3-1830-2-1  Kysuca č.1 , MsO Žilina
+3-1840-2-1  Kysuca č. 2a , MO Kysucké Nové Mesto
+3-1841-2-4  Kysuca č. 2b  CHAP , MO Kysucké Nové Mesto
+3-1850-1-1  Kysuca č. 3, MO Čadca
+3-2200-1-1  Marikovský potok č. 1, MsO Považská Bystrica
+3-2350-1-1  Muráň č. 1, MO Jelšava
+3-2440-1-1  Nitra č. 6a, MsO Prievidza
+3-2520-1-1  Nosicko - Kočkovský kanál, MsO Púchov
+3-2530-1-1  Nosický kanál č. 9, MsO Dubnica nad Váhom
+3-2731-1-1  Orava č. 4, MO Trstená
+3-3250-1-1  Rimava č. 1, MO Tornaľa
+3-3260-1-1  Rimava č. 2, MsO Rimavská Sobota
+3-3730-1-1  Slaná č. 1, MO Tornaľa
+3-3740-1-1  Slatina č. 1, MsO Zvolen
+3-3970-1-1  Štiavnica č. 2, MO Krupina
+3-4100-1-1  Štrkovisko Dubnička, MsO Dubnica nad Váhom
+3-4240-1-1  Štrkovisko Turiansky most, MsO Martin 
+3-4520-1-1  Turiec č. 1, MO Tornaľa
+3-4510-1-1  Turiec č. 2, MO Tisovec
+3-4570-1-1  Váh č. 9, MO Dubnica nad Váhom
+3-4580-2-1  Váh č. 10 , MsO Púchov
+3-4600-1-1  Váh č. 11, MsO Považská Bystrica
+3-4610-1-1  Váh č. 12, MO Bytča
+3-4620-2-1  Váh č. 13 , MsO Žilina
+3-4630-2-1  Váh č. 14 , MsO Žilina
+3-4670-2-1  Váh č. 17a , MsO Martin
+3-4671-2-4  Váh č. 17b  CHAP , MsO Martin
+3-5090-1-1  VN Hričov, MsO Žilina
+3-5240-1-1  VN Krpeľany, SRZ RADA Žilina
+3-5340-1-1  VN Liptovská Mara, SRZ RADA Žilina
+3-5290-1-1  VN Ľadovo, MsO Lučenec
+3-5400-1-1  VN Mikšová, MO Bytča
+3-5470-1-1  VN Nitrianske Rudno, MsO Prievidza
+3-5480-1-1  VN Nosice, SRZ RADA Žilina
+3-5530-1-1  VN Orava SRZ RADA Žilina
+3-5700-1-1  VN Ružiná, SRZ RADA Žilina
+3-5850-1-1  VN Teplý Vrch, SRZ RADA Žilina
+3-6010-1-1  VN Žilina, SRZ RADA Žilina
+3-6050-1-1  VVN Tvrdošín, MO Trstená
+3-6060-1-1  Východný Turiec č. 1, MO Tornaľa
+4-0071-1-1  Berecký prívodný kanál, MO Kráľovský Chlmec
+4-0140-1-1  Bodrog č. 1a, MO Streda nad Bodrogom
+4-0141-1-1  Bodrog č. 1b, MO Streda nad Bodrogom
+4-0160-1-1  Bodva č. 2, MO Moldava nad Bodvou
+4-0200-1-1  Brusník, MO Spišská Nová Ves
+4-0260-1-1  Cirocha č. 1a, MO Snina
+4-0330-1-1  Čierna voda, MsO Michalovce
+4-0440-1-1  Duša, MsO Michalovce
+4-0550-1-1  Hnilec č. 1, MO Gelnica
+4-0630-1-1  Hornád č. 1a, MsO Košice
+4-0631-1-1  Hornád č.1b, MsO Košice
+4-0650-1-1  Hornád č. 3, MO Krompachy
+4-0660-1-1  Hornád č. 4, MO Spišská Nová Ves
+4-0750-1-1  Ida č. 1, MO Moldava nad Bodvou
+4-1120-1-1  Laborec č. 1, MO Veľké Kapušany
+4-1121-1-1  OR Drahňovský les, MO Veľké Kapušany
+4-1122-1-1  OR Lykotex MO, Veľké Kapušany
+4-1130-1-1  Laborec č. 2, MsO Michalovce
+4-1140-1-1  Laborec č. 3, MsO Humenné
+4-1150-1-1  Laborec č. 4, MO Medzilaborce
+4-1180-1-1  Latorica č. 1, MO Trebišov
+4-1190-1-1  Latorica č. 2, MO Kráľovský Chlmec
+4-1200-1-1  Latorica č. 3, MO Veľké Kapušany
+4-1201-1-1  OR Berkeš, MO Veľké Kapušany
+4-1204-1-1  OR Papokmulató, MO Veľké Kapušany
+4-1210-1-1  Latorica č. 4, MO Čierna nad Tisou
+4-1220-1-1  Levočský potok č. 1, MO Spišská Nová Ves
+4-1230-1-1  Levočský potok č. 2, MO Levoča
+4-1500-1-1  Myslavský potok, MsO Košice
+4-1560-1-1  Okna č. 1a, MsO Michalovce
+4-1580-1-1  Oľka č. 1, MO Vranov nad Topľou
+4-1610-1-1  Olšava č. 1, MsO Košice
+4-1650-1-1  Ondava č. 1, MO Trebišov
+4-1660-1-1  Ondava č. 2a, MO Vranov nad Topľou
+4-1661-1-4  Ondava č. 2b CHAP , MO Vranov nad Topľou
+4-1680-1-1  Ondava č. 4, MO Stropkov
+4-1690-1-1  Ondava č. 5, MO Svidník
+4-1710-1-1  Ondavka č. 1, MO Vranov nad Topľou
+4-1880-1-1  Pčolinka č. 1, MO Snina
+4-1951-2-1  Poprad č. 2b , MO Orlov
+4-2060-1-1  Radomka, MO Giraltovce
+4-2120-1-1  Roňava č. 1, MO Trebišov
+4-2130-1-1  Roňava č. 2, MO Trebišov
+4-2240-1-1  Sekčov č. 1, MsO Prešov
+4-2270-2-4  Slaná č. 2a  CHAP , MsO Rožňava
+4-2380-1-1  Sobranecký potok č. 1, MsO Michalovce
+4-2390-1-1  Sobranecký potok č. 2, MsO Michalovce
+4-2400-1-1  Sokoľanský potok, MsO Košice
+4-2401-1-1  Somotorský kanál, MO Kráľovský Chlmec
+4-2680-1-1  Štrkovisko Kechnec, MsO Košice
+4-2800-1-1  Tisa, MO Čierna nad Tisou
+4-2810-1-1  Topľa č. 1, MO Trebišov
+4-2820-1-1  Topľa č. 2, MO Vranov nad Topľou
+4-2830-1-1  Topľa č. 3, MO Hanušovce nad Topľou
+4-2840-1-1  Topľa č. 4, MO Giraltovce
+4-2850-1-1  Topľa č. 5a, MO Bardejov
+4-2851-1-1  Topľa č. 5b, MO Bardejov
+4-2890-1-1  Torysa č. 1, MsO Košice
+4-2900-1-1  Torysa č. 2, MsO Prešov
+4-2910-1-4  Torysa č. 2a CHAP , MsO Prešov
+4-2910-1-1  Torysa č. 3, MO Sabinov
+4-2970-1-1  Trnávka č. 1, MO Trebišov
+4-2980-1-1  Trnávka č. 2, MO Sečovce
+4-2990-1-1  Turňa č. 1, MO Moldava nad Bodvou
+4-3050-1-1  Uh č. 1, MO Veľké Kapušany
+4-3060-1-1  Uh č. 2, MO Veľké Kapušany
+4-3880-1-1  Karcsa, MO Kráľovský Chlmec
+4-4090-1-1  Vrbovský potok, MO Kežmarok
+4-4110-1-1  VVN Domaša, MO Vranov nad Topľou
+4-4120-1-1  VVN Ružín, MsO Košice
+4-4140-1-1  Výpustný kanál VN Zemplínska Šírava, 
+4-3330-1-1  VN Domaša, SRZ RADA Žilina
+4-3750-1-1  VN Ružín, SRZ RADA Žilina
+4-4030-1-4  VN Zemplínska Šírava, CHAP , SRZ RADA Žilina

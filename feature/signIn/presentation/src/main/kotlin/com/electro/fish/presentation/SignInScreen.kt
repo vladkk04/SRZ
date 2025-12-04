@@ -15,7 +15,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -33,19 +32,17 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.electro.essential.validator.DefaultAuthFormInputFieldValidation
+import com.electro.essential.validator.InputFieldEvent
 import com.electro.fish.domain.model.SignInCredentials
 import com.electro.fish.feature.signIn.presentation.R
 import com.electro.fish.ui.component.AppElevatedLoadingButton
 import com.electro.fish.ui.component.AppOutlinedPasswordTextField
 import com.electro.fish.ui.component.AppOutlinedTextField
-import com.electro.fish.ui.component.LogoCircle
-import com.electro.fish.ui.component.LogoSize
+import com.electro.fish.ui.component.LogoCircleAnimatedWithLifecycle
 import com.electro.fish.ui.theme.Dimens
 import com.electro.fish.ui.util.extension.clickableWithoutIndication
 import com.electro.fish.ui.util.extension.onFocusLost
-import com.electro.fish.ui.util.extension.repeatWithLifecycleResumed
 
 @Composable
 fun SignInScreen() {
@@ -63,14 +60,7 @@ private fun SignInContent(
     state: SignInState,
     onEvent: (SignInEvent) -> Unit,
 ) {
-    val lifecycleOwner = LocalLifecycleOwner.current
-
-    var logoSize by rememberSaveable { mutableStateOf(LogoSize.FULL) }
     var isLogoFinishedAnimation by rememberSaveable { mutableStateOf(false) }
-
-    LaunchedEffect(Unit) {
-        lifecycleOwner.repeatWithLifecycleResumed { logoSize = LogoSize.SMALL }
-    }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -78,8 +68,7 @@ private fun SignInContent(
             .fillMaxSize()
             .padding(Dimens.ExtraLargePadding)
     ) {
-        LogoCircle(
-            logoSize = logoSize,
+        LogoCircleAnimatedWithLifecycle (
             onAnimationFinished = { isLogoFinishedAnimation = true }
         )
 
@@ -121,11 +110,11 @@ private fun SignInContent(
 private fun CenterContent(
     state: SignInState,
     onEvent: (SignInEvent) -> Unit,
-) = with(state) {
+) {
     val focusRequester = remember { FocusRequester() }
 
-    val emailValue =  rememberSaveable { mutableStateOf("") }
-    val passwordValue =  rememberSaveable { mutableStateOf("") }
+    val emailValue = rememberSaveable { mutableStateOf("") }
+    val passwordValue = rememberSaveable { mutableStateOf("") }
 
     val credentials: () -> SignInCredentials = {
         SignInCredentials(
@@ -146,11 +135,11 @@ private fun CenterContent(
         onNavigateToForgotPasswordScreen = { onEvent(SignInEvent.OnNavigateToForgotPassword) },
     )
 
-    AppElevatedLoadingButton(
+    return AppElevatedLoadingButton(
         text = stringResource(R.string.signIn_sign_in),
         isLoading = state.isSignInInProgress,
         onClick = {
-            if(emailValue.value.isEmpty()) {
+            if (emailValue.value.isEmpty()) {
                 focusRequester.captureFocus()
             } else {
                 focusRequester.freeFocus()
@@ -182,40 +171,40 @@ private fun TextInputFields(
     AppOutlinedTextField(
         onValueChange = {
             emailValue.value = it
-            onEvent(SignInEvent.ClearError(DefaultAuthFormInputFieldValidation.Email))
+            onEvent(SignInEvent.InputEvent(InputFieldEvent.ClearError(DefaultAuthFormInputFieldValidation.Email)))
         },
         label = stringProvider.email,
         isEnabled = !isSignInInProgress,
-        isError = errorMessages.containsKey(DefaultAuthFormInputFieldValidation.Email),
-        errorMessage = errorMessages[DefaultAuthFormInputFieldValidation.Email],
+        isError = inputFormState.errorMessages.containsKey(DefaultAuthFormInputFieldValidation.Email),
+        errorMessage = inputFormState.errorMessages[DefaultAuthFormInputFieldValidation.Email],
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         imeAction = ImeAction.Next,
-        onImeAction = { onEvent(SignInEvent.Validate(credentials())) },
+        onImeAction = { onEvent(SignInEvent.InputEvent(InputFieldEvent.Validate(credentials()))) },
         modifier = Modifier
             .fillMaxWidth()
             .focusRequester(focusRequester)
             .onFocusLost {
-                onEvent(SignInEvent.EnableErrorMessages(DefaultAuthFormInputFieldValidation.Email))
-                onEvent(SignInEvent.Validate(credentials()))
+                onEvent(SignInEvent.InputEvent(InputFieldEvent.EnableErrorMessages(DefaultAuthFormInputFieldValidation.Email)))
+                onEvent(SignInEvent.InputEvent(InputFieldEvent.Validate(credentials())))
             }
     )
 
     AppOutlinedPasswordTextField(
         onValueChange = {
             passwordValue.value = it
-            onEvent(SignInEvent.ClearError(DefaultAuthFormInputFieldValidation.PasswordWithoutRegex))
+            onEvent(SignInEvent.InputEvent(InputFieldEvent.ClearError(DefaultAuthFormInputFieldValidation.PasswordWithoutRegex)))
         },
         label = stringProvider.password,
-        errorMessage = errorMessages[DefaultAuthFormInputFieldValidation.PasswordWithoutRegex],
-        isError = errorMessages.containsKey(DefaultAuthFormInputFieldValidation.PasswordWithoutRegex),
+        errorMessage = inputFormState.errorMessages[DefaultAuthFormInputFieldValidation.PasswordWithoutRegex],
+        isError = inputFormState.errorMessages.containsKey(DefaultAuthFormInputFieldValidation.PasswordWithoutRegex),
         isEnabled = !state.isSignInInProgress,
         imeAction = ImeAction.Done,
         onImeAction = { onEvent(SignInEvent.SignIn(credentials())) },
         modifier = Modifier
             .fillMaxWidth()
             .onFocusLost {
-                onEvent(SignInEvent.EnableErrorMessages(DefaultAuthFormInputFieldValidation.PasswordWithoutRegex))
-                onEvent(SignInEvent.Validate(credentials()))
+                onEvent(SignInEvent.InputEvent(InputFieldEvent.EnableErrorMessages(DefaultAuthFormInputFieldValidation.PasswordWithoutRegex)))
+                onEvent(SignInEvent.InputEvent(InputFieldEvent.Validate(credentials())))
             }
     )
 }

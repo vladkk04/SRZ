@@ -25,6 +25,12 @@ data object ProfileSetupScreen : Screen
 data object ForgotPasswordScreen : Screen
 
 @Serializable
+data object ProfileScreen : Screen
+
+@Serializable
+data object SelectFishingSpot: Screen
+
+@Serializable
 sealed interface Guest: Screen {
 
     @Serializable

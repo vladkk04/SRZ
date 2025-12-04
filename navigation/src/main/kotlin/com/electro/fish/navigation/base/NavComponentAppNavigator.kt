@@ -8,6 +8,10 @@ import androidx.navigation.NavOptionsBuilder
 import com.electro.fish.navigation.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.scopes.ActivityRetainedScoped
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @ActivityRetainedScoped
@@ -15,6 +19,8 @@ class NavComponentAppNavigator @Inject constructor(): AppNavigator {
 
     private var navController: NavController? = null
     private val commands = mutableListOf<(NavController) -> Unit>()
+
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     override fun launchScreen(screen: Screen, navOptionsBuilder: NavOptionsBuilder.() -> Unit) = execute {
         it.navigate(screen) {
@@ -37,11 +43,13 @@ class NavComponentAppNavigator @Inject constructor(): AppNavigator {
     }
 
     private fun execute(command: (NavController) -> Unit) {
-        val navController = navController
-        if (navController == null) {
-            commands.add(command)
-        } else {
-            command(navController)
+        scope.launch {
+            val navController = navController
+            if (navController == null) {
+                commands.add(command)
+            } else {
+                command(navController)
+            }
         }
     }
 

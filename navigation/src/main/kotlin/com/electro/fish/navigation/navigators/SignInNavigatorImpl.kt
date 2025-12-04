@@ -13,8 +13,8 @@ class SignInNavigatorImpl @Inject constructor(
     private val appNavigator: AppNavigator
 ): SignInNavigator {
     override fun launchSignUpScreen() {
-        appNavigator.launchScreen(SignInScreen) {
-            popUpTo(SignUpScreen) {
+        appNavigator.launchScreen(SignUpScreen) {
+            popUpTo(SignInScreen) {
                 inclusive = true
             }
         }

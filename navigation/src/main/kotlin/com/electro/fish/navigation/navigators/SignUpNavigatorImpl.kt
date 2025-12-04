@@ -1,6 +1,9 @@
 package com.electro.fish.navigation.navigators
 
+import com.electro.fish.navigation.ProfileSetupScreen
 import com.electro.fish.navigation.SignInScreen
+import com.electro.fish.navigation.SignUpScreen
+import com.electro.fish.navigation.WelcomeScreen
 import com.electro.fish.navigation.base.AppNavigator
 import com.electro.presentation.signUp.navigation.SignUpNavigator
 import jakarta.inject.Inject
@@ -8,9 +11,17 @@ import jakarta.inject.Inject
 class SignUpNavigatorImpl @Inject constructor(
     private val appNavigator: AppNavigator
 ): SignUpNavigator {
+    override fun launchProfileSetupScreen() {
+        appNavigator.launchScreen(ProfileSetupScreen) {
+            popUpTo(WelcomeScreen) {
+                inclusive = true
+            }
+        }
+    }
+
     override fun launchSignInScreen() {
         appNavigator.launchScreen(SignInScreen) {
-            popUpTo(SignInScreen) {
+            popUpTo(SignUpScreen) {
                 inclusive = true
             }
         }

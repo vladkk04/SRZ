@@ -8,7 +8,7 @@ val DarkOnPrimaryContainerColor = Color.Black
 
 val DarkSecondaryContainerColor = Color.White
 
-val DarkSurfaceColor = Color.Black
+val DarkSurfaceColor = Color.Transparent
 val DarkOnSurfaceColor = Color.White
 val DarkSurfaceContainerLowColor = Color(0xFF2A2B2A)
 val DarkSurfaceContainerHighest = Color.Black

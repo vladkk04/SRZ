@@ -1,5 +1,6 @@
 package com.electro.presentation.signUp
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -18,7 +19,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,55 +37,36 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.repeatOnLifecycle
+import com.electro.essential.validator.DefaultAuthFormInputFieldValidation
+import com.electro.essential.validator.InputFieldEvent
 import com.electro.fish.domain.model.NewAccount
 import com.electro.fish.feature.signUp.presentation.R
 import com.electro.fish.ui.component.AppElevatedLoadingButton
 import com.electro.fish.ui.component.AppOutlinedPasswordTextField
 import com.electro.fish.ui.component.AppOutlinedTextField
 import com.electro.fish.ui.component.CheckBoxCircle
-import com.electro.fish.ui.component.LogoCircle
-import com.electro.fish.ui.component.LogoSize
+import com.electro.fish.ui.component.LogoCircleAnimatedWithLifecycle
 import com.electro.fish.ui.theme.Dimens
-import com.electro.presentation.profileSetup.ProfileSetupScreen
+import com.electro.fish.ui.util.extension.onFocusLost
 
 @Composable
 fun SignUpScreen() {
     val viewModel = hiltViewModel<SignUpViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    //ProfileSetupScreen()
-
     SignUpContent(
         state = state,
-        onSignUp = viewModel::signUp,
-        onSignInClick = viewModel::launchSignInScreen,
-        onClearInputsErrorMessage = viewModel::onClearInputErrorMessage,
-        openTermsAndPrivacyPolicy = viewModel::open
+        onEvent = viewModel::onEvent
     )
 }
 
 @Composable
 private fun SignUpContent(
     state: SignUpState,
-    onSignUp: (NewAccount) -> Unit,
-    onSignInClick: () -> Unit,
-    onClearInputsErrorMessage: () -> Unit,
-    openTermsAndPrivacyPolicy: () -> Unit,
+    onEvent: (SignUpEvent) -> Unit = {},
 ) {
-    val lifecycleOwner = LocalLifecycleOwner.current
-
-    var logoSize by rememberSaveable { mutableStateOf(LogoSize.FULL) }
     var isLogoFinishedAnimation by rememberSaveable { mutableStateOf(false) }
-
-    LaunchedEffect(Unit) {
-        lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-            logoSize = LogoSize.SMALL
-        }
-    }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -93,8 +75,7 @@ private fun SignUpContent(
             .fillMaxSize()
             .padding(Dimens.ExtraLargePadding)
     ) {
-        LogoCircle(
-            logoSize = logoSize,
+        LogoCircleAnimatedWithLifecycle(
             onAnimationFinished = { isLogoFinishedAnimation = true }
         )
 
@@ -118,14 +99,12 @@ private fun SignUpContent(
 
                 CenterContent(
                     state = state,
-                    onSignUp = onSignUp,
-                    onClearInputsErrorMessage = onClearInputsErrorMessage,
-                    openTermsAndPrivacyPolicy = openTermsAndPrivacyPolicy
+                    onEvent = onEvent
                 )
 
                 Spacer(Modifier.weight(0.8f))
 
-                BottomSignUpContent(onSignInClick = onSignInClick)
+                BottomSignUpContent(onSignInClick = { onEvent(SignUpEvent.OnNavigateToSignInScreen) })
             }
         }
     }
@@ -134,50 +113,153 @@ private fun SignUpContent(
 @Composable
 private fun CenterContent(
     state: SignUpState,
-    onSignUp: (NewAccount) -> Unit,
-    onClearInputsErrorMessage: () -> Unit,
-    openTermsAndPrivacyPolicy: () -> Unit,
+    onEvent: (SignUpEvent) -> Unit = {},
 ) {
-    var emailText by rememberSaveable { mutableStateOf("") }
-    var passwordText by rememberSaveable { mutableStateOf("") }
-    var isCheckedTermAndCondition by rememberSaveable { mutableStateOf(false) }
+    val emailValue = rememberSaveable { mutableStateOf("") }
+    val passwordValue = rememberSaveable { mutableStateOf("") }
+
+    val newAccountCredentials: () -> NewAccount = {
+        NewAccount(
+            email = emailValue.value,
+            password = passwordValue.value
+        )
+    }
 
     val focusRequester = remember { FocusRequester() }
 
+    TextInputFields(
+        state = state,
+        onEvent = onEvent,
+        emailValue = emailValue,
+        passwordValue = passwordValue,
+        focusRequester = focusRequester
+    )
+
+    TextCheckerTermAndConditions(
+        openTermsAndPrivacyPolicy = { onEvent(SignUpEvent.OpenTermsAndPrivacyPolicy) },
+        onChecked = { onEvent(SignUpEvent.CheckTermsAndPrivacy) },
+        modifier = Modifier.fillMaxWidth()
+    )
+
+    AppElevatedLoadingButton(
+        text = stringResource(R.string.signUp_sign_up),
+        isLoading = state.isSignUpInProgress,
+        isEnabled = state.isTermsAndPrivacyChecked,
+        onClick = { onEvent(SignUpEvent.SignUp(newAccountCredentials())) },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = Dimens.MediumPadding)
+    )
+}
+
+@Composable
+private fun TextInputFields(
+    state: SignUpState,
+    onEvent: (SignUpEvent) -> Unit,
+    emailValue: MutableState<String>,
+    passwordValue: MutableState<String>,
+    focusRequester: FocusRequester,
+) = with(state) {
+
+    val newAccountCredentials: () -> NewAccount = {
+        NewAccount(
+            email = emailValue.value,
+            password = passwordValue.value
+        )
+    }
+
     AppOutlinedTextField(
-        onValueChange = { emailText = it },
-        label = stringResource(R.string.signUp_email),
-        errorMessage = state.emailInputErrorMessage,
-        isError = state.emailInputErrorMessage != null,
+        onValueChange = {
+            emailValue.value = it
+            onEvent(
+                SignUpEvent.InputEvent(
+                    InputFieldEvent.ClearError(
+                        DefaultAuthFormInputFieldValidation.Email
+                    )
+                )
+            )
+        },
+        label = stringProvider.email,
+        isEnabled = !isSignUpInProgress,
+        isError = inputFormState.errorMessages.containsKey(DefaultAuthFormInputFieldValidation.Email),
+        errorMessage = inputFormState.errorMessages[DefaultAuthFormInputFieldValidation.Email],
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         imeAction = ImeAction.Next,
+        onImeAction = {
+            onEvent(
+                SignUpEvent.InputEvent(
+                    InputFieldEvent.Validate(
+                        newAccountCredentials()
+                    )
+                )
+            )
+        },
         modifier = Modifier
             .fillMaxWidth()
             .focusRequester(focusRequester)
+            .onFocusLost {
+                onEvent(
+                    SignUpEvent.InputEvent(
+                        InputFieldEvent.EnableErrorMessages(
+                            DefaultAuthFormInputFieldValidation.Email
+                        )
+                    )
+                )
+                onEvent(SignUpEvent.InputEvent(InputFieldEvent.Validate(newAccountCredentials())))
+            }
     )
 
     AppOutlinedPasswordTextField(
         onValueChange = {
-            passwordText = it
-            if (state.passwordInputErrorMessage != null) {
-                onClearInputsErrorMessage()
-            }
+            passwordValue.value = it
+            onEvent(
+                SignUpEvent.InputEvent(
+                    InputFieldEvent.ClearError(
+                        DefaultAuthFormInputFieldValidation.Password
+                    )
+                )
+            )
         },
-        label = stringResource(R.string.signUp_password),
-        errorMessage = state.passwordInputErrorMessage,
-        isError = state.passwordInputErrorMessage != null,
+        label = stringProvider.password,
+        errorMessage = inputFormState.errorMessages[DefaultAuthFormInputFieldValidation.Password],
+        isError = inputFormState.errorMessages.containsKey(DefaultAuthFormInputFieldValidation.Password),
+        isEnabled = !state.isSignUpInProgress,
         imeAction = ImeAction.Done,
-        modifier = Modifier.fillMaxWidth()
+        onImeAction = { onEvent(SignUpEvent.SignUp(newAccountCredentials())) },
+        modifier = Modifier
+            .fillMaxWidth()
+            .onFocusLost {
+                onEvent(
+                    SignUpEvent.InputEvent(
+                        InputFieldEvent.EnableErrorMessages(
+                            DefaultAuthFormInputFieldValidation.Password
+                        )
+                    )
+                )
+                onEvent(SignUpEvent.InputEvent(InputFieldEvent.Validate(newAccountCredentials())))
+            }
     )
+}
+
+@Composable
+private fun TextCheckerTermAndConditions(
+    modifier: Modifier = Modifier,
+    onChecked: (Boolean) -> Unit = {},
+    openTermsAndPrivacyPolicy: () -> Unit,
+) {
+    var isCheckedTermAndCondition by rememberSaveable { mutableStateOf(false) }
 
     Row(
         horizontalArrangement = Arrangement.spacedBy(Dimens.ExtraSmallPadding),
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.fillMaxWidth()
+        modifier = modifier
     ) {
         CheckBoxCircle(
             checked = isCheckedTermAndCondition,
-            onCheckedChange = { isCheckedTermAndCondition = it },
+            onCheckedChange = {
+                isCheckedTermAndCondition = it
+                onChecked(it)
+            },
             modifier = Modifier.size(24.dp)
         )
 
@@ -191,19 +273,6 @@ private fun CenterContent(
             )
         )
     }
-
-    AppElevatedLoadingButton(
-        text = stringResource(R.string.signUp_sign_up), isLoading = state.isLoading, onClick = {
-            onSignUp(
-                NewAccount(
-                    email = emailText,
-                    password = passwordText,
-                )
-            )
-        }, modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = Dimens.MediumPadding)
-    )
 }
 
 @Composable

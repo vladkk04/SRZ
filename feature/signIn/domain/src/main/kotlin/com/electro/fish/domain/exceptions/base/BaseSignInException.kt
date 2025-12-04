@@ -6,7 +6,7 @@ import com.electro.essential.resources.StringProviderStore
 import com.electro.essential.exception.base.WithLocalizedMessage
 
 abstract class BaseSignInException(
-    override val message: String,
+    override val message: String = "",
     override val cause: Throwable? = null
 ) : BaseAppException(message, cause), WithLocalizedMessage {
     override fun getLocalizedErrorMessage(stringProviderStore: StringProviderStore): String =

@@ -22,7 +22,7 @@ import kotlinx.coroutines.awaitCancellation
 @Composable
 fun AppNavHost(
     modifier: Modifier,
-    startScreen: Screen = WelcomeScreen
+    startScreen: Screen = ProfileScreen
 ) {
     val bottomSheetNavigator = rememberBottomSheetNavigator()
     val navController = rememberNavController(bottomSheetNavigator)

@@ -3,6 +3,10 @@
     <string name="signIn_sign_in">Sign in</string>
     <string name="signIn_sign_up">Sign up</string>
 
+    <string name="signIn_email_cannot_be_found_in_system_error">This email address cannot be found in the system.</string>
+    <string name="signIn_invalid_credentials_error">Invalid credentials</string>
+
+    <string name="signIn_email">Email</string>
     <string name="signIn_forgot_password">Forgot Password?</string>
     <string name="signIn_do_not_have_account">Don\'t have an account?</string>
 </resources>

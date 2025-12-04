@@ -1,15 +1,17 @@
 package com.electro.fish.navigation
 
+import com.electro.fish.presentation.ProfileScreen
+import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.dialog
 import androidx.navigation.navigation
 import com.electro.fish.presentation.AddCatchFishScreen
 import com.electro.fish.presentation.ForgotPasswordScreen
 import com.electro.fish.presentation.GuestScreen
+import com.electro.fish.presentation.SelectFishingSpotScreen
 import com.electro.fish.presentation.SignInScreen
 import com.electro.fish.presentation.WelcomeScreen
 import com.electro.presentation.profileSetup.ProfileSetupScreen
@@ -32,7 +34,18 @@ fun NavGraphBuilder.buildAppNavGraph() {
         exitTransition = { fadeOut(animationSpec = tween(0)) },
     ) { SignUpScreen() }
 
-    composable<ProfileSetupScreen> { ProfileSetupScreen() }
+    composable<ProfileSetupScreen>(
+        enterTransition = {
+            slideIntoContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                animationSpec = tween(1000)
+            )
+        },
+    ) { ProfileSetupScreen() }
+
+    composable<ProfileScreen> { ProfileScreen() }
+
+    composable<SelectFishingSpot> { SelectFishingSpotScreen() }
 
     bottomSheet<ForgotPasswordScreen> { ForgotPasswordScreen() }
 

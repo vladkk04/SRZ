@@ -9,6 +9,8 @@ class EmptyInputFieldException(
 ): BaseValidationException(
     message = "$inputField is empty"
 ) {
-    override fun getLocalizedErrorMessage(stringProvider: ValidationStringProvider): String =
-        stringProvider.emptyInputFieldError(inputField)
+    override fun getLocalizedErrorMessage(stringProvider: ValidationStringProvider): String {
+        return stringProvider.emptyInputFieldError(inputField)
+    }
+
 }

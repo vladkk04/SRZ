@@ -1,11 +1,7 @@
 package com.electro.fish.domain.resources
 
-import com.electro.essential.resources.StringProvider
+import com.electro.essential.resources.AuthValidationStringProvider
 
-interface SignUpStringProvider: StringProvider {
-    val emailLabel: String
-    val passwordLabel: String
-    val repeatPasswordLabel: String
-    //fun emptyInputFieldError(inputField: InputField): String
-
+interface SignUpStringProvider: AuthValidationStringProvider {
+    val userAlreadyExistError: String
 }

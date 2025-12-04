@@ -7,23 +7,17 @@ import androidx.lifecycle.viewModelScope
 import com.electro.essential.ToastExceptionHandler
 import com.electro.essential.exception.base.BaseAppException
 import com.electro.essential.exception.base.BaseValidationException
-import com.electro.essential.validator.BaseInputField
-import com.electro.essential.validator.ValidationResult
+import com.electro.essential.validator.InputFieldEvent
+import com.electro.essential.validator.InputFormState
 import com.electro.fish.domain.model.SignInCredentials
 import com.electro.fish.domain.resources.SignInStringProvider
 import com.electro.fish.domain.usecase.SignInUseCase
-import com.electro.fish.domain.usecase.SignInValidator
 import com.electro.fish.presentation.navigation.SignInNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.collections.immutable.ImmutableMap
-import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -31,109 +25,51 @@ import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private val signUseCase: SignInUseCase,
-    private val signInValidator: SignInValidator,
-    private val signInNavigator: SignInNavigator,
+    private val navigator: SignInNavigator,
     private val stringProvider: SignInStringProvider,
     private val toastExceptionHandler: ToastExceptionHandler
 ) : ViewModel() {
 
-    private val _state: MutableStateFlow<SignInStateImpl> = MutableStateFlow(SignInStateImpl(stringProvider = stringProvider))
-    val state: StateFlow<SignInState> get() = _state.asStateFlow()
-
-    private val validateRequestFlow = MutableSharedFlow<SignInCredentials>(
-        extraBufferCapacity = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    private val _state = MutableStateFlow(
+        SignInStateImpl(stringProvider = stringProvider, inputFormState = InputFormState(stringProvider))
     )
 
-    private fun launchHomeScreen() = signInNavigator.launchHomeScreen()
-
-    private fun launchSignUpScreen() = signInNavigator.launchSignUpScreen()
-
-    private fun launchForgotPasswordScreen() = signInNavigator.launchForgotPasswordScreen()
-
-    init { viewModelScope.launch { validateRequestFlow.debounce(300).collect(::validate) } }
+    val state: StateFlow<SignInState> = _state.asStateFlow()
 
     fun onEvent(event: SignInEvent) {
         when (event) {
             is SignInEvent.SignIn -> signIn(event.credentials)
-            is SignInEvent.Validate -> { validateRequestFlow.tryEmit(event.credentials) }
-            is SignInEvent.ClearError -> clearError(event.inputField)
-            is SignInEvent.EnableErrorMessages -> enableErrorMessages(event.inputField)
-            SignInEvent.OnNavigateToForgotPassword -> launchForgotPasswordScreen()
-            SignInEvent.OnNavigateToSignUp -> launchSignUpScreen()
+            is SignInEvent.InputEvent -> updateFormState(event.event)
+            SignInEvent.OnNavigateToForgotPassword -> navigator.launchForgotPasswordScreen()
+            SignInEvent.OnNavigateToSignUp -> navigator.launchSignUpScreen()
+        }
+    }
+
+    private fun updateFormState(event: InputFieldEvent) {
+        _state.update { currentState ->
+            currentState.copy(inputFormState = currentState.inputFormState.onEvent(event))
         }
     }
 
     private fun signIn(credentials: SignInCredentials) = viewModelScope.launch {
         try {
-            showProgressBar()
+            _state.update { it.copy(isSignInInProgress = true) }
             signUseCase.invoke(credentials)
-            hideProgressBar()
-            launchHomeScreen()
+            navigator.launchHomeScreen()
+        } catch (e: BaseValidationException) {
+            _state.update { it.copy(inputFormState = it.inputFormState.withValidationException(e)) }
         } catch (e: BaseAppException) {
             toastExceptionHandler.handleException(e)
         } finally {
-            hideProgressBar()
+            _state.update { it.copy(isSignInInProgress = false) }
         }
     }
-
-    private fun showProgressBar() {
-        _state.update { it.copy(isSignInInProgress = true) }
-    }
-
-    private fun hideProgressBar() {
-        _state.update { it.copy(isSignInInProgress = false) }
-    }
-
-    private fun validate(credentials: SignInCredentials) = viewModelScope.launch {
-        val validationResult = signInValidator.validate(credentials)
-        _state.update { it.withNewValidationResult(validationResult) }
-    }
-
-    private fun clearError(inputField: BaseInputField<*>) =
-        _state.update { it.clearError(inputField) }
-
-    private fun enableErrorMessages(inputField: BaseInputField<*>) =
-        _state.update { it.enableErrorMessages(inputField) }
 
     private data class SignInStateImpl(
         override val isSignInInProgress: Boolean = false,
         override val stringProvider: SignInStringProvider,
-        val allErrorMessages: Map<BaseInputField<*>, String> = emptyMap(),
-        val fieldsWithEnabledErrors: Set<BaseInputField<*>> = emptySet()
-    ) : SignInState {
-        override val errorMessages: ImmutableMap<BaseInputField<*>, String> =
-            allErrorMessages.filterKeys(fieldsWithEnabledErrors::contains).toImmutableMap()
-    }
-
-    private fun SignInStateImpl.withValidationException(e: BaseValidationException) = copy(
-        allErrorMessages = (allErrorMessages + toErrorMessagePair(e)).toImmutableMap(),
-    )
-
-    private fun SignInStateImpl.withNewValidationResult(validationResult: ValidationResult) = copy(
-        allErrorMessages = validationResult.toErrorMessagesMap()
-    )
-
-    private fun SignInStateImpl.clearError(inputField: BaseInputField<*>) = copy(
-        allErrorMessages = allErrorMessages.filterKeys { it != inputField }
-    )
-
-    private fun SignInStateImpl.enableErrorMessages(inputField: BaseInputField<*>) = copy(
-        fieldsWithEnabledErrors = fieldsWithEnabledErrors + inputField
-    )
-
-    private fun ValidationResult.toErrorMessagesMap(): Map<BaseInputField<*>, String> {
-        return when (this) {
-            is ValidationResult.Error -> exceptions.associate(::toErrorMessagePair)
-            is ValidationResult.Success -> emptyMap()
-        }
-    }
-
-    private fun handleValidationException(e: BaseValidationException) =
-        _state.update { it.withValidationException(e) }
-
-    private fun toErrorMessagePair(e: BaseValidationException) =
-        e.inputField to e.getLocalizedErrorMessage(stringProvider)
+        override val inputFormState: InputFormState = InputFormState(stringProvider)
+    ) : SignInState
 }
 
 

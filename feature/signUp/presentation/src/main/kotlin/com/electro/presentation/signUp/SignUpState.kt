@@ -1,7 +1,13 @@
 package com.electro.presentation.signUp
 
-data class SignUpState(
-    val emailInputErrorMessage: String? = null,
-    val passwordInputErrorMessage: String? = null,
-    val isLoading: Boolean = false,
-)
+import androidx.compose.runtime.Immutable
+import com.electro.essential.validator.InputFormState
+import com.electro.fish.domain.resources.SignUpStringProvider
+
+@Immutable
+interface SignUpState {
+    val isSignUpInProgress: Boolean
+    val isTermsAndPrivacyChecked: Boolean
+    val inputFormState: InputFormState
+    val stringProvider: SignUpStringProvider
+}

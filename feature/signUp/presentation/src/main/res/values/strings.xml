@@ -12,13 +12,13 @@
 
     <string name="signUp_licence_number">Licence number</string>
 
-    <string name="signUp_email">Email</string>
-    <string name="signUp_password">Password</string>
-    <string name="signUp_repeat_password">Repeat Password</string>
-
     <string name="signUp_i_accept_the">I accept the</string>
     <string name="signUp_term_and_privacy_policy">terms and privacy policy</string>
     <string name="signUp_already_have_an_account">Already have an account?</string>
+
+
+    <string name="user_already_exist_error">User with this email already exist</string>
+
 
     <string name="signUp_continue">Continue</string>
     <string name="signUp_finish">Finish</string>
