@@ -13,11 +13,14 @@ import com.electro.fish.ui.component.MediumVerticalSpacer
 import com.electro.fish.ui.component.PagerContentContainer
 
 class ForgotPasswordPagerContainer(
-    val modifier: Modifier = Modifier
+    private val modifier: Modifier = Modifier
 ) : PagerContentContainer<ForgotPasswordPagerScreenFeature> {
 
     @Composable
-    override fun Wrap(screenFeature: ForgotPasswordPagerScreenFeature, content: @Composable () -> Unit) {
+    override fun Wrap(
+        screenFeature: ForgotPasswordPagerScreenFeature,
+        content: @Composable () -> Unit
+    ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = modifier

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="license_your_licenses">Your licenses</string>
+    <string name="license_upload_new_licence">Upload new licence</string>
+</resources>

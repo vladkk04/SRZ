@@ -1,0 +1,34 @@
+package com.electro.fish.commonandroid.resource.validation
+
+import android.content.Context
+import com.electro.essential.resources.AuthValidationStringProvider
+import com.electro.essential.resources.ValidationStringProvider
+import com.electro.essential.validator.BaseInputField
+import com.electro.fish.core.commonAndroid.R
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
+
+class AuthValidationStringProviderImpl @Inject constructor(
+    @param:ApplicationContext private val context: Context,
+): AuthValidationStringProvider {
+    override val email: String = context.getString(R.string.commonAndroid_email)
+    override val password: String = context.getString(R.string.commonAndroid_password)
+    override val passwordRegexError: String = context.getString(R.string.commonAndroid_password_regex_error)
+    override val passwordRegexLength: String = context.getString(R.string.commonAndroid_password_regex_length)
+
+    override fun emptyInputFieldError(field: BaseInputField.InputField): String {
+        return context.getString(R.string.commonAndroid_default_empty_input_field_error, field.getFieldName(this))
+    }
+
+
+
+    override fun invalidRegexInputFieldError(
+        field: BaseInputField.InputField,
+        customErrorMessageResolver: ((ValidationStringProvider) -> String)?
+    ): String {
+        return customErrorMessageResolver?.invoke(this) ?: context.getString(
+            R.string.commonAndroid_default_invalid_regex_input_field_error,
+            field.getFieldName(this)
+        )
+    }
+}

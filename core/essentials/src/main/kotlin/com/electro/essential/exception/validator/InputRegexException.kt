@@ -5,7 +5,7 @@ import com.electro.essential.resources.ValidationStringProvider
 import com.electro.essential.validator.BaseInputField
 
 class InputRegexException(
-    override val inputField: BaseInputField.TextInputField,
+    override val inputField: BaseInputField.InputField,
     val customErrorMessageResolver: ((ValidationStringProvider) -> String)?
 ): BaseValidationException(" ") {
     override fun getLocalizedErrorMessage(stringProvider: ValidationStringProvider): String =

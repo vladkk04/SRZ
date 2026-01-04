@@ -1,14 +1,17 @@
 package com.electro.fish.data.network.utils
 
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import com.electro.essential.exception.HttpException
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.isSuccess
 
-suspend fun <T> safeResponse(
-    httpResponse: HttpResponse,
-    block: suspend () -> T
+
+suspend fun <T> HttpResponse.map(
+    block: suspend (HttpResponse) -> T
+): T = block(this)
+
+suspend fun <T> HttpResponse.safeResponse(
+    block: suspend (HttpResponse) -> T
 ): T {
-    if(!httpResponse.status.isSuccess()) throw HttpException(httpResponse.status.value)
-    return block()
+    if(!this.status.isSuccess()) throw HttpException(this.status.value, this.status.description)
+    return block(this)
 }

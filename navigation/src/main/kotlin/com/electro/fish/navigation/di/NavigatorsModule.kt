@@ -1,13 +1,23 @@
 package com.electro.fish.navigation.di
 
+import com.electro.fish.navigation.FishingSessionNavigator
+import com.electro.fish.navigation.navigators.DataFillingNavigatorImpl
+import com.electro.fish.navigation.navigators.FishingSessionNavigatorImpl
+import com.electro.fish.navigation.navigators.ForgotPasswordNavigatorImpl
+import com.electro.fish.navigation.navigators.LanguageNavigatorImpl
 import com.electro.fish.navigation.navigators.ProfileNavigatorImpl
+import com.electro.fish.navigation.navigators.SelectFishingSpotNavigatorImpl
 import com.electro.fish.navigation.navigators.SignInNavigatorImpl
 import com.electro.fish.navigation.navigators.SignUpNavigatorImpl
 import com.electro.fish.navigation.navigators.WelcomeNavigatorImpl
+import com.electro.fish.presentation.dataFilling.navigation.DataFillingNavigator
+import com.electro.fish.presentation.navigation.ForgotPasswordNavigator
+import com.electro.fish.presentation.navigation.LanguageNavigator
 import com.electro.fish.presentation.navigation.ProfileNavigator
+import com.electro.fish.presentation.navigation.SelectFishingSpotNavigator
 import com.electro.fish.presentation.navigation.SignInNavigator
 import com.electro.fish.presentation.navigation.WelcomeNavigator
-import com.electro.presentation.signUp.navigation.SignUpNavigator
+import com.electro.fish.presentation.signUp.navigation.SignUpNavigator
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -27,5 +37,23 @@ interface NavigatorsModule {
     fun bindSignUpNavigator(impl: SignUpNavigatorImpl): SignUpNavigator
 
     @Binds
+    fun bindDataFillingNavigator(impl: DataFillingNavigatorImpl): DataFillingNavigator
+
+    @Binds
+    fun bindForgotPasswordNavigator(impl: ForgotPasswordNavigatorImpl): ForgotPasswordNavigator
+
+    @Binds
+    fun bindFishingSessionNavigator(impl: FishingSessionNavigatorImpl): FishingSessionNavigator
+
+    @Binds
     fun bindProfileNavigator(impl: ProfileNavigatorImpl): ProfileNavigator
+
+    @Binds
+    fun bindLanguageNavigator(impl: LanguageNavigatorImpl): LanguageNavigator
+
+    @Binds
+    fun bindSelectFishingSpotNavigator(impl: SelectFishingSpotNavigatorImpl): SelectFishingSpotNavigator
+
+
+
 }

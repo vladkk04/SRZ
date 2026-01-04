@@ -97,8 +97,8 @@ private fun SignInContent(
 
                 Spacer(Modifier.weight(0.8f))
 
-                BottomSignUpContent(
-                    onNavigateToSignUpScreen = { onEvent(SignInEvent.OnNavigateToSignUp) },
+                BottomdataFillingContent(
+                    onNavigateTodataFillingScreen = { onEvent(SignInEvent.OnNavigateToSignUp) },
                     modifier = Modifier.fillMaxWidth()
                 )
             }
@@ -221,9 +221,9 @@ private fun TextForgotPassword(
 }
 
 @Composable
-private fun BottomSignUpContent(
+private fun BottomdataFillingContent(
     modifier: Modifier = Modifier,
-    onNavigateToSignUpScreen: () -> Unit,
+    onNavigateTodataFillingScreen: () -> Unit,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(
@@ -238,7 +238,7 @@ private fun BottomSignUpContent(
             text = stringResource(R.string.signIn_sign_up),
             fontStyle = FontStyle.Normal,
             textDecoration = TextDecoration.Underline,
-            modifier = Modifier.clickableWithoutIndication(onClick = onNavigateToSignUpScreen)
+            modifier = Modifier.clickableWithoutIndication(onClick = onNavigateTodataFillingScreen)
         )
     }
 }

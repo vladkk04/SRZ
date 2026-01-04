@@ -4,4 +4,5 @@ interface SignInNavigator {
     fun launchForgotPasswordScreen()
     fun launchSignUpScreen()
     fun launchHomeScreen()
+    fun launchInspectorScreen()
 }

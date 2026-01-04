@@ -5,12 +5,11 @@ import com.electro.essential.resources.ValidationStringProvider
 import com.electro.essential.validator.BaseInputField
 
 class EmptyInputFieldException(
-    override val inputField: BaseInputField.TextInputField,
+    override val inputField: BaseInputField.InputField,
 ): BaseValidationException(
     message = "$inputField is empty"
 ) {
     override fun getLocalizedErrorMessage(stringProvider: ValidationStringProvider): String {
         return stringProvider.emptyInputFieldError(inputField)
     }
-
 }

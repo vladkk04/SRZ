@@ -18,6 +18,6 @@ dependencies {
     implementation(projects.data)
     implementation(libs.jwt.decode)
 
-
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.compose)
 }

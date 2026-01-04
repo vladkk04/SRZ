@@ -2,32 +2,25 @@
 
 package com.electro.fish.presentation
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
+import android.content.Intent
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.electro.fish.feature.forgotPassword.presentation.R
 import com.electro.fish.presentation.container.ForgotPasswordPagerContainer
 import com.electro.fish.presentation.container.ForgotPasswordPagerScreenFeature
+import com.electro.fish.presentation.pagerContent.ConfirmationToSentEmailContent
 import com.electro.fish.presentation.pagerContent.EmailSendContent
-import com.electro.fish.presentation.pagerContent.ResetPasswordContent
-import com.electro.fish.presentation.pagerContent.VerificationCodeContent
-import com.electro.fish.ui.component.AppAnimatedLinearProgressIndicator
+import com.electro.fish.ui.component.AppElevatedButton
 import com.electro.fish.ui.component.AppElevatedLoadingButton
 import com.electro.fish.ui.component.AppHorizontalPager
-import com.electro.fish.ui.component.AppIconButton
 import com.electro.fish.ui.component.MediumVerticalSpacer
 import com.electro.fish.ui.theme.Dimens
 import kotlinx.collections.immutable.persistentListOf
@@ -52,33 +45,10 @@ fun ForgotPasswordScreen() {
             }
         ),
         ForgotPasswordPagerScreenFeature(
-            titleResId = R.string.forgotPassword_enter_digits_code,
-            descriptionResId = R.string.forgotPassword_otp_description,
-            content = {
-                VerificationCodeContent(
-                    onCodeValueChange = { },
-                    focusRequester = focusRequester,
-                    onNextImeAction = this::requestNext,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = Dimens.ExtraLargePadding)
-                )
-            }
-        ),
-        ForgotPasswordPagerScreenFeature(
-            titleResId = R.string.forgotPassword_reset_password,
-            descriptionResId = R.string.forgotPassword_reset_password_description,
-            content = {
-                ResetPasswordContent(
-                    onPasswordValueChange = { },
-                    focusRequester = focusRequester,
-                    onDoneImeAction = {
-
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-        ),
+            titleResId = R.string.forgotPassword_link_sent_email,
+            descriptionResId = R.string.forgotPassword_check_your_email,
+            content = { ConfirmationToSentEmailContent() }
+        )
     )
 
     AppHorizontalPager(
@@ -86,30 +56,31 @@ fun ForgotPasswordScreen() {
         contentContainer = ForgotPasswordPagerContainer(
             modifier = Modifier.padding(horizontal = Dimens.ExtraLargePadding)
         ),
+        fillMaxSize = false,
         userScrollEnabled = false,
-        titleContainer = {
-            PagerProgressIndicator(
-                currentPage = it.getCurrentPage(),
-                pageCount = it.pageCount,
-                onBackButtonClick = it::requestPrevious,
-                modifier = Modifier
-                    .fillMaxWidth(0.95f)
-                    .align(Alignment.Start)
-            )
-        },
         bottomContainer = {
-            ForgotPasswordPagerLoadingButton(
-                pagerTitleResId = pagerScreens[it.getCurrentPage()].titleResId,
-                onClick = it::requestNext
-            )
+            MediumVerticalSpacer()
+
+            if(it.getCurrentPage() == it.pageCount - 1) {
+                OpenEmailButton(
+                    modifier = Modifier.fillMaxWidth(0.9f)
+                )
+            }
 
             MediumVerticalSpacer()
 
-            if(pagerScreens[it.getCurrentPage()].titleResId == R.string.forgotPassword_enter_digits_code){
-                DidntReceivedCodeText(
-                    onResendClick = {}
-                )
-            }
+            ForgotPasswordPagerLoadingButton(
+                pagerTitleResId = pagerScreens[it.getCurrentPage()].titleResId,
+                onClick = {
+                    if(it.getCurrentPage() != it.pageCount - 1) {
+                        viewModel.test()
+                        it.requestNext()
+                    } else {
+                        viewModel.navigateBack()
+                    }
+                },
+                modifier = Modifier.fillMaxWidth(0.9f)
+            )
 
             MediumVerticalSpacer()
         },
@@ -120,14 +91,13 @@ fun ForgotPasswordScreen() {
 @Composable
 private fun ForgotPasswordPagerLoadingButton(
     pagerTitleResId: Int,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
     val buttonText = stringResource(
         when (pagerTitleResId) {
             R.string.forgotPassword_forgot_password -> R.string.forgotPassword_send
-            R.string.forgotPassword_enter_digits_code -> R.string.forgotPassword_verify
-            R.string.forgotPassword_reset_password -> R.string.forgotPassword_reset_password
-            else -> return
+            else -> R.string.forgotPassword_ok
         }
     )
 
@@ -135,47 +105,27 @@ private fun ForgotPasswordPagerLoadingButton(
         text = buttonText,
         isLoading = false,
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth(0.9f)
+        modifier = modifier
     )
 }
 
 @Composable
-private fun DidntReceivedCodeText(
-    onResendClick: () -> Unit
-) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(Dimens.SmallPadding),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(text = stringResource(R.string.forgotPassword_didnt_receive_code))
-        Text(
-            text = stringResource(R.string.forgotPassword_resend),
-            modifier = Modifier.clickable(onClick = onResendClick)
-        )
-    }
-}
-
-
-@Composable
-private fun PagerProgressIndicator(
-    currentPage: Int,
-    pageCount: Int,
-    onBackButtonClick: () -> Unit,
+private fun OpenEmailButton(
     modifier: Modifier = Modifier
 ) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(Dimens.SmallPadding),
-        verticalAlignment = Alignment.CenterVertically,
+    val context = LocalContext.current
+
+    AppElevatedButton(
+        text = stringResource(R.string.forgotPassword_open_email),
+        onClick = {
+            val intent = Intent(Intent.ACTION_MAIN).apply {
+                addCategory(Intent.CATEGORY_APP_EMAIL)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+
+            context.startActivity(intent)
+
+        },
         modifier = modifier
-    ) {
-        AppIconButton(
-            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-            isEnabled = currentPage != 0,
-            onClick = onBackButtonClick
-        )
-        AppAnimatedLinearProgressIndicator(
-            progress = (currentPage.toFloat() / pageCount.toFloat()),
-            modifier = Modifier.fillMaxWidth()
-        )
-    }
+    )
 }

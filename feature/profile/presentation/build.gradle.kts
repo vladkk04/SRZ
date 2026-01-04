@@ -8,5 +8,6 @@ android {
 }
 
 dependencies {
-    /*implementation(projects.feature.guest.domain)*/
+    implementation(projects.feature.profile.domain)
+    implementation(libs.androidx.appcompat)
 }

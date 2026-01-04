@@ -12,7 +12,7 @@ class DefaultExceptionToMessageMapper @Inject constructor(
         return if (exception is WithLocalizedMessage) {
             exception.getLocalizedErrorMessage(stringProviderStore)
         } else {
-            stringProviderStore<CoreStringProvider>().unknownErrorMessage
+            "what"
         }
     }
 }

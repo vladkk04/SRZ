@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addCaughtFish_type_of_fish">Type of fish</string>
+    <string name="addCaughtFish_cm">Cm</string>
+    <string name="addCaughtFish_kg">Kg</string>
+    <string name="addCaughtFish_ai">AI</string>
+    <string name="addCaughtFish_add_fish">Add fish</string>
+    <string name="addCaughtFish_upload_fish_picture">Upload fish picture</string>
+</resources>

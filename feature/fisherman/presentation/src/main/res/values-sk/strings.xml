@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="guest_date">Date</string>
+    <string name="guest_type_of_fish">ä</string>
+    <string name="guest_cm">ä</string>
+    <string name="guest_kg">ä</string>
+    <string name="guest_qty">ä</string>
+</resources>

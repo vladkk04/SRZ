@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="signIn_sign_in">Sign in</string>
+    <string name="signIn_sign_up">ä</string>
+    <string name="signIn_email_cannot_be_found_in_system_error">ä</string>
+    <string name="signIn_invalid_credentials_error">ä</string>
+    <string name="signIn_email">ä</string>
+    <string name="signIn_forgot_password">ä</string>
+    <string name="signIn_do_not_have_account">ä</string>
+</resources>

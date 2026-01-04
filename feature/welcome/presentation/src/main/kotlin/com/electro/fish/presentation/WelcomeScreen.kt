@@ -7,7 +7,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -41,7 +40,7 @@ private fun WelcomeContent(
     onEvent: (WelcomeEvent) -> Unit,
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
-    
+
     var logoSize by rememberSaveable { mutableStateOf(LogoSize.FULL) }
     var isVisibleContent by rememberSaveable { mutableStateOf(true) }
 
@@ -73,26 +72,25 @@ private fun WelcomeContent(
                 verticalArrangement = Arrangement.spacedBy(Dimens.LargePadding),
                 modifier = Modifier.fillMaxWidth()
             ) {
+                val onButtonClick: (WelcomeEvent) -> Unit = { event ->
+                    onEvent(event)
+                    isVisibleContent = false
+                    logoSize = LogoSize.SMALL
+                }
+
                 AppElevatedButton(
                     text = stringResource(R.string.welcome_sign_in),
-                    onClick = {
-                        onEvent(WelcomeEvent.SignIn)
-                        isVisibleContent = false
-                        logoSize = LogoSize.SMALL
-                    },
+                    onClick = { onButtonClick(WelcomeEvent.SignIn) },
                     modifier = Modifier.fillMaxWidth()
                 )
 
                 AppElevatedButton(
-                    text = stringResource(R.string.welcome_sign_up_as_guest),
-                    onClick = {
-                        onEvent(WelcomeEvent.SignUp)
-                        isVisibleContent = false
-                        logoSize = LogoSize.SMALL
-                    },
+                    text = stringResource(R.string.welcome_sign_up),
+                    onClick = { onButtonClick(WelcomeEvent.SignUp) },
                     modifier = Modifier.fillMaxWidth()
                 )
             }
         }
     }
 }
+

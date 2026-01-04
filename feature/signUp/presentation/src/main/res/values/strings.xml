@@ -2,26 +2,7 @@
 <resources>
     <string name="signUp_sign_up">Sign up</string>
     <string name="signUp_signIn">Sign in</string>
-    
-    <string name="signUp_firstName">First Name</string>
-    <string name="signUp_lastName">Last Name</string>
-    
-    <string name="signUp_title_profile_setup_whats_your_name">What\'s your Name?</string>
-    <string name="signUp_title_profile_setup_whats_your_birthday">What\'s your Birthday?</string>
-    <string name="signUp_title_profile_setup_upload_your_licence">Upload your Licence</string>
-
-    <string name="signUp_licence_number">Licence number</string>
-
     <string name="signUp_i_accept_the">I accept the</string>
     <string name="signUp_term_and_privacy_policy">terms and privacy policy</string>
     <string name="signUp_already_have_an_account">Already have an account?</string>
-
-
-    <string name="user_already_exist_error">User with this email already exist</string>
-
-
-    <string name="signUp_continue">Continue</string>
-    <string name="signUp_finish">Finish</string>
-    <string name="signUp_or">or</string>
-    <string name="signUp_upload_photo_description">Tap here to upload a photo</string>
 </resources>

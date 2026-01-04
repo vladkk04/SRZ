@@ -8,5 +8,5 @@ android {
 }
 
 dependencies {
-    implementation(projects.feature.guest.domain)
+    implementation(projects.feature.forgotPassword.domain)
 }

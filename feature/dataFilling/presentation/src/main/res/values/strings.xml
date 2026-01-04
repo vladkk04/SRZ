@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dataFilling_firstName">First Name</string>
+    <string name="dataFilling_lastName">Last Name</string>
+    <string name="dataFilling_phone_number">Phone number</string>
+    <string name="dataFilling_address">Address</string>
+
+    <string name="dataFilling_fishingLicence">Fishing Licence</string>
+    <string name="dataFilling_fishingTicket">Fishing Ticket"</string>
+    <string name="dataFilling_membershipMark">Membership Mark</string>
+
+
+    <string name="dataFilling_invalid_phone_number">Invalid phone number</string>
+
+    <string name="dataFilling_expiry_date">Expire date</string>
+    <string name="dataFilling_title_profile_setup_whats_your_phone_number">What\'s your Phone Number?</string>
+    <string name="dataFilling_title_profile_setup_whats_your_address">What\'s your Address?</string>
+    <string name="dataFilling_title_profile_setup_whats_your_name">What\'s your Name?</string>
+    <string name="dataFilling_title_profile_setup_whats_your_birthday">What\'s your Birthday?</string>
+    <string name="dataFilling_title_profile_setup_upload_your_fishing_license">Upload your Fishing License</string>
+    <string name="dataFilling_title_profile_setup_upload_your_fishing_ticket">Upload your Fishing Ticket</string>
+    <string name="dataFilling_title_profile_setup_upload_your_membership_mark">Upload your Membership Mark</string>
+    <string name="dataFilling_licence_number">Licence number</string>
+    <string name="dataFilling_user_already_exist_error" translatable="false">User with this email already exist</string>
+    <string name="dataFilling_oops_change_email">Oops! Change email</string>
+    <string name="dataFilling_continue">Continue</string>
+    <string name="dataFilling_confirm">Confirm</string>
+    <string name="dataFilling_finish">Finish</string>
+    <string name="dataFilling_upload_photo_description">Tap here to upload a photo</string>
+
+
+    <string name="dataFilling_upload_fishing_license_error">Please upload your fishing license</string>
+    <string name="dataFilling_upload_fishing_ticket_error">Please upload your fishing ticker</string>
+    <string name="dataFilling_upload_membership_mark_error">Please upload your membership mark</string>
+
+</resources>

@@ -1,0 +1,8 @@
+1-1010-1-1  Štrkovisko na Židovkách, MsO Záhorie
+1-0020-1-1  Chorvátsky kanál, MsO Bratislava 5
+1-0040-1-1  Čierna voda č. 3, MsO Senec
+1-0050-1-1  Čierna voda č. 4, MsO Senec
+1-0130-1-1  Dunaj č. 3, Rusovecko - Jarovecká sústava ramien,
+1-0140-1-1  Dunaj č. 4, Karloveské rameno, MsO Bratislava 4
+1-0141-1-1  Dunaj č. 4, Devínske rameno, MsO Bratislava 4
+1-0151-1-1  Gidra č. 1b, MsO Pezinok

@@ -24,6 +24,16 @@ class AndroidApplicationConventionPlugin: Plugin<Project> {
 
                 configureKotlinAndroid(this)
 
+                androidResources {
+                    generateLocaleConfig = true
+                }
+
+                bundle {
+                    language {
+                        enableSplit = false
+                    }
+                }
+
                 buildTypes {
                     release {
                         isMinifyEnabled = true

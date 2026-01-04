@@ -6,8 +6,7 @@ import com.electro.essential.resources.CoreStringProvider
 class HttpException(
     val code: Int = 400,
     override val message: String = "Http error",
-    cause: Throwable? = null
-) : BaseCoreException("Server error", cause) {
+) : BaseCoreException(message, null) {
     override fun getLocalizedErrorMessage(stringProvider: CoreStringProvider): String =
-        stringProvider.serverErrorMessage(code, message)
+        stringProvider.clientErrorMessage(code, cause?.message ?: message)
 }

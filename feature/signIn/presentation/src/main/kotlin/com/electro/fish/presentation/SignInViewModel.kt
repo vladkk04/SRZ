@@ -9,6 +9,7 @@ import com.electro.essential.exception.base.BaseAppException
 import com.electro.essential.exception.base.BaseValidationException
 import com.electro.essential.validator.InputFieldEvent
 import com.electro.essential.validator.InputFormState
+import com.electro.fish.data.account.auth.model.Role
 import com.electro.fish.domain.model.SignInCredentials
 import com.electro.fish.domain.resources.SignInStringProvider
 import com.electro.fish.domain.usecase.SignInUseCase
@@ -54,8 +55,15 @@ class SignInViewModel @Inject constructor(
     private fun signIn(credentials: SignInCredentials) = viewModelScope.launch {
         try {
             _state.update { it.copy(isSignInInProgress = true) }
-            signUseCase.invoke(credentials)
-            navigator.launchHomeScreen()
+            val role = signUseCase.invoke(credentials)
+            when (role) {
+                Role.FISHERMAN, Role.GUEST -> {
+                    navigator.launchHomeScreen()
+                }
+                Role.CONTROLLER -> {
+                    navigator.launchInspectorScreen()
+                }
+            }
         } catch (e: BaseValidationException) {
             _state.update { it.copy(inputFormState = it.inputFormState.withValidationException(e)) }
         } catch (e: BaseAppException) {

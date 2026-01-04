@@ -1,18 +1,18 @@
 package com.electro.fish.navigation.navigators
 
-import com.electro.fish.navigation.ProfileSetupScreen
+import com.electro.fish.navigation.DataFillingScreen
 import com.electro.fish.navigation.SignInScreen
 import com.electro.fish.navigation.SignUpScreen
 import com.electro.fish.navigation.WelcomeScreen
 import com.electro.fish.navigation.base.AppNavigator
-import com.electro.presentation.signUp.navigation.SignUpNavigator
+import com.electro.fish.presentation.signUp.navigation.SignUpNavigator
 import jakarta.inject.Inject
 
 class SignUpNavigatorImpl @Inject constructor(
     private val appNavigator: AppNavigator
 ): SignUpNavigator {
-    override fun launchProfileSetupScreen() {
-        appNavigator.launchScreen(ProfileSetupScreen) {
+    override fun launchDataFillingScreen() {
+        appNavigator.launchScreen(DataFillingScreen) {
             popUpTo(WelcomeScreen) {
                 inclusive = true
             }

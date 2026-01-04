@@ -1,9 +1,9 @@
 package com.electro.fish.domain.exception.base
 
-import com.electro.fish.domain.resources.SignUpStringProvider
 import com.electro.essential.exception.base.BaseAppException
 import com.electro.essential.exception.base.WithLocalizedMessage
 import com.electro.essential.resources.StringProviderStore
+import com.electro.fish.domain.resources.SignUpStringProvider
 
 abstract class BaseSignUpException(
     override val message: String = "",

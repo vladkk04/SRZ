@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="forgotPassword_forgot_password">Forgot Password</string>
+    <string name="forgotPassword_check_your_email">f</string>
+    <string name="forgotPassword_link_sent_email">f</string>
+    <string name="forgotPassword_reset_password">ä</string>
+    <string name="forgotPassword_email_hint">ä</string>
+    <string name="forgotPassword_password">ä</string>
+    <string name="forgotPassword_send">ä</string>
+    <string name="forgotPassword_verify">ä</string>
+    <string name="forgotPassword_email_description">ä</string>
+    <string name="forgotPassword_confirmation_sent_email">f</string>
+    <string name="ok">OK</string>
+</resources>

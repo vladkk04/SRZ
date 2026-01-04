@@ -10,7 +10,9 @@ android {
 
 dependencies {
     implementation(projects.core.essentials)
-    implementation(libs.coroutines.core)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.browther)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.activity.compose)
 }

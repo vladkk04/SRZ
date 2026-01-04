@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.AppTheme" parent="android:Theme.Material.NoActionBar"/>
+    <style name="Theme.AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar"/>
 
     <style name="Theme.AppTheme.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/windowSplashScreenBackgroundColor</item>

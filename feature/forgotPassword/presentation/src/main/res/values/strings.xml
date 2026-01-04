@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="forgotPassword_forgot_password">Forgot Password</string>
-    <string name="forgotPassword_enter_digits_code">Enter 4 Digits Code</string>
+    <string name="forgotPassword_check_your_email">Check your email</string>
+    <string name="forgotPassword_link_sent_email">Link sent to your email</string>
     <string name="forgotPassword_reset_password">Reset Password</string>
 
     <string name="forgotPassword_email_hint">Email</string>
@@ -10,10 +11,10 @@
     <string name="forgotPassword_send">Send</string>
     <string name="forgotPassword_verify">Verify</string>
 
+    <string name="forgotPassword_email_description">Please enter your email address. We will send you a link to reset your password.</string>
+    <string name="forgotPassword_confirmation_sent_email">We sent link to reset your password to your email. Please check your email.</string>
 
-    <string name="forgotPassword_email_description">Please enter your email address. We will send you a 4 digit code to reset your password.</string>
-    <string name="forgotPassword_otp_description">Please enter the 4 digit code sent to your email.</string>
-    <string name="forgotPassword_reset_password_description">Please set new password for your account.</string>
-    <string name="forgotPassword_didnt_receive_code">Didn\'t recive code?</string>
-    <string name="forgotPassword_resend">Resend</string>
+    <string name="forgotPassword_ok">OK</string>
+    <string name="forgotPassword_open_email">Open Email</string>
+
 </resources>

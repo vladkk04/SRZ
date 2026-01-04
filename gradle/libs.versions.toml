@@ -3,17 +3,19 @@ kotlin-collections-immutable = "0.4.0"
 kotlin-serialization-json = "1.9.0"
 hiltNavigationCompose = "1.3.0"
 materialIconsExtended = "1.7.8"
-lifecycleRuntimeKtx = "2.9.4"
+lifecycleRuntimeKtx = "2.10.0"
+imageLabelingCustom = "17.0.3"
 wheelPickerCompose = "1.1.11"
 material3Navigation = "1.0.5"
-material3 = "1.5.0-alpha09"
-activityCompose = "1.12.0"
-composeBom = "2025.11.01"
+material3 = "1.5.0-alpha11"
+activityCompose = "1.12.2"
+composeBom = "2025.12.01"
 splashScreen = "1.2.0"
 coroutines = "1.10.2"
 navigation = "2.9.6"
 jwtdecode = "2.0.2"
 datastore = "1.2.0"
+appCompat = "1.7.1"
 browther = "1.9.0"
 coreKtx = "1.17.0"
 kotlin = "2.2.21"
@@ -22,7 +24,7 @@ coil = "3.3.0"
 room = "2.8.4"
 hilt = "2.57.2"
 ktor = "3.3.3"
-agp = "8.13.1"
+agp = "8.13.2"
 
 [libraries]
 ksp-gradle-plugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp"}
@@ -30,47 +32,37 @@ compose-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp"}
 
-androidx-material3-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
+
+androidx-material3-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 androidx-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
-androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+
+androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashScreen" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+
+androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-ui = { module = "androidx.compose.ui:ui" }
 
-androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashScreen" }
+androidx-browther = { module = "androidx.browser:browser", version.ref = "browther" }
 
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 
-androidx-browther = { module = "androidx.browser:browser", version.ref = "browther" }
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-core = { module = "com.google.dagger:hilt-core", version.ref = "hilt" }
-
-kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
-
-coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
-
-javax-inject = { module = "javax.inject:javax.inject", version = "1" }
-
-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-jwt-decode = { module = "com.auth0.android:jwtdecode", version.ref = "jwtdecode"}
-
-wheel-picker= { module = "com.github.commandiron:WheelPickerCompose", version.ref = "wheelPickerCompose" }
-
-material3-navigation = { module = "io.github.stefanoq21:material3-navigation", version.ref = "material3Navigation" }
-
-kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlin-collections-immutable"}
 
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
@@ -78,6 +70,22 @@ ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "k
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
+
+kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlin-collections-immutable"}
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+
+coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+
+javax-inject = { module = "javax.inject:javax.inject", version = "1" }
+
+
+google-mlkit-image-labeling = { module = "com.google.mlkit:image-labeling-custom", version.ref = "imageLabelingCustom"}
+material3-navigation = { module = "io.github.stefanoq21:material3-navigation", version.ref = "material3Navigation" }
+wheel-picker= { module = "com.github.commandiron:WheelPickerCompose", version.ref = "wheelPickerCompose" }
+jwt-decode = { module = "com.auth0.android:jwtdecode", version.ref = "jwtdecode"}
+
 
 [plugins]
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
@@ -98,6 +106,14 @@ custom-jvm-library = { id = "custom.jvm.library" }
 custom-hilt = { id = "custom.hilt" }
 
 [bundles]
+coil = [
+    "coil-network-ktor",
+    "coil-compose"
+]
+room = [
+    "androidx-room-compiler",
+    "androidx-room-runtime"
+]
 ktor = [
     "ktor-client-content-negotiation",
     "ktor-serialization-kotlinx-json",

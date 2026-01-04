@@ -1,6 +1,6 @@
 package com.electro.essential.validator
 
-data class InputFieldValue<T: Any>(
+data class InputFieldValue<T: Any?>(
     val inputField: BaseInputField<T>,
     val value: T
 ) {

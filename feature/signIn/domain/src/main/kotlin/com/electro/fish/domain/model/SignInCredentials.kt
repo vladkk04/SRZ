@@ -1,9 +1,9 @@
 package com.electro.fish.domain.model
 
 import com.electro.essential.validator.DefaultAuthFormInputFieldValidation
-import com.electro.essential.validator.WithFormInputValidator
 import com.electro.essential.validator.InputFieldValue
-import com.electro.fish.data.account.signIn.model.AuthCredential
+import com.electro.essential.validator.WithFormInputValidator
+import com.electro.fish.data.account.auth.signIn.model.AuthCredential
 
 data class SignInCredentials(
     val email: String,

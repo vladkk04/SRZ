@@ -1,6 +1,5 @@
 package com.electro.fish.data.datastore
 
-import android.R.attr.value
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -74,7 +73,6 @@ class AppDataStore @Inject constructor(
     }
 
     fun <T : Any> getNullableByFlow(key: String, clazz: KClass<T>): Flow<T?> {
-
         @Suppress("UNCHECKED_CAST")
         return dataStore.data.map { prefs ->
             when (clazz) {

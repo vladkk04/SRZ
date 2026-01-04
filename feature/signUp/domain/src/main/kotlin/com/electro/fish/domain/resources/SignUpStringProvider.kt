@@ -2,6 +2,4 @@ package com.electro.fish.domain.resources
 
 import com.electro.essential.resources.AuthValidationStringProvider
 
-interface SignUpStringProvider: AuthValidationStringProvider {
-    val userAlreadyExistError: String
-}
+interface SignUpStringProvider: AuthValidationStringProvider

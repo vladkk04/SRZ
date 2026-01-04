@@ -7,5 +7,5 @@ plugins {
 dependencies {
     implementation(projects.core.essentials)
     api(libs.bundles.ktor)
-    api(libs.kotlin.serialization.json)
+    api(libs.kotlinx.serialization.json)
 }

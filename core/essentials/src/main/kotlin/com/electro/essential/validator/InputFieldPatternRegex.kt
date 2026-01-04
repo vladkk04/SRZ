@@ -12,4 +12,5 @@ object InputFieldPatternRegex {
     )
     val passwordRegex = Regex("^(?=.*[A-Za-z])(?=.*[^A-Za-z0-9]).+$")
     val passwordLengthRegex = Regex(".{8,}")
+    val phoneNumberRegex = Regex("^9\\d{8}$")
 }

@@ -1,6 +1,7 @@
 package com.electro.fish.ui.util.extension
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -59,13 +60,13 @@ fun Modifier.dashedBorder(
     )
 }
 
-fun Modifier.clickableWithoutIndication(onClick: () -> Unit) = this.clickable(
-    onClick = onClick,
-    indication = null,
-    interactionSource = null
-)
-
-
+fun Modifier.clickableWithoutIndication(onClick: () -> Unit) = composed {
+    this.clickable(
+        onClick = onClick,
+        indication = null,
+        interactionSource = remember { MutableInteractionSource() }
+    )
+}
 
 fun Modifier.onFocusLost(onFocusLost: () -> Unit): Modifier {
     data class FocusHistory(

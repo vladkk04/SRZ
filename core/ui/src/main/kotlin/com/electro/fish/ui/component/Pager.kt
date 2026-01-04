@@ -1,10 +1,10 @@
 package com.electro.fish.ui.component
 
-import android.util.Log
-import androidx.compose.foundation.layout.Arrangement
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.LayoutScopeMarker
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerDefaults
 import androidx.compose.foundation.pager.PagerState
@@ -81,6 +81,7 @@ fun <T: PagerScreenFeature> AppHorizontalPager(
     screens: ImmutableList<T> ,
     modifier: Modifier = Modifier,
     initialPage: Int = 0,
+    fillMaxSize: Boolean = true,
     contentContainer: PagerContentContainer<T>? = null,
     titleContainer: (@Composable ColumnScope.(PagerScope) -> Unit)? = null,
     bottomContainer: (@Composable ColumnScope.(PagerScope) -> Unit)? = null,
@@ -90,16 +91,27 @@ fun <T: PagerScreenFeature> AppHorizontalPager(
     val pagerState = rememberPagerState(initialPage) { screens.size }
     val pagerScoreImpl = remember { AppPagerScopeImpl(pagerState) }
 
+    BackHandler(
+        enabled = pagerState.currentPage != 0,
+    ) { pagerScoreImpl.requestPrevious() }
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
         titleContainer?.invoke(this, pagerScoreImpl)
 
+        val pagerModifier = if (fillMaxSize) {
+            Modifier.weight(1f)
+        } else {
+            Modifier.wrapContentHeight()
+        }
+
         HorizontalPager(
             state = pagerState,
             userScrollEnabled = userScrollEnabled,
             beyondViewportPageCount = beyondViewportPageCount,
+            modifier = pagerModifier
         ) {
             contentContainer?.Wrap(screens[it]) {
                 screens[it].content.invoke(pagerScoreImpl)

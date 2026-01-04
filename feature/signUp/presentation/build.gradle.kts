@@ -8,5 +8,6 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.commonAndroid)
     implementation(projects.feature.signUp.domain)
 }

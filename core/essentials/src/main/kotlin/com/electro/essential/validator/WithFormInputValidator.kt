@@ -4,14 +4,14 @@ import com.electro.essential.validator.ValidationResult.Companion.combined
 
 interface WithFormInputValidator {
     fun toFieldValues(): List<InputFieldValue<*>>
+}
 
-    fun validate(): ValidationResult {
-        val fieldValues = toFieldValues()
+fun WithFormInputValidator.validate(): ValidationResult {
+    val fieldValues = toFieldValues()
 
-        val validationResult = fieldValues
-            .map { it.validate() }
-            .combined()
+    val validationResult = fieldValues
+        .map { it.validate() }
+        .combined()
 
-        return validationResult
-    }
+    return validationResult
 }

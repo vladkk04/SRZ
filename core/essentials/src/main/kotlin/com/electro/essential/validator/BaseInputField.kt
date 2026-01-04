@@ -1,20 +1,20 @@
 package com.electro.essential.validator
 
 import com.electro.essential.exception.base.BaseValidationException
+import com.electro.essential.exception.validator.EmptyImageException
 import com.electro.essential.exception.validator.EmptyInputFieldException
 import com.electro.essential.exception.validator.InputRegexException
-import com.electro.essential.resources.AuthValidationStringProvider
 import com.electro.essential.resources.ValidationStringProvider
-import jdk.internal.net.http.common.Log.errors
+import com.sun.jndi.toolkit.url.Uri
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 
-sealed interface BaseInputField<T : Any> {
+sealed interface BaseInputField<T : Any?> {
 
     fun validate(value: T): ValidationResult
 
-    interface TextInputField: BaseInputField<String> {
+    interface InputField: BaseInputField<String> {
 
         fun getFieldName(provider: ValidationStringProvider): String
 
@@ -45,30 +45,55 @@ sealed interface BaseInputField<T : Any> {
         }
     }
 
-    sealed class AuthInputField(
-        private val fieldName: (AuthValidationStringProvider) -> String,
-        private val regexErrorResolverMap: ImmutableMap<Regex, ((AuthValidationStringProvider) -> String)?> = persistentMapOf(),
-    ): TextInputField {
+    interface TextInputField<T : ValidationStringProvider>: InputField {
+        val fieldName: (T) -> String
+        val regexErrorResolverMap: ImmutableMap<Regex, ((T) -> String)?>
+            get() = persistentMapOf()
+
         override fun getFieldName(provider: ValidationStringProvider): String {
-            return if(provider is AuthValidationStringProvider) {
-                fieldName(provider)
-            } else {
-                throw IllegalArgumentException("For AuthInputField you should use AuthValidationStringProvider")
+            @Suppress("UNCHECKED_CAST")
+            return try {
+                fieldName(provider as T)
+            } catch (e: ClassCastException) {
+                throw IllegalArgumentException("The provided ValidationStringProvider is not of the expected type for this TextInputField field.", e)
             }
         }
-
         override val regexMap: ImmutableMap<Regex, ((ValidationStringProvider) -> String)?>
             get() = regexErrorResolverMap.mapValues { (_, resolver) ->
                 resolver?.let { specificResolver ->
                     { provider: ValidationStringProvider ->
-                        if (provider is AuthValidationStringProvider) {
-                            specificResolver(provider)
-                        } else {
-                            throw IllegalArgumentException("Auth provider required for error resolution.")
-                        }
+                        @Suppress("UNCHECKED_CAST")
+                        specificResolver(provider as T)
                     }
                 }
             }.toImmutableMap()
+    }
+
+    interface ImageInputField<T : ValidationStringProvider>: BaseInputField<String?> {
+        val fieldName: (T) -> String
+
+        fun getFieldName(provider: ValidationStringProvider): String {
+            @Suppress("UNCHECKED_CAST")
+            return try {
+                fieldName(provider as T)
+            } catch (e: ClassCastException) {
+                throw IllegalArgumentException("Provider type mismatch", e)
+            }
+        }
+
+        override fun validate(value: String?): ValidationResult {
+            val errors = mutableListOf<BaseValidationException>()
+
+            if (value.isNullOrEmpty()) {
+                errors.add(EmptyImageException(this))
+            }
+
+            return if (errors.isNotEmpty()) {
+                ValidationResult.Error(errors)
+            } else {
+                ValidationResult.Success
+            }
+        }
     }
 }
 

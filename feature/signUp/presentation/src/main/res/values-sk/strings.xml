@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="SignUp_sign_up">Sign up</string>
+    <string name="SignUp_signIn">ä</string>
+    <string name="SignUp_firstName">ä</string>
+    <string name="SignUp_lastName">ä</string>
+    <string name="SignUp_title_profile_setup_whats_your_name">ä</string>
+    <string name="SignUp_title_profile_setup_whats_your_birthday">ä</string>
+    <string name="SignUp_title_profile_setup_upload_your_licence">ä</string>
+    <string name="SignUp_licence_number">ä</string>
+    <string name="SignUp_i_accept_the">ä</string>
+    <string name="SignUp_term_and_privacy_policy">ä</string>
+    <string name="SignUp_already_have_an_account">ä</string>
+    <string name="user_already_exist_error">ä</string>
+    <string name="SignUp_continue">ä</string>
+    <string name="SignUp_finish">ä</string>
+    <string name="SignUp_or">ä</string>
+    <string name="SignUp_upload_photo_description">ä</string>
+</resources>

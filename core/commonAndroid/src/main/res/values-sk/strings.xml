@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="commonAndroid_email">Email</string>
+    <string name="commonAndroid_password">ä</string>
+    <string name="commonAndroid_password_regex_error">ä</string>
+    <string name="commonAndroid_password_regex_length_error">ä</string>
+    <string name="commonAndroid_default_empty_input_field_error">ä</string>
+    <string name="commonAndroid_default_invalid_regex_input_field_error">ä</string>
+    <string name="commonAndroid_network_error_message">ä</string>
+    <string name="commonAndroid_unknown_error_message">ä</string>
+    <string name="commonAndroid_password_regex_length">ä</string>
+</resources>

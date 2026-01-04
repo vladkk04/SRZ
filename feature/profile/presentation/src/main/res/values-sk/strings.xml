@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_profile">Profile</string>
+    <string name="profile_edit_profile">Upraviť profil</string>
+    <string name="profile_settings">Nastavenia</string>
+    <string name="profile_language">Jazyk</string>
+    <string name="profile_terms_and_conditions">Obchodné podmienky</string>
+    <string name="profile_licensees">Držitelia licencie</string>
+    <string name="profile_log_out">Odhlásiť sa</string>
+</resources>

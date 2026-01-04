@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="session_add_fish">Add fish</string>
+    <string name="session_stop_fishing">End session</string>
+
+
+
+</resources>

@@ -19,30 +19,54 @@ data object SignInScreen : Screen
 data object SignUpScreen : Screen
 
 @Serializable
-data object ProfileSetupScreen : Screen
+data object DataFillingScreen : Screen
 
 @Serializable
 data object ForgotPasswordScreen : Screen
 
 @Serializable
-data object ProfileScreen : Screen
+data object InspectorScreen: Screen
 
 @Serializable
-data object SelectFishingSpot: Screen
+data object SelectFishingSpotScreen : Screen
 
 @Serializable
-sealed interface Guest: Screen {
+data object FishingSession: Screen
+
+@Serializable
+data object AddCaughtFishScreen : Screen
+
+@Serializable
+sealed interface Profile : Screen {
 
     @Serializable
-    data object GuestGraph: Graph
+    data object ProfileScreen : Profile
 
     @Serializable
-    data object GuestScreen: Guest
+    data object EditProfileScreen : Profile
 
     @Serializable
-    data object AddCatchFishScreen : Guest
+    data object LanguageScreen : Screen
+
+    @Serializable
+    data object LicenseesScreen : Profile
 }
 
+@Serializable
+sealed interface TopLevel : Screen {
+
+    @Serializable
+    data object TopLevelGraph : Graph
+
+    @Serializable
+    data object Home : TopLevel
+
+    @Serializable
+    data object Profile : TopLevel
+
+    @Serializable
+    data object FishingSession : TopLevel
+}
 
 
 

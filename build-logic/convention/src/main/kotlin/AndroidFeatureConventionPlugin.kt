@@ -17,7 +17,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
                 add("implementation", libs.findLibrary("androidx.lifecycle.viewmodel.compose").get())
                 add("implementation", libs.findLibrary("androidx.lifecycle.runtime.compose").get())
-                add("implementation", libs.findLibrary("kotlin.serialization.json").get())
+                add("implementation", libs.findLibrary("kotlinx.serialization.json").get())
                 add("implementation", libs.findLibrary("hilt-navigation-compose").get())
             }
         }
