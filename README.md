@@ -8,10 +8,10 @@ A mobile applications that makes life easier for everyone associated with fishin
 Here show some screens from Inventory Control application
 | | | | |
 |-|-|-|-|
-| <img src="https://github.com/vladkk04/SRZ/blob/main/images/photo_1_2026-02-12_19-34-33.jpg" width="200" alt="Home Screen"> | <img src="https://raw.githubusercontent.com/vladkk04/InventoryControl/refs/heads/main/AppScreenshots/NotificationSystemAndThrehold.png" width="200" alt="Notification and Threshold Settings System"> | <img src="https://raw.githubusercontent.com/vladkk04/InventoryControl/refs/heads/main/AppScreenshots/CreateOrder.png" width="200" alt="Create Order"> | <img src="https://raw.githubusercontent.com/vladkk04/InventoryControl/refs/heads/main/AppScreenshots/Reports.png" width="200" alt="Manage Users"> |
-| *Home Screen* | *Notification and <br>Threshold Settings System* | *Create Order* |  *Reports Output File* |
-| <img src="https://raw.githubusercontent.com/vladkk04/InventoryControl/refs/heads/main/AppScreenshots/CreateProduct.png" width="200" alt="Create Product"> | <img src="https://raw.githubusercontent.com/vladkk04/InventoryControl/refs/heads/main/AppScreenshots/ProductAnalytics.png" width="200" alt="Product Analystics"> | <img src="https://raw.githubusercontent.com/vladkk04/InventoryControl/refs/heads/main/AppScreenshots/ManageUsers.png" width="200" alt="Manage Users"> | <img src="https://raw.githubusercontent.com/vladkk04/InventoryControl/refs/heads/main/AppScreenshots/Filters.png" width="200" alt="Manage Users"> |
-| *Create Product* | *Product Analytics* | *Manage Users* | *Filters* |    
+| <img src="https://github.com/vladkk04/SRZ/blob/main/images/photo_1_2026-02-12_19-34-33.jpg" width="200" alt="Sign In"> | <img src="https://github.com/vladkk04/SRZ/blob/main/images/photo_2_2026-02-12_19-34-33.jpg" width="200" alt="Sign Up"> | <img src="https://github.com/vladkk04/SRZ/blob/main/images/photo_3_2026-02-12_19-34-33.jpg" width="200" alt="Home"> | <img src="https://github.com/vladkk04/SRZ/blob/main/images/photo_4_2026-02-12_19-34-33.jpg" width="200" alt="Search Fish Place"> |
+| *Sign In* | *Sign Up* | *Home* |  *Search Fish Place* |
+| <img src="https://github.com/vladkk04/SRZ/blob/main/images/photo_5_2026-02-12_19-34-33.jpg" width="200" alt="Session"> | <img src="https://github.com/vladkk04/SRZ/blob/main/images/photo_6_2026-02-12_19-34-33.jpg" width="200" alt="Product Analystics"> | <img src="https://github.com/vladkk04/SRZ/blob/main/images/photo_7_2026-02-12_19-34-33.jpg" width="200" alt="Manage Users"> | <img src="https://github.com/vladkk04/SRZ/blob/main/images/photo_8_2026-02-12_19-34-33.jpg" width="200" alt="Manage Users"> |
+| *Fish Session | *Add fish using AI* | *Profile* | *Your Licenses* |    
 ## Tech Stack
 
 ### Core
